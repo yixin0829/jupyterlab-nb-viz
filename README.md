@@ -6,6 +6,61 @@ A JupyterLab extension.
 ## Requirements
 
 - JupyterLab >= 3.0
+- [Reactflow](https://reactflow.dev/)
+- [Dagre.js](https://github.com/dagrejs/dagre)
+- Node.js >= 16.*
+- Cookicutter
+- Git
+
+## Environment Setup Guide (for Enmeng)
+- Based on the guide in https://jupyterlab.readthedocs.io/en/latest/extension/extension_tutorial.html#extension-tutorial to set up env
+- Specific versions of Python and Node.js are required
+
+```shell
+# Step 1: clone this repo
+
+# Step 2: Create a conda env (NOTE: this is different from the tutorial so reference this as source of truth)
+conda create -n nb-viz --override-channels --strict-channel-priority -c conda-forge -c nodefaults python=3.10 jupyterlab=3 cookiecutter nodejs=16.6.1 jupyter-packaging git
+
+# Install dependencies
+pip install -ve .
+# use the `develop` command to create a symbolic link from JupyterLab to our source directory. This means our changes are automatically available in JupyterLab
+jupyter labextension develop --overwrite .
+
+
+# Step 3: Intall additional dependencies
+# use jlpm (jupyter version of package manager) to add dependencies
+jlpm add @jupyterlab/apputils
+jlpm add @jupyterlab/application
+jlpm add @lumino/widgets
+## ui-components are used for creating ReactWidget from react component
+jlpm add @jupyterlab/ui-components
+# add dependencies for reactflow and autolayout (dagre)
+jlpm add reactflow
+jlpm add dagre
+# for dagre.js to work in TypeScript
+jlpm add @types/dagre
+
+# Try build (the build will likely fail, move on to see additional change to reactflow source code)
+jlpm build
+
+# see additional change to reactflow source code to make build work
+# after build success run and invoke command prompt by ctrl+shift+c then enter "reactflow"
+jlpm build
+jupyter lab
+```
+
+- Additional change to reactflow source code to make `jlpm build`
+    - error 1: ResizeObserver not find - [temp solution](https://github.com/ant-design/ant-design/issues/13405)
+    - error 2: Generic type 'PropsWithChildren' requires 1 type argument(s). - [temp solution](https://www.newline.co/@bespoyasov/how-to-define-props-with-children-in-react-typescript-app--56bd18be)
+        - Added `<{foo: string}>` as a type argument (have no idea why it works)
+        - `declare const ReactFlowProvider: FC<PropsWithChildren<{foo: string}>>;`
+    - error3: `type` is undefined
+        - Solution - Remove all `type` keywords
+- To start developing
+  - Run `jlpm build` every time make changes to the sources code
+  - Refresh the Jupyter Lab client
+  - See the change and debug
 
 ## Install
 
