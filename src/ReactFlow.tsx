@@ -9,19 +9,22 @@ import ReactFlow, {
   addEdge,
   Background,
   Edge,
-  Connection,
   useNodesState,
   useEdgesState,
   Handle,
   NodeProps,
   Position,
+  Panel,
   MiniMap,
   Controls,
+  SelectionMode,
+  ConnectionLineType
 } from "reactflow";
 import dagre from 'dagre';
-import initialNodes from './NodesNoCoords.json'
+import initialNodes from './Nodes.json'
 import initialEdges from './Edges.json'
 
+const panOnDrag = [1, 2];
 
 const CustomNode = ({
   data,
@@ -52,27 +55,11 @@ const nodeTypes = {
   custom: CustomNode
 };
 
-// Node colour schema
-const nodeColor = (node: Node) => {
-  switch (node.type) {
-    case 'dataframe':
-      return '#6ede87';
-    case 'variable':
-      return '#6865A5';
-    case 'plot':
-      return '#ff0072';
-    case 'insight':
-      return '#3e4959';
-    default:
-      return '#000000';
-  }
-};
-
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
 
-const nodeWidth:number = 172;
-const nodeHeight:number = 36;
+const nodeWidth:number = 60;
+const nodeHeight:number = 20;
 
 const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') => {
   const isHorizontal = direction === 'LR';
@@ -109,45 +96,78 @@ const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') => {
 
 // Check whether the node in initialNodes has a position field. If not, add it
 // and assign it the value of position
-const position = { x: 0, y: 0 };
-const processedNodes:Node[] = initialNodes.map((node) => {
-  return { ...node, position }
-});
+// const position = { x: 0, y: 0 };
+// const processedNodes:Node[] = initialNodes.map((node) => {
+//   return { ...node, position }
+// });
 
 // Add edgeType field to each node
-const edgeType = 'smoothstep';
-const processedEdges:Edge[] = initialEdges.map((edge) => {
-  return { ...edge, edgeType }
-});
+// const edgeType = 'smoothstep';
+// const processedEdges:Edge[] = initialEdges.map((edge) => {
+//   return { ...edge, edgeType }
+// });
 
 // Get layouted nodes and edges with assigned x/y coordinates using dagre
 const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
-  processedNodes,
-  processedEdges
+  initialNodes,
+  initialEdges,
 );
 
 
 const FlowComponent = () => {
-  const [nodes, , onNodesChange] = useNodesState(layoutedNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
-  const onConnect = useCallback(
-    (params: Edge | Connection) => setEdges((els) => addEdge(params, els)),
-    [setEdges]
+    const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
+    const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
+    
+    // const onConnect = useCallback(
+    //     (params: Edge | Connection) => setEdges((els) => addEdge(params, els)),
+    //     [setEdges]
+    // );
+    const onConnect = useCallback(
+        (params) =>
+          setEdges((eds) =>
+            addEdge({ ...params, type: ConnectionLineType.SmoothStep, animated: true }, eds)
+          ),
+        []
+    );
+
+  const onLayout = useCallback(
+    (direction) => {
+      const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
+        nodes,
+        edges,
+        direction
+      );
+
+      setNodes([...layoutedNodes]);
+      setEdges([...layoutedEdges]);
+    },
+    [nodes, edges]
   );
 
+
   return (
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-      onConnect={onConnect}
-      nodeTypes={nodeTypes}
-    >
-      <Background />
-      <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
-      <Controls/>
-    </ReactFlow>
+        <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            nodeTypes={nodeTypes}
+            connectionLineType={ConnectionLineType.SmoothStep}
+            fitView
+            panOnScroll
+            selectionOnDrag
+            panOnDrag={panOnDrag}
+            selectionMode={SelectionMode.Partial}
+        >
+        <Background />
+        <MiniMap nodeStrokeWidth={3} zoomable pannable />
+        <Controls/>
+        <Panel position="top-left">
+            <button onClick={() => onLayout('TB')}>vertical layout</button>
+            <button onClick={() => onLayout('LR')}>horizontal layout</button>
+        </Panel>
+        </ReactFlow>
   );
 };
 

@@ -97,5 +97,8 @@
   "jupyterlab": {
     "extension": true,
     "outputDir": "jupyterlab-nb-viz/labextension"
-  }
+  },
+  "include": [
+    "src/**/*.json"
+  ]
 }

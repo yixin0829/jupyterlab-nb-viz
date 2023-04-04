@@ -1,0 +1,1907 @@
+[
+    {
+        "id": "0",
+        "type": "root",
+        "data": {
+            "label": "root"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8A9A9",
+            "color": "white"
+        }
+    },
+    {
+        "id": "1",
+        "type": "raw",
+        "data": {
+            "label": "Attrition"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "2",
+        "type": "raw",
+        "data": {
+            "label": "RelationshipSatisfaction"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "3",
+        "type": "raw",
+        "data": {
+            "label": "Department"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "4",
+        "type": "raw",
+        "data": {
+            "label": "Education"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "5",
+        "type": "raw",
+        "data": {
+            "label": "EducationField"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "6",
+        "type": "raw",
+        "data": {
+            "label": "JobRole"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "7",
+        "type": "raw",
+        "data": {
+            "label": "JobSatisfaction"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "8",
+        "type": "raw",
+        "data": {
+            "label": "MaritalStatus"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "9",
+        "type": "raw",
+        "data": {
+            "label": "Over18"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "10",
+        "type": "secondary",
+        "data": {
+            "label": "Importance"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "11",
+        "type": "raw",
+        "data": {
+            "label": "MonthlyIncome"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "12",
+        "type": "raw",
+        "data": {
+            "label": "OverTime"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "13",
+        "type": "raw",
+        "data": {
+            "label": "StockOptionLevel"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "14",
+        "type": "secondary",
+        "data": {
+            "label": "final2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "15",
+        "type": "raw",
+        "data": {
+            "label": "JobLevel"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "16",
+        "type": "raw",
+        "data": {
+            "label": "StockOptionLevel"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "17",
+        "type": "raw",
+        "data": {
+            "label": "YearsAtCompany"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "18",
+        "type": "raw",
+        "data": {
+            "label": "JobRole"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "19",
+        "type": "raw",
+        "data": {
+            "label": "YearsAtCompany"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "20",
+        "type": "secondary",
+        "data": {
+            "label": "att"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "21",
+        "type": "plot",
+        "data": {
+            "label": "density_heatmap"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "22",
+        "type": "raw",
+        "data": {
+            "label": "Department"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "23",
+        "type": "secondary",
+        "data": {
+            "label": "att"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "24",
+        "type": "plot",
+        "data": {
+            "label": "density_heatmap"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "25",
+        "type": "secondary",
+        "data": {
+            "label": "Stock_0"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "26",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "27",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "28",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "29",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "30",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "31",
+        "type": "raw",
+        "data": {
+            "label": "JobSatisfaction"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "32",
+        "type": "raw",
+        "data": {
+            "label": "JobLevel"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "33",
+        "type": "raw",
+        "data": {
+            "label": "OverTime"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "34",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "35",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "36",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "37",
+        "type": "raw",
+        "data": {
+            "label": "JobRole"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "38",
+        "type": "raw",
+        "data": {
+            "label": "StockOptionLevel"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "39",
+        "type": "raw",
+        "data": {
+            "label": "YearsAtCompany"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "40",
+        "type": "secondary",
+        "data": {
+            "label": "att"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "41",
+        "type": "plot",
+        "data": {
+            "label": "density_heatmap"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "42",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "43",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "44",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "45",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "46",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "47",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "48",
+        "type": "secondary",
+        "data": {
+            "label": "Predictors"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "49",
+        "type": "plot",
+        "data": {
+            "label": "barplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "50",
+        "type": "secondary",
+        "data": {
+            "label": "attrition"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "51",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "52",
+        "type": "secondary",
+        "data": {
+            "label": "attrition"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "53",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "54",
+        "type": "secondary",
+        "data": {
+            "label": "attrition"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "55",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "56",
+        "type": "secondary",
+        "data": {
+            "label": "attrition"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "57",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "58",
+        "type": "secondary",
+        "data": {
+            "label": "attrition"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "59",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "60",
+        "type": "secondary",
+        "data": {
+            "label": "attrition"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "61",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "62",
+        "type": "secondary",
+        "data": {
+            "label": "attrition"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "63",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "64",
+        "type": "secondary",
+        "data": {
+            "label": "attrition"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "65",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "66",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "67",
+        "type": "raw",
+        "data": {
+            "label": "Age"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "68",
+        "type": "raw",
+        "data": {
+            "label": "YearsWithCurrManager"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "69",
+        "type": "secondary",
+        "data": {
+            "label": "attrition"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "70",
+        "type": "raw",
+        "data": {
+            "label": "MonthlyIncome"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "71",
+        "type": "raw",
+        "data": {
+            "label": "TotalWorkingYears"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "72",
+        "type": "raw",
+        "data": {
+            "label": "YearsAtCompany"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "73",
+        "type": "raw",
+        "data": {
+            "label": "JobLevel"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "74",
+        "type": "raw",
+        "data": {
+            "label": "StockOptionLevel"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "75",
+        "type": "raw",
+        "data": {
+            "label": "OverTime"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "76",
+        "type": "raw",
+        "data": {
+            "label": "YearsInCurrentRole"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "77",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "78",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "79",
+        "type": "raw",
+        "data": {
+            "label": "JobSatisfaction"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "80",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "81",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "82",
+        "type": "raw",
+        "data": {
+            "label": "JobRole"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "83",
+        "type": "secondary",
+        "data": {
+            "label": "joblevel2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "84",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "85",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "86",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "87",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "88",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "89",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "90",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "91",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "92",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "93",
+        "type": "raw",
+        "data": {
+            "label": "Department"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "94",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "95",
+        "type": "raw",
+        "data": {
+            "label": "OverTime"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "96",
+        "type": "raw",
+        "data": {
+            "label": "JobLevel"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "97",
+        "type": "raw",
+        "data": {
+            "label": "StockOptionLevel"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "98",
+        "type": "raw",
+        "data": {
+            "label": "JobInvolvement"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "99",
+        "type": "secondary",
+        "data": {
+            "label": "noovertime_level1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "100",
+        "type": "secondary",
+        "data": {
+            "label": "noovertime_level2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "101",
+        "type": "secondary",
+        "data": {
+            "label": "noovertime_level3"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "102",
+        "type": "secondary",
+        "data": {
+            "label": "noovertime_level4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "103",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "104",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "105",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "106",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "107",
+        "type": "secondary",
+        "data": {
+            "label": "joblevel4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "108",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "109",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "110",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "111",
+        "type": "raw",
+        "data": {
+            "label": "Department"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#E8AC6E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "112",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "113",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "114",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "115",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "116",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "117",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "118",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "119",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "120",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "121",
+        "type": "plot",
+        "data": {
+            "label": "swarmplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "122",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "123",
+        "type": "secondary",
+        "data": {
+            "label": "employee"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#F0C633",
+            "color": "white"
+        }
+    },
+    {
+        "id": "124",
+        "type": "plot",
+        "data": {
+            "label": "swarmplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "125",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    },
+    {
+        "id": "126",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E",
+            "color": "white"
+        }
+    }
+]
