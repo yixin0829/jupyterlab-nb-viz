@@ -1,0 +1,71 @@
+[
+    {
+        "id": "0",
+        "source": "0",
+        "target": "1-1",
+        "label": "88"
+    },
+
+    {
+        "id": "1",
+        "source": "0",
+        "target": "1-2",
+        "label": "8"
+    },
+
+    {
+        "id": "2",
+        "source": "1-1",
+        "target": "2-1",
+        "label": "5"
+    },
+
+    {
+        "id": "3",
+        "source": "1-1",
+        "target": "2-2",
+        "label": "3"
+    },
+
+    {
+        "id": "4",
+        "source": "2-1",
+        "target": "3-1",
+        "label": "1"
+    },
+
+    {
+        "id": "5",
+        "source": "3-1",
+        "target": "4-1",
+        "label": "1"
+    },
+
+    {
+        "id": "6",
+        "source": "2-2",
+        "target": "3-2",
+        "label": "1"
+    },
+
+    {
+        "id": "7",
+        "source": "3-2",
+        "target": "4-2",
+        "label": "1"
+    },
+
+    {
+        "id": "8",
+        "source": "1-2",
+        "target": "2-3",
+        "label": "1"
+    },
+
+    {
+        "id": "9",
+        "source": "2-3",
+        "target": "3-3",
+        "label": "1"
+    }
+]

@@ -11,9 +11,6 @@ import ReactFlow, {
   Edge,
   useNodesState,
   useEdgesState,
-  Handle,
-  NodeProps,
-  Position,
   Panel,
   MiniMap,
   Controls,
@@ -21,38 +18,54 @@ import ReactFlow, {
   ConnectionLineType
 } from "reactflow";
 import dagre from 'dagre';
-import initialNodes from './Nodes.json'
-import initialEdges from './Edges.json'
+import initialNodes from './simple/Nodes.json'
+import initialEdges from './simple/Edges.json'
 
 const panOnDrag = [1, 2];
 
-const CustomNode = ({
-  data,
-  isConnectable,
-  targetPosition = Position.Top,
-  sourcePosition = Position.Bottom
-}: NodeProps) => {
-  return (
-    <>
-      <Handle
-        type="target"
-        position={targetPosition}
-        isConnectable={isConnectable}
-      />
-      {data?.label}
-      <Handle
-        type="source"
-        position={sourcePosition}
-        isConnectable={isConnectable}
-      />
-    </>
-  );
-};
+// const CustomNode = ({
+//   data,
+//   isConnectable,
+//   targetPosition = Position.Top,
+//   sourcePosition = Position.Bottom
+// }: NodeProps) => {
+//   return (
+//     <>
+//       <Handle
+//         type="target"
+//         position={targetPosition}
+//         isConnectable={isConnectable}
+//       />
+//       {data?.label}
+//       <Handle
+//         type="source"
+//         position={sourcePosition}
+//         isConnectable={isConnectable}
+//       />
+//     </>
+//   );
+// };
 
-CustomNode.displayName = "CustomNode";
+// CustomNode.displayName = "CustomNode";
 
-const nodeTypes = {
-  custom: CustomNode
+// const nodeTypes = {
+//     secondary: Trapezoid
+// };
+
+// Node colour schema
+const nodeColor = (node: Node) => {
+  switch (node.type) {
+    case 'root':
+      return '#e8a9a9';
+    case 'raw':
+      return '#e8ac6e';
+    case 'secondary':
+      return '#f0c633';
+    case 'plot':
+      return '#9ab75e';
+    default:
+      return '#ffffff';
+  }
 };
 
 const dagreGraph = new dagre.graphlib.Graph();
@@ -152,7 +165,7 @@ const FlowComponent = () => {
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
-            nodeTypes={nodeTypes}
+            // nodeTypes={nodeTypes}
             connectionLineType={ConnectionLineType.SmoothStep}
             fitView
             panOnScroll
@@ -161,7 +174,7 @@ const FlowComponent = () => {
             selectionMode={SelectionMode.Partial}
         >
         <Background />
-        <MiniMap nodeStrokeWidth={3} zoomable pannable />
+        <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
         <Controls/>
         <Panel position="top-left">
             <button onClick={() => onLayout('TB')}>vertical layout</button>
