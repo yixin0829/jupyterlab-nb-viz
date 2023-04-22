@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, MouseEvent, useEffect } from "react";
 // for converting a react component to a react widget in JL
 import { ReactWidget } from '@jupyterlab/apputils';
 
@@ -11,46 +11,18 @@ import ReactFlow, {
   Edge,
   useNodesState,
   useEdgesState,
-  Panel,
   MiniMap,
   Controls,
   SelectionMode,
   ConnectionLineType
 } from "reactflow";
 import dagre from 'dagre';
-import initialNodes from './simple/Nodes.json'
-import initialEdges from './simple/Edges.json'
+import allNodes from './Nodes.json'
+import allEdges from './Edges.json'
+// import subtreeNodes from './simple/SubtreeNodes.json'
+// import subtreeEdges from './simple/SubtreeEdges.json'
 
 const panOnDrag = [1, 2];
-
-// const CustomNode = ({
-//   data,
-//   isConnectable,
-//   targetPosition = Position.Top,
-//   sourcePosition = Position.Bottom
-// }: NodeProps) => {
-//   return (
-//     <>
-//       <Handle
-//         type="target"
-//         position={targetPosition}
-//         isConnectable={isConnectable}
-//       />
-//       {data?.label}
-//       <Handle
-//         type="source"
-//         position={sourcePosition}
-//         isConnectable={isConnectable}
-//       />
-//     </>
-//   );
-// };
-
-// CustomNode.displayName = "CustomNode";
-
-// const nodeTypes = {
-//     secondary: Trapezoid
-// };
 
 // Node colour schema
 const nodeColor = (node: Node) => {
@@ -68,57 +40,106 @@ const nodeColor = (node: Node) => {
   }
 };
 
-const dagreGraph = new dagre.graphlib.Graph();
-dagreGraph.setDefaultEdgeLabel(() => ({}));
-
 const nodeWidth:number = 60;
 const nodeHeight:number = 20;
 
 const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') => {
-  const isHorizontal = direction === 'LR';
-  dagreGraph.setGraph({ rankdir: direction });
+    const dagreGraph = new dagre.graphlib.Graph();
+    dagreGraph.setDefaultEdgeLabel(() => ({}));
+    const isHorizontal = direction === 'LR';
+    dagreGraph.setGraph({ rankdir: direction });
 
-  // Add nodes and edges into dagreGraph object
-  nodes.forEach((node:Node) => {
-    dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
-  });
+    // set the postiions to 0
+    nodes.forEach((node:Node) => {
+        return {...node, position: { x: 0, y: 0 } }
+    });
 
-  edges.forEach((edge:Edge) => {
-    dagreGraph.setEdge(edge.source, edge.target);
-  });
+    // Add nodes and edges into dagreGraph object
+    nodes.forEach((node:Node) => {
+        dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
+    });
 
-  dagre.layout(dagreGraph);
+    edges.forEach((edge:Edge) => {
+        dagreGraph.setEdge(edge.source, edge.target);
+    });
 
-  nodes.forEach((node:any) => {
-    const nodeWithPosition = dagreGraph.node(node.id);
-    node.targetPosition = isHorizontal ? 'left' : 'top';
-    node.sourcePosition = isHorizontal ? 'right' : 'bottom';
+    dagre.layout(dagreGraph);
 
-    // We are shifting the dagre node position (anchor=center center) to the top left
-    // so it matches the React Flow node anchor point (top left).
-    node.position = {
-      x: nodeWithPosition.x - nodeWidth / 2,
-      y: nodeWithPosition.y - nodeHeight / 2,
-    };
+    nodes.forEach((node:any) => {
+        const nodeWithPosition = dagreGraph.node(node.id);
+        node.targetPosition = isHorizontal ? 'left' : 'top';
+        node.sourcePosition = isHorizontal ? 'right' : 'bottom';
 
-    return node;
-  });
+        // We are shifting the dagre node position (anchor=center center) to the top left
+        // so it matches the React Flow node anchor point (top left).
+        node.position = {
+        x: nodeWithPosition.x - nodeWidth / 2,
+        y: nodeWithPosition.y - nodeHeight / 2,
+        };
 
-  return { nodes, edges };
+        return node;
+    });
+
+    console.log('')
+
+    return { nodes, edges };
 };
 
-// Check whether the node in initialNodes has a position field. If not, add it
-// and assign it the value of position
-// const position = { x: 0, y: 0 };
-// const processedNodes:Node[] = initialNodes.map((node) => {
-//   return { ...node, position }
-// });
 
-// Add edgeType field to each node
-// const edgeType = 'smoothstep';
-// const processedEdges:Edge[] = initialEdges.map((edge) => {
-//   return { ...edge, edgeType }
-// });
+const getEdgeLabel = (sourceId: String, targetId: String) => {
+    // Find the edge weight between sourceId and targetId
+    const edge = allEdges.find((e) => e.source === sourceId && e.target === targetId);
+    if (edge === undefined || edge.label === undefined) {
+        return undefined;
+    }
+    return edge.label;
+}
+
+const getSubtreeElements = (node: Node, nodes: Node[], skipEtc: boolean = true) => {
+    // Find all the nodes that belongs to the subtree whose root is node
+    // subtree does NOT include the node itself
+    const subtreeNodes:Node[] = [];
+    const subtreeEdges:Edge[] = [];
+    const queue:Node[] = [node];
+    while (queue.length > 0) {
+        const currentNode: Node = queue.shift()!;
+        if (currentNode !== node) {
+            subtreeNodes.push(currentNode);
+            if (skipEtc && currentNode.type === 'etc') {
+                continue;
+            }
+        }
+        const children = nodes.filter((n) => n.data.parent === currentNode.id);
+        children.forEach((child) => {
+            queue.push(child);
+            subtreeEdges.push({
+                id: `${currentNode.id}-${child.id}`,
+                source: currentNode.id,
+                target: child.id,
+                label: getEdgeLabel(currentNode.id, child.id) });
+        });
+    }
+    // console.log(`Subtree nodes for node ${node.data.label}: ${subtreeNodes.map((n) => n.data.label)}`);
+    return { subtreeNodes, subtreeEdges };
+}
+
+
+const getInitialElements = (nodes: Node[]) => {
+    // Find the root node
+    const rootNode = nodes.find((n) => n.data.label === 'root');
+    if (rootNode === undefined) {
+        throw new Error('No root node found');
+    }
+    // Find all the nodes that belongs to the subtree whose root is rootNode
+    const {subtreeNodes: initialNodes, subtreeEdges: initialEdges} = getSubtreeElements(rootNode, nodes);
+    initialNodes.push(rootNode);
+    return { initialNodes, initialEdges };
+}
+
+
+const {initialNodes: initialNodes, initialEdges: initialEdges} = getInitialElements(allNodes);
+// const initialNodes = allNodes;
+// const initialEdges = allEdges;
 
 // Get layouted nodes and edges with assigned x/y coordinates using dagre
 const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
@@ -131,10 +152,6 @@ const FlowComponent = () => {
     const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
     
-    // const onConnect = useCallback(
-    //     (params: Edge | Connection) => setEdges((els) => addEdge(params, els)),
-    //     [setEdges]
-    // );
     const onConnect = useCallback(
         (params) =>
           setEdges((eds) =>
@@ -143,19 +160,47 @@ const FlowComponent = () => {
         []
     );
 
-  const onLayout = useCallback(
-    (direction) => {
-      const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
-        nodes,
-        edges,
-        direction
-      );
+    useEffect(() =>{
+        console.log(`Nodes : ${nodes.map((n) => n.data.label + '\n')}`);
+    }, [nodes]);
 
-      setNodes([...layoutedNodes]);
-      setEdges([...layoutedEdges]);
-    },
-    [nodes, edges]
-  );
+    const handleNodeClick = (event: MouseEvent, node: Node) => {
+        if (node.type === 'etc') {
+            const nodeAsSourceEdge = edges.filter((e) => e.source === node.id);
+            if (nodeAsSourceEdge.length === 0) {
+                // expand the subtree
+                const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(node, allNodes);
+                const newNodes = nodes.concat(subtreeNodes).map((n) => {
+                    if (n.id === node.id) {
+                        n.data = {...n.data, label: '-'} 
+                    };
+                    return n;
+                    }
+                );
+                const newEdges = edges.concat(subtreeEdges);
+                const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodes, newEdges);
+                setNodes(layoutedNewNodes);
+                setEdges(layoutedNewEdges);
+            }
+            else {
+                // collapse the subtree
+                const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(node, nodes, false);
+                const newNodes = nodes.filter((n) => !subtreeNodes.some((sn) => sn.id === n.id)); // remove all the nodes in subtree
+                const newNodesAfterLabelChange = newNodes.map((n) => {
+                    if (n.id === node.id) {
+                        n.data = {...n.data, label: n.data.numberOfChildren} 
+                    };
+                    return n;
+                    }
+                );
+                const newEdges = edges.filter((e) => !subtreeEdges.some((se) => se.id === e.id)); // remove all the edges in subtree
+                const newEdgesAfterCleanUp = newEdges.filter((e) => !subtreeNodes.some((sn) => sn.id === e.source)); // remove all edges that has source in subtree
+                const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodesAfterLabelChange, newEdgesAfterCleanUp);
+                setNodes(layoutedNewNodes);
+                setEdges(layoutedNewEdges);
+            }
+        }
+    }
 
 
   return (
@@ -165,7 +210,7 @@ const FlowComponent = () => {
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
-            // nodeTypes={nodeTypes}
+            onNodeClick={handleNodeClick}
             connectionLineType={ConnectionLineType.SmoothStep}
             fitView
             panOnScroll
@@ -176,10 +221,6 @@ const FlowComponent = () => {
         <Background />
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
         <Controls/>
-        <Panel position="top-left">
-            <button onClick={() => onLayout('TB')}>vertical layout</button>
-            <button onClick={() => onLayout('LR')}>horizontal layout</button>
-        </Panel>
         </ReactFlow>
   );
 };

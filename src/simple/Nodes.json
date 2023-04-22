@@ -3,7 +3,8 @@
         "id": "0",
         "type": "root",
         "data": {
-            "label": "root"
+            "label": "root",
+            "parent": null
         },
         "position": {
             "x": 0,
@@ -23,7 +24,8 @@
         "id": "1-1",
         "type": "raw",
         "data": {
-            "label": "Attrition"
+            "label": "Attrition",
+            "parent": "0"
         },
         "position": {
             "x": 0,
@@ -43,7 +45,8 @@
         "id": "1-2",
         "type": "raw",
         "data": {
-            "label": "Age"
+            "label": "Age",
+            "parent": "0"
         },
         "position": {
             "x": 0,
@@ -63,7 +66,8 @@
         "id": "2-1",
         "type": "raw",
         "data": {
-            "label": "MonthlyIncome"
+            "label": "MonthlyIncome",
+            "parent": "1-1"
         },
         "position": {
             "x": 0,
@@ -83,7 +87,8 @@
         "id": "2-2",
         "type": "raw",
         "data": {
-            "label": "YearsWithCurrManager"
+            "label": "YearsWithCurrManager",
+            "parent": "1-1"
         },
         "position": {
             "x": 0,
@@ -102,7 +107,8 @@
         "id": "2-3",
         "type": "secondary",
         "data": {
-            "label": "employee"
+            "label": "employee",
+            "parent": "1-2"
         },
         "position": {
             "x": 0,
@@ -122,7 +128,8 @@
         "id": "3-1",
         "type": "secondary",
         "data": {
-            "label": "employee"
+            "label": "employee",
+            "parent": "2-1"
         },
         "position": {
             "x": 0,
@@ -142,7 +149,8 @@
         "id": "3-2",
         "type": "secondary",
         "data": {
-            "label": "employee"
+            "label": "employee",
+            "parent": "2-2"
         },
         "position": {
             "x": 0,
@@ -157,11 +165,13 @@
             "backgroundColor": "#F0C633"
         }
     },
+
     {
         "id": "3-3",
         "type": "plot",
         "data": {
-            "label": "boxplot"
+            "label": "boxplot",
+            "parent": "2-3"
         },
         "position": {
             "x": 0,
@@ -181,7 +191,8 @@
         "id": "4-1",
         "type": "plot",
         "data": {
-            "label": "catplot"
+            "label": "catplot",
+            "parent": "3-1"
         },
         "position": {
             "x": 0,
@@ -201,7 +212,244 @@
         "id": "4-2",
         "type": "plot",
         "data": {
-            "label": "barplot"
+            "label": "barplot",
+            "parent": "3-2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+
+    {
+        "id": "1-dot",
+        "type": "etc",
+        "data": {
+            "label": "2",
+            "parent": "0",
+            "numberOfChildren": "2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "40px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff"
+        }
+    },
+
+
+
+    {
+        "id": "1-3",
+        "type": "raw",
+        "data": {
+            "label": "OverTime",
+            "parent": "1-dot",
+            "numberOfChildren": "2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+
+    {
+        "id": "2-4",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "1-3"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+
+    {
+        "id": "3-4",
+        "type": "plot",
+        "data": {
+            "label": "scatterplot",
+            "parent": "2-4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+
+    {
+        "id": "1-4",
+        "type": "raw",
+        "data": {
+            "label": "TotalWorkingYears",
+            "parent": "1-dot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+
+    {
+        "id": "2-5",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "1-4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+
+    {
+        "id": "3-5",
+        "type": "plot",
+        "data": {
+            "label": "swarmplot",
+            "parent": "2-5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+
+    {
+        "id": "2-dot",
+        "type": "etc",
+        "data": {
+            "label": "1",
+            "parent": "1-dot",
+            "numberOfChildren": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "40px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff"
+        }
+    },
+
+    {
+        "id": "1-5",
+        "type": "raw",
+        "data": {
+            "label": "Gender",
+            "parent": "2-dot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+
+    {
+        "id": "2-6",
+        "type": "secondary",
+        "data": {
+            "label": "att",
+            "parent": "1-5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+
+    {
+        "id": "3-6",
+        "type": "plot",
+        "data": {
+            "label": "swarmplot",
+            "parent": "2-6"
         },
         "position": {
             "x": 0,
@@ -216,5 +464,4 @@
             "backgroundColor": "#9AB75E"
         }
     }
-    
 ]

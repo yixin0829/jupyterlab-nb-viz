@@ -1,7 +1,7 @@
 import React from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
 
-const CustomNode = ({
+const DefaultNode = ({
     data,
     isConnectable,
     targetPosition = Position.Top,
@@ -24,4 +24,4 @@ const CustomNode = ({
     );
   };
 
-export default CustomNode;
+export default DefaultNode;

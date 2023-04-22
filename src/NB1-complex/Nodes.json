@@ -1,0 +1,2578 @@
+[
+    {
+        "id": "0",
+        "type": "root",
+        "data": {
+            "label": "root"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8A9A9"
+        }
+    },
+    {
+        "id": "etc-1",
+        "type": "etc",
+        "data": {
+            "label": "12",
+            "numberOfChildren": 12
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "40px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff"
+        }
+    },
+    {
+        "id": "105",
+        "type": "secondary",
+        "data": {
+            "label": "final2",
+            "parent": "etc-1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "106",
+        "type": "secondary",
+        "data": {
+            "label": "Stock_0",
+            "parent": "105"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "107",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "102",
+        "type": "raw",
+        "data": {
+            "label": "StockOptionLevel",
+            "parent": "etc-1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "103",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "102"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "104",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "81",
+        "type": "raw",
+        "data": {
+            "label": "OverTime",
+            "parent": "etc-1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "82",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "81"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "83",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "40",
+        "type": "secondary",
+        "data": {
+            "label": "Importance",
+            "parent": "etc-1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "41",
+        "type": "secondary",
+        "data": {
+            "label": "Predictors",
+            "parent": "40"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "42",
+        "type": "plot",
+        "data": {
+            "label": "barplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "33",
+        "type": "raw",
+        "data": {
+            "label": "Over18",
+            "parent": "etc-1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "34",
+        "type": "secondary",
+        "data": {
+            "label": "attrition",
+            "parent": "33"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "35",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "30",
+        "type": "raw",
+        "data": {
+            "label": "MaritalStatus",
+            "parent": "etc-1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "31",
+        "type": "secondary",
+        "data": {
+            "label": "attrition",
+            "parent": "30"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "32",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "27",
+        "type": "raw",
+        "data": {
+            "label": "JobSatisfaction",
+            "parent": "etc-1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "28",
+        "type": "secondary",
+        "data": {
+            "label": "attrition",
+            "parent": "27"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "29",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "24",
+        "type": "raw",
+        "data": {
+            "label": "JobRole",
+            "parent": "etc-1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "25",
+        "type": "secondary",
+        "data": {
+            "label": "attrition",
+            "parent": "24"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "26",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "21",
+        "type": "raw",
+        "data": {
+            "label": "EducationField",
+            "parent": "etc-1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "22",
+        "type": "secondary",
+        "data": {
+            "label": "attrition",
+            "parent": "21"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "23",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "18",
+        "type": "raw",
+        "data": {
+            "label": "Education",
+            "parent": "etc-1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "19",
+        "type": "secondary",
+        "data": {
+            "label": "attrition",
+            "parent": "18"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "20",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "15",
+        "type": "raw",
+        "data": {
+            "label": "Department",
+            "parent": "etc-1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "16",
+        "type": "secondary",
+        "data": {
+            "label": "attrition",
+            "parent": "15"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "17",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "10",
+        "type": "raw",
+        "data": {
+            "label": "RelationshipSatisfaction",
+            "parent": "etc-1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "11",
+        "type": "secondary",
+        "data": {
+            "label": "attrition",
+            "parent": "10"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "12",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "117",
+        "type": "raw",
+        "data": {
+            "label": "JobLevel",
+            "parent": "0"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "118",
+        "type": "raw",
+        "data": {
+            "label": "StockOptionLevel",
+            "parent": "117"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "123",
+        "type": "raw",
+        "data": {
+            "label": "JobRole",
+            "parent": "118"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "124",
+        "type": "raw",
+        "data": {
+            "label": "YearsAtCompany",
+            "parent": "123"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "125",
+        "type": "secondary",
+        "data": {
+            "label": "att",
+            "parent": "124"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "126",
+        "type": "plot",
+        "data": {
+            "label": "density_heatmap"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "119",
+        "type": "raw",
+        "data": {
+            "label": "YearsAtCompany",
+            "parent": "118"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "120",
+        "type": "raw",
+        "data": {
+            "label": "Department",
+            "parent": "119"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "121",
+        "type": "secondary",
+        "data": {
+            "label": "att",
+            "parent": "120"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "122",
+        "type": "plot",
+        "data": {
+            "label": "density_heatmap"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "45",
+        "type": "raw",
+        "data": {
+            "label": "MonthlyIncome",
+            "parent": "0"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "84",
+        "type": "raw",
+        "data": {
+            "label": "OverTime",
+            "parent": "45"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "85",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "84"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "86",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "46",
+        "type": "raw",
+        "data": {
+            "label": "JobSatisfaction",
+            "parent": "45"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "47",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "46"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "48",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "63",
+        "type": "raw",
+        "data": {
+            "label": "JobLevel",
+            "parent": "45"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "113",
+        "type": "raw",
+        "data": {
+            "label": "StockOptionLevel",
+            "parent": "63"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "114",
+        "type": "raw",
+        "data": {
+            "label": "YearsAtCompany",
+            "parent": "113"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "115",
+        "type": "secondary",
+        "data": {
+            "label": "att",
+            "parent": "114"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "116",
+        "type": "plot",
+        "data": {
+            "label": "density_heatmap"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "64",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "63"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "65",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "66",
+        "type": "raw",
+        "data": {
+            "label": "JobRole",
+            "parent": "63"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "67",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "66"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "69",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "68",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "1",
+        "type": "raw",
+        "data": {
+            "label": "Attrition",
+            "parent": "0"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc-2",
+        "type": "etc",
+        "data": {
+            "label": "8",
+            "numberOfChildren": 8
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "40px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff"
+        }
+    },
+    {
+        "id": "110",
+        "type": "raw",
+        "data": {
+            "label": "YearsInCurrentRole",
+            "parent": "etc-2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "111",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "110"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "112",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "98",
+        "type": "raw",
+        "data": {
+            "label": "OverTime",
+            "parent": "etc-2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "99",
+        "type": "raw",
+        "data": {
+            "label": "JobSatisfaction",
+            "parent": "98"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "100",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "99"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "101",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "60",
+        "type": "raw",
+        "data": {
+            "label": "JobLevel",
+            "parent": "etc-2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "61",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "60"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "62",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "57",
+        "type": "raw",
+        "data": {
+            "label": "YearsAtCompany",
+            "parent": "etc-2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "58",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "57"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "59",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "54",
+        "type": "raw",
+        "data": {
+            "label": "TotalWorkingYears",
+            "parent": "etc-2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "55",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "54"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "56",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "13",
+        "type": "secondary",
+        "data": {
+            "label": "attrition",
+            "parent": "etc-2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "14",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "2",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "etc-2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "3",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "73",
+        "type": "raw",
+        "data": {
+            "label": "StockOptionLevel",
+            "parent": "etc-2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "74",
+        "type": "raw",
+        "data": {
+            "label": "JobRole",
+            "parent": "73"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "108",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "74"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "109",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "75",
+        "type": "secondary",
+        "data": {
+            "label": "joblevel2",
+            "parent": "74"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "76",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "7",
+        "type": "raw",
+        "data": {
+            "label": "YearsWithCurrManager",
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "8",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "7"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "53",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "9",
+        "type": "plot",
+        "data": {
+            "label": "swarmplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "4",
+        "type": "raw",
+        "data": {
+            "label": "Age",
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "5",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "80",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "6",
+        "type": "plot",
+        "data": {
+            "label": "swarmplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "36",
+        "type": "raw",
+        "data": {
+            "label": "MonthlyIncome",
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc-3",
+        "type": "etc",
+        "data": {
+            "label": "3",
+            "numberOfChildren": 3
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "40px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff"
+        }
+    },
+    {
+        "id": "77",
+        "type": "raw",
+        "data": {
+            "label": "StockOptionLevel",
+            "parent": "etc-3"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "78",
+        "type": "secondary",
+        "data": {
+            "label": "joblevel4",
+            "parent": "77"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "79",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "70",
+        "type": "raw",
+        "data": {
+            "label": "JobLevel",
+            "parent": "etc-3"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "71",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "70"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "72",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "43",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "etc-3"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "44",
+        "type": "plot",
+        "data": {
+            "label": "boxplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "37",
+        "type": "raw",
+        "data": {
+            "label": "Department",
+            "parent": "36"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "38",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "37"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "39",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "49",
+        "type": "raw",
+        "data": {
+            "label": "OverTime",
+            "parent": "36"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "87",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "49"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "88",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "50",
+        "type": "raw",
+        "data": {
+            "label": "Department",
+            "parent": "49"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "51",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "50"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "52",
+        "type": "plot",
+        "data": {
+            "label": "catplot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "89",
+        "type": "raw",
+        "data": {
+            "label": "JobInvolvement",
+            "parent": "36"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc-4",
+        "type": "etc",
+        "data": {
+            "label": "1",
+            "numberOfChildren": 1
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "40px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff"
+        }
+    },
+    {
+        "id": "96",
+        "type": "secondary",
+        "data": {
+            "label": "noovertime_level4",
+            "parent": "etc-4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "97",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "94",
+        "type": "secondary",
+        "data": {
+            "label": "noovertime_level3",
+            "parent": "89"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "95",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "92",
+        "type": "secondary",
+        "data": {
+            "label": "noovertime_level2",
+            "parent": "89"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "93",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "90",
+        "type": "secondary",
+        "data": {
+            "label": "noovertime_level1",
+            "parent": "89"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "91",
+        "type": "plot",
+        "data": {
+            "label": "box"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    }
+]
