@@ -171,7 +171,8 @@
         "type": "plot",
         "data": {
             "label": "boxplot",
-            "parent": "2-3"
+            "parent": "2-3",
+            "cellIndex": 9
         },
         "position": {
             "x": 0,
@@ -192,7 +193,8 @@
         "type": "plot",
         "data": {
             "label": "catplot",
-            "parent": "3-1"
+            "parent": "3-1",
+            "cellIndex": 36
         },
         "position": {
             "x": 0,
@@ -213,7 +215,8 @@
         "type": "plot",
         "data": {
             "label": "barplot",
-            "parent": "3-2"
+            "parent": "3-2",
+            "cellIndex": 38
         },
         "position": {
             "x": 0,
@@ -301,7 +304,8 @@
         "type": "plot",
         "data": {
             "label": "scatterplot",
-            "parent": "2-4"
+            "parent": "2-4",
+            "cellIndex": 42
         },
         "position": {
             "x": 0,
@@ -364,7 +368,8 @@
         "type": "plot",
         "data": {
             "label": "swarmplot",
-            "parent": "2-5"
+            "parent": "2-5",
+            "cellIndex": 102
         },
         "position": {
             "x": 0,
@@ -449,7 +454,8 @@
         "type": "plot",
         "data": {
             "label": "swarmplot",
-            "parent": "2-6"
+            "parent": "2-6",
+            "cellIndex": 146
         },
         "position": {
             "x": 0,

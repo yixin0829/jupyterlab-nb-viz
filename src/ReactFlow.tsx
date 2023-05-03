@@ -15,19 +15,21 @@ import ReactFlow, {
   ConnectionLineType
 } from "reactflow";
 import dagre from 'dagre';
-import allNodes from './Nodes.json'
-import allEdges from './Edges.json'
 import CustomNode from "./CustomNode";
 import { NotebookPanel } from '@jupyterlab/notebook';
 import { INotebookTracker } from '@jupyterlab/notebook';
-// import subtreeNodes from './simple/SubtreeNodes.json'
-// import subtreeEdges from './simple/SubtreeEdges.json'
+
+// import allNodes from './Nodes.json'
+// import allEdges from './Edges.json'
+
+import allNodes from './NB1/Nodes.json'
+import allEdges from './NB1/Edges.json'
 
 const panOnDrag = [1, 2];
 
 // Node colour schema
 const nodeColor = (node: Node) => {
-  switch (node.type) {
+  switch (node.data.nodeType) {
     case 'root':
       return '#e8a9a9';
     case 'raw':
@@ -104,7 +106,7 @@ const getSubtreeElements = (node: Node, nodes: Node[], skipEtc: boolean = true) 
         const currentNode: Node = queue.shift()!;
         if (currentNode !== node) {
             subtreeNodes.push(currentNode);
-            if (skipEtc && currentNode.type === 'etc') {
+            if (skipEtc && currentNode.data.nodeType === 'etc') {
                 continue;
             }
         }
@@ -176,7 +178,7 @@ const FlowComponent = (props: FlowComponentProps) => {
     // }, [nodes]);
     
     const handleNodeClick = (event: MouseEvent, node: Node) => {
-        if (node.type === 'etc') {
+        if (node.data.nodeType === 'etc') {
             const nodeAsSourceEdge = edges.filter((e) => e.source === node.id);
             if (nodeAsSourceEdge.length === 0) {
                 // expand the subtree
@@ -211,11 +213,11 @@ const FlowComponent = (props: FlowComponentProps) => {
                 setEdges(layoutedNewEdges);
             }
         }
-        else if (node.type === 'plot') {
+        else if (node.data.nodeType === 'plot') {
             // jump to the corresponding notebook and cell
             console.log('PlotNode clicked');
             if(props.notebookTracker && props.notebookTracker.currentWidget) {
-                const cellIndex = 12;
+                const cellIndex = node.data.cellIndex;
                 props.notebookTracker.currentWidget.content.activeCellIndex = cellIndex;
                 const activeCell = props.notebookTracker.currentWidget.content.activeCell!;
                 props.notebookTracker.currentWidget.content.scrollToCell(activeCell);
