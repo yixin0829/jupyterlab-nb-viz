@@ -1,7 +1,5 @@
-import React, { useCallback, MouseEvent, useEffect } from "react";
-// for converting a react component to a react widget in JL
-import { ReactWidget } from '@jupyterlab/apputils';
-
+import React, { useCallback, MouseEvent } from "react";
+import { ReactWidget } from '@jupyterlab/apputils'; // for converting a react component to a react widget in JL
 import "reactflow/dist/style.css";
 
 import ReactFlow, {
@@ -19,6 +17,9 @@ import ReactFlow, {
 import dagre from 'dagre';
 import allNodes from './Nodes.json'
 import allEdges from './Edges.json'
+import CustomNode from "./CustomNode";
+import { NotebookPanel } from '@jupyterlab/notebook';
+import { INotebookTracker } from '@jupyterlab/notebook';
 // import subtreeNodes from './simple/SubtreeNodes.json'
 // import subtreeEdges from './simple/SubtreeEdges.json'
 
@@ -54,7 +55,7 @@ const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') => {
         return {...node, position: { x: 0, y: 0 } }
     });
 
-    // Add nodes and edges into dagreGraph object
+    // Add nodes and edges into dagreGraph ob ect
     nodes.forEach((node:Node) => {
         dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
     });
@@ -79,8 +80,6 @@ const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') => {
 
         return node;
     });
-
-    console.log('')
 
     return { nodes, edges };
 };
@@ -138,8 +137,7 @@ const getInitialElements = (nodes: Node[]) => {
 
 
 const {initialNodes: initialNodes, initialEdges: initialEdges} = getInitialElements(allNodes);
-// const initialNodes = allNodes;
-// const initialEdges = allEdges;
+
 
 // Get layouted nodes and edges with assigned x/y coordinates using dagre
 const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
@@ -147,8 +145,21 @@ const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
   initialEdges,
 );
 
+const nodeTypes = {
+    root: CustomNode,
+    raw: CustomNode,
+    secondary: CustomNode,
+    plot: CustomNode,
+    etc: CustomNode
+}
 
-const FlowComponent = () => {
+
+interface FlowComponentProps {
+    notebookPanel: NotebookPanel | null;
+    notebookTracker: INotebookTracker | null;
+}
+
+const FlowComponent = (props: FlowComponentProps) => {
     const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
     
@@ -160,10 +171,10 @@ const FlowComponent = () => {
         []
     );
 
-    useEffect(() =>{
-        console.log(`Nodes : ${nodes.map((n) => n.data.label + '\n')}`);
-    }, [nodes]);
-
+    // useEffect(() =>{
+    //     console.log(`Nodes : ${nodes.map((n) => n.data.label + '\n')}`);
+    // }, [nodes]);
+    
     const handleNodeClick = (event: MouseEvent, node: Node) => {
         if (node.type === 'etc') {
             const nodeAsSourceEdge = edges.filter((e) => e.source === node.id);
@@ -200,13 +211,30 @@ const FlowComponent = () => {
                 setEdges(layoutedNewEdges);
             }
         }
+        else if (node.type === 'plot') {
+            // jump to the corresponding notebook and cell
+            console.log('PlotNode clicked');
+            if(props.notebookTracker && props.notebookTracker.currentWidget) {
+                const cellIndex = 12;
+                props.notebookTracker.currentWidget.content.activeCellIndex = cellIndex;
+                const activeCell = props.notebookTracker.currentWidget.content.activeCell!;
+                props.notebookTracker.currentWidget.content.scrollToCell(activeCell);
+                console.log(`activeCellIndex after setFocusCell: ${props.notebookTracker.currentWidget.content.activeCellIndex}`);
+            }
+            else {
+                console.log('FlowWidget: No notebookPanel');
+            }
+        }
+
     }
+
 
 
   return (
         <ReactFlow
             nodes={nodes}
             edges={edges}
+            nodeTypes={nodeTypes}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
@@ -232,11 +260,30 @@ export class FlowWidget extends ReactWidget {
   /**
    * Constructs a new FlowWidget.
    */
-  constructor() {
-    super();
-  }
+    private _notebookPanel: NotebookPanel | null = null;
+    private _notebookTracker: INotebookTracker | null = null;
+    
+    set notebookPanel(notebook: NotebookPanel | null) {
+        this._notebookPanel = notebook;
+    }
 
-  render(): JSX.Element {
-    return <FlowComponent />;
-  }
+    set notebookTracker(tracker: INotebookTracker | null) {
+        this._notebookTracker = tracker;
+    }
+
+    constructor(panel?: NotebookPanel | null, tracker?: INotebookTracker | null) {
+        super();
+        console.log('FlowWidget created');
+        console.log('notebook panel assigned to FlowWidget:');
+        console.log(this._notebookPanel);
+        this._notebookPanel = panel ? panel : null;
+        this._notebookTracker = tracker ? tracker : null;
+    }
+
+
+    render(): JSX.Element {
+        console.log(`notebookTracker passed to FlowComponent: ${this._notebookTracker}`);
+        console.log(`notebookPanel passed to FlowComponent: ${this._notebookPanel}`);
+        return <FlowComponent notebookPanel={this._notebookPanel} notebookTracker={this._notebookTracker}/>;
+    }
 }

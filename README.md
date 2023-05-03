@@ -12,7 +12,7 @@ A JupyterLab extension.
 - Cookicutter
 - Git
 
-## Environment Setup Guide (for Enmeng)
+## Environment Setup Guide
 - Based on the guide in https://jupyterlab.readthedocs.io/en/latest/extension/extension_tutorial.html#extension-tutorial to set up env
 - Specific versions of Python and Node.js are required
 
@@ -52,6 +52,13 @@ jupyter lab
 
 - Additional change to reactflow source code to make `jlpm build`
     - error 1: ResizeObserver not find - [temp solution](https://github.com/ant-design/ant-design/issues/13405)
+    ```
+    interface ResizeObserver {
+      observe(target: Element): void;
+      unobserve(target: Element): void;
+      disconnect(): void;
+    }
+    ```
     - error 2: Generic type 'PropsWithChildren' requires 1 type argument(s). - [temp solution](https://www.newline.co/@bespoyasov/how-to-define-props-with-children-in-react-typescript-app--56bd18be)
         - Added `<{foo: string}>` as a type argument (have no idea why it works)
         - `declare const ReactFlowProvider: FC<PropsWithChildren<{foo: string}>>;`
@@ -149,3 +156,7 @@ More information are provided within the [ui-tests](./ui-tests/README.md) README
 ### Packaging the extension
 
 See [RELEASE](RELEASE.md)
+
+## Temp
+
+Url to access files: 
