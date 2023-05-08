@@ -15,7 +15,6 @@ import ReactFlow, {
   ConnectionLineType
 } from "reactflow";
 import dagre from 'dagre';
-import CustomNode from "./CustomNode";
 import { NotebookPanel } from '@jupyterlab/notebook';
 import { INotebookTracker } from '@jupyterlab/notebook';
 
@@ -147,13 +146,13 @@ const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
   initialEdges,
 );
 
-const nodeTypes = {
-    root: CustomNode,
-    raw: CustomNode,
-    secondary: CustomNode,
-    plot: CustomNode,
-    etc: CustomNode
-}
+// const nodeTypes = {
+//     root: CustomNode,
+//     raw: CustomNode,
+//     secondary: CustomNode,
+//     plot: CustomNode,
+//     etc: CustomNode
+// }
 
 
 interface FlowComponentProps {
@@ -214,9 +213,22 @@ const FlowComponent = (props: FlowComponentProps) => {
             }
         }
         else if (node.data.nodeType === 'plot') {
-            // jump to the corresponding notebook and cell
             console.log('PlotNode clicked');
+            // change note color
             if(props.notebookTracker && props.notebookTracker.currentWidget) {
+                const newNodes = nodes.map((prevNode)=> {
+                    if (prevNode.id === node.id) {
+                        prevNode.style = {...prevNode.style, background: '#e06666'};
+                    }
+                    else {
+                        if (prevNode.data.nodeType === 'plot') {
+                            prevNode.style = {...prevNode.style, background: '#9AB75E'};
+                        }
+                    }
+                    return prevNode;
+                });
+                setNodes(newNodes);
+                // jump to the corresponding notebook and cell
                 const cellIndex = node.data.cellIndex;
                 props.notebookTracker.currentWidget.content.activeCellIndex = cellIndex;
                 const activeCell = props.notebookTracker.currentWidget.content.activeCell!;
@@ -224,7 +236,7 @@ const FlowComponent = (props: FlowComponentProps) => {
                 console.log(`activeCellIndex after setFocusCell: ${props.notebookTracker.currentWidget.content.activeCellIndex}`);
             }
             else {
-                console.log('FlowWidget: No notebookPanel');
+                console.log('FlowWidget: No notebookTracker');
             }
         }
 
@@ -236,7 +248,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         <ReactFlow
             nodes={nodes}
             edges={edges}
-            nodeTypes={nodeTypes}
+            // nodeTypes={nodeTypes}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
