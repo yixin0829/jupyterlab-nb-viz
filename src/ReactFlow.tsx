@@ -1,6 +1,8 @@
 import React, { useCallback, MouseEvent } from "react";
+import { useState } from "react";
 import { ReactWidget } from '@jupyterlab/apputils'; // for converting a react component to a react widget in JL
 import "reactflow/dist/style.css";
+import '../style/node.css'
 
 import ReactFlow, {
   Node,
@@ -17,6 +19,7 @@ import ReactFlow, {
 import dagre from 'dagre';
 import { NotebookPanel } from '@jupyterlab/notebook';
 import { INotebookTracker } from '@jupyterlab/notebook';
+// import EtcNode from "./EtcNode";
 
 // import allNodes from './Nodes.json'
 // import allEdges from './Edges.json'
@@ -49,12 +52,15 @@ const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') => {
     const dagreGraph = new dagre.graphlib.Graph();
     dagreGraph.setDefaultEdgeLabel(() => ({}));
     const isHorizontal = direction === 'LR';
-    dagreGraph.setGraph({ rankdir: direction });
+    dagreGraph.setGraph({ rankdir: direction, nodesep: 80 });
 
     // set the postiions to 0
     nodes.forEach((node:Node) => {
         return {...node, position: { x: 0, y: 0 } }
     });
+
+    // edge cleanup to avoid orphan edges
+    edges = edges.filter((e) => nodes.some((n) => n.id === e.source) && nodes.some((n) => n.id === e.target));
 
     // Add nodes and edges into dagreGraph ob ect
     nodes.forEach((node:Node) => {
@@ -95,7 +101,7 @@ const getEdgeLabel = (sourceId: String, targetId: String) => {
     return edge.label;
 }
 
-const getSubtreeElements = (node: Node, nodes: Node[], skipEtc: boolean = true) => {
+const getSubtreeElements = (node: Node, nodes: Node[], skipSubtreeOfEtc: boolean = true) => {
     // Find all the nodes that belongs to the subtree whose root is node
     // subtree does NOT include the node itself
     const subtreeNodes:Node[] = [];
@@ -105,7 +111,7 @@ const getSubtreeElements = (node: Node, nodes: Node[], skipEtc: boolean = true) 
         const currentNode: Node = queue.shift()!;
         if (currentNode !== node) {
             subtreeNodes.push(currentNode);
-            if (skipEtc && currentNode.data.nodeType === 'etc') {
+            if (skipSubtreeOfEtc && currentNode.data.nodeType === 'etc') {
                 continue;
             }
         }
@@ -119,7 +125,6 @@ const getSubtreeElements = (node: Node, nodes: Node[], skipEtc: boolean = true) 
                 label: getEdgeLabel(currentNode.id, child.id) });
         });
     }
-    // console.log(`Subtree nodes for node ${node.data.label}: ${subtreeNodes.map((n) => n.data.label)}`);
     return { subtreeNodes, subtreeEdges };
 }
 
@@ -146,13 +151,7 @@ const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
   initialEdges,
 );
 
-// const nodeTypes = {
-//     root: CustomNode,
-//     raw: CustomNode,
-//     secondary: CustomNode,
-//     plot: CustomNode,
-//     etc: CustomNode
-// }
+
 
 
 interface FlowComponentProps {
@@ -160,9 +159,20 @@ interface FlowComponentProps {
     notebookTracker: INotebookTracker | null;
 }
 
+
+
+// const nodeTypes = {
+//     etc: EtcNode
+// };
+
+
 const FlowComponent = (props: FlowComponentProps) => {
     const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
+    const [selectedNodeId, setSelectedNodeId] = useState('');
+    const [canExpandAll, setCanExpandAll] = useState(false);
+    const [canCollapseAll, setCanCollapseAll] = useState(false);
+    const [canCollapseNonTop, setCanCollapseNonTop] = useState(false);
     
     const onConnect = useCallback(
         (params) =>
@@ -172,48 +182,145 @@ const FlowComponent = (props: FlowComponentProps) => {
         []
     );
 
-    // useEffect(() =>{
-    //     console.log(`Nodes : ${nodes.map((n) => n.data.label + '\n')}`);
-    // }, [nodes]);
-    
-    const handleNodeClick = (event: MouseEvent, node: Node) => {
-        if (node.data.nodeType === 'etc') {
-            const nodeAsSourceEdge = edges.filter((e) => e.source === node.id);
-            if (nodeAsSourceEdge.length === 0) {
-                // expand the subtree
-                const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(node, allNodes);
-                const newNodes = nodes.concat(subtreeNodes).map((n) => {
-                    if (n.id === node.id) {
-                        n.data = {...n.data, label: '-'} 
-                    };
-                    return n;
+    const expandAllNodes = () => {
+        // show all nodes and edges except the etc nodes
+        const newNodes = allNodes.filter((n) => n.data.nodeType !== 'etc');
+        let newEdges = allEdges;
+        for(let node of allNodes) {
+            if (node.data.nodeType === 'etc') {
+                const curEctNode = node;
+                newEdges = newEdges.map((e) => {
+                    if (e.source === curEctNode.id) {
+                        e.source = curEctNode.data.parent!;
                     }
-                );
-                const newEdges = edges.concat(subtreeEdges);
-                const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodes, newEdges);
-                setNodes(layoutedNewNodes);
-                setEdges(layoutedNewEdges);
-            }
-            else {
-                // collapse the subtree
-                const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(node, nodes, false);
-                const newNodes = nodes.filter((n) => !subtreeNodes.some((sn) => sn.id === n.id)); // remove all the nodes in subtree
-                const newNodesAfterLabelChange = newNodes.map((n) => {
-                    if (n.id === node.id) {
-                        n.data = {...n.data, label: n.data.numberOfChildren} 
-                    };
-                    return n;
-                    }
-                );
-                const newEdges = edges.filter((e) => !subtreeEdges.some((se) => se.id === e.id)); // remove all the edges in subtree
-                const newEdgesAfterCleanUp = newEdges.filter((e) => !subtreeNodes.some((sn) => sn.id === e.source)); // remove all edges that has source in subtree
-                const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodesAfterLabelChange, newEdgesAfterCleanUp);
-                setNodes(layoutedNewNodes);
-                setEdges(layoutedNewEdges);
+                    return e;
+                })
             }
         }
-        else if (node.data.nodeType === 'plot') {
+        const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodes, newEdges);
+        setNodes(layoutedNewNodes);
+        setEdges(layoutedNewEdges);
+    }
+
+    const collapseBackToInitial = () => {
+        // collapse the tree to initial state
+        const {initialNodes: initialNodes, initialEdges: initialEdges} = getInitialElements(allNodes);
+        const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(initialNodes, initialEdges);
+        setNodes(layoutedNewNodes);
+        setEdges(layoutedNewEdges);
+    }
+
+    const expandEtcNode = (node: Node) => {
+        if (node.data.nodeType !== 'etc') {
+            console.log('Not an etcNode so cannot do expandEtcNode');
+            return;
+        }
+        const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(node, allNodes);
+        const labelWhenExpand = node.data.nodeType === 'etc' ? '(-)' : node.data.rawData;
+        let newNodes = nodes.concat(subtreeNodes).map((n) => {
+            if (n.id === node.id) {
+                n.data = {...n.data, label: labelWhenExpand} 
+            };
+            return n;
+            }
+        );
+        let newEdges = edges.concat(subtreeEdges);
+        // remove the etc node from tree
+        const newNodesAfterCleanUp = newNodes.filter((n) => n.id !== node.id);
+        // connect the children of etc node to its parent
+        const newEdgesAfterCleanUp = newEdges.map((e) => {
+            if (e.source === node.id) {
+                e.source = node.data.parent;
+            }
+            return e;
+        }).filter((e) => e.target !== node.id);
+        // remove the edge from parent to etcNode
+        newNodes = newNodesAfterCleanUp;
+        newEdges = newEdgesAfterCleanUp;
+        
+        const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodes, newEdges);
+        setNodes(layoutedNewNodes);
+        setEdges(layoutedNewEdges);
+    }
+
+    const expandAllSubtree = (node: Node) => {
+        // expand the all subtree of a node
+        if (node.data.nodeType === 'etc') {
+            expandEtcNode(node);
+            return;
+        }
+        const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(node, allNodes);
+        const labelWhenExpand = node.data.nodeType === 'etc' ? '(-)' : node.data.rawData;
+        const newNodes = nodes.concat(subtreeNodes).map((n) => {
+            if (n.id === node.id) {
+                n.data = {...n.data, label: labelWhenExpand} 
+            };
+            return n;
+            }
+        );
+        const newEdges = edges.concat(subtreeEdges);
+        const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodes, newEdges);
+        setNodes(layoutedNewNodes);
+        setEdges(layoutedNewEdges);
+    }
+
+    
+
+    const collapseAllSubtree = (node: Node) => {
+        // collapse the subtree
+        const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(node, nodes, false);
+        const newNodes = nodes.filter((n) => !subtreeNodes.some((sn) => sn.id === n.id)); // remove all the nodes in subtree
+        const labelWhenCollapse = node.data.rawData + ' (+)';
+        const newNodesAfterLabelChange = newNodes.map((n) => {
+            if (n.id === node.id) {
+                n.data = {...n.data, label: labelWhenCollapse} 
+            };
+            return n;
+            }
+        );
+        const newEdges = edges.filter((e) => !subtreeEdges.some((se) => se.id === e.id)); // remove all the edges in subtree
+        const newEdgesAfterCleanUp = newEdges.filter((e) => !subtreeNodes.some((sn) => sn.id === e.source)); // remove all edges that has source in subtree
+        const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodesAfterLabelChange, newEdgesAfterCleanUp);
+        setNodes(layoutedNewNodes);
+        setEdges(layoutedNewEdges);
+    }
+
+    const collapseNonTopSubtree = (node: Node) => {
+        const etcNode = allNodes.find((n) => n.data.parent === node.id && n.data.nodeType === 'etc');
+        if (! etcNode) {
+            console.log('No etc node found in children so cannot do collapseNonTop');
+            return;
+        }
+        const {subtreeNodes: etcSubtreeNodes, subtreeEdges: etcSubtreeEdges} = getSubtreeElements(etcNode!, allNodes, false);
+        const newNodes = nodes.filter((n) => !etcSubtreeNodes.some((sn) => sn.id === n.id)); // remove all the nodes in subtree
+        const newEdges = edges.filter((e) => !etcSubtreeEdges.some((se) => se.id === e.id)); // remove all the edges in subtree
+        // add the etcNode to newNodes
+        const newNodesWithEtc = newNodes.concat(etcNode);
+        const newEdgesWithEtc = newEdges.concat(allEdges.filter((e) => e.target === etcNode.id));
+        const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodesWithEtc, newEdgesWithEtc);
+        setNodes(layoutedNewNodes);
+        setEdges(layoutedNewEdges);
+    }
+
+    
+    const handleNodeClick = (event: MouseEvent, node: Node) => {
+        setSelectedNodeId(node.id);
+        if (node.data.nodeType !== 'plot') {
+            const selectedNodeHasChildren = nodes.some((n) => n.data.parent === node.id);
+            setCanExpandAll(!selectedNodeHasChildren);
+            setCanCollapseAll(selectedNodeHasChildren);
+            const etcNodeInChildren = allNodes.find((n) => n.data.parent === node.id && n.data.nodeType === 'etc');
+            const selectedNodeCanCollapseNonTop = (etcNodeInChildren !== undefined) && !(nodes.some((n) => {n.id === etcNodeInChildren.id}));
+            setCanCollapseNonTop(selectedNodeCanCollapseNonTop);
+            if (node.data.nodeType === 'etc') {
+                expandEtcNode(node);
+            }
+        }
+        else {
             console.log('PlotNode clicked');
+            // disable buttons
+            setCanExpandAll(false);
+            setCanCollapseAll(false);
             // change note color
             if(props.notebookTracker && props.notebookTracker.currentWidget) {
                 const newNodes = nodes.map((prevNode)=> {
@@ -242,8 +349,38 @@ const FlowComponent = (props: FlowComponentProps) => {
 
     }
 
+    const handleExpandAllButtonClick = () => {
+        console.log(`Expand all: ${selectedNodeId}`);
+        if(canExpandAll) {
+            expandAllSubtree(nodes.find((n) => n.id === selectedNodeId)!);
+        }
+        else {
+            console.log('Cannot do expandAll to this node!');
+        }
 
+    }
 
+    const handleCollapseAllButtonClick = () => {
+        console.log(`Collapse all: ${selectedNodeId}`);
+        if(canCollapseAll) {
+            collapseAllSubtree(nodes.find((n) => n.id === selectedNodeId)!);
+        }
+        else {
+            console.log('Cannot do collapseAll to this node!');
+        }
+    }
+
+    const handleCollapseNonTopButtonClick = () => {
+        console.log(`Collapse non-top-3: ${selectedNodeId}`);
+        if (canCollapseNonTop) {
+            collapseNonTopSubtree(nodes.find((n) => n.id === selectedNodeId)!);
+        }
+        else {
+            console.log('Cannot do collapseNonTop to this node!');
+        }
+    }
+
+    
   return (
         <ReactFlow
             nodes={nodes}
@@ -261,6 +398,23 @@ const FlowComponent = (props: FlowComponentProps) => {
             selectionMode={SelectionMode.Partial}
         >
         <Background />
+        <div style={{ position: 'absolute', right: 10, top: 10, zIndex: 4 }}>
+        <button onClick={handleCollapseAllButtonClick} disabled={!canCollapseAll} style={{ marginRight: 5 }}>
+          Collapse all children
+        </button>
+        <button onClick={handleCollapseNonTopButtonClick} disabled={!canCollapseNonTop} style={{ marginRight: 5 }}>
+          Collapse non-top-3 children
+        </button>
+        <button onClick={collapseBackToInitial} style={{ marginRight: 5 }}>
+          Collapse back to initial
+        </button>
+        <button onClick={handleExpandAllButtonClick} disabled={!canExpandAll} style={{ marginRight: 5 }}>
+          Expand all children
+        </button>
+        <button onClick={expandAllNodes} style={{ marginRight: 5 }}>
+          Expand all nodes
+        </button>
+        </div>
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
         <Controls/>
         </ReactFlow>
