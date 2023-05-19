@@ -19,7 +19,8 @@ import ReactFlow, {
 import dagre from 'dagre';
 import { NotebookPanel } from '@jupyterlab/notebook';
 import { INotebookTracker } from '@jupyterlab/notebook';
-// import EtcNode from "./EtcNode";
+
+import InsightNode from "./InsightNode";
 
 // import allNodes from './Nodes.json'
 // import allEdges from './Edges.json'
@@ -40,6 +41,8 @@ const nodeColor = (node: Node) => {
       return '#f0c633';
     case 'plot':
       return '#9ab75e';
+    case 'insight':
+        return '#a2d2bc';
     default:
       return '#ffffff';
   }
@@ -161,9 +164,9 @@ interface FlowComponentProps {
 
 
 
-// const nodeTypes = {
-//     etc: EtcNode
-// };
+const nodeTypes = {
+    insight: InsightNode,
+};
 
 
 const FlowComponent = (props: FlowComponentProps) => {
@@ -262,6 +265,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodes, newEdges);
         setNodes(layoutedNewNodes);
         setEdges(layoutedNewEdges);
+        setCanExpandAll(false);
     }
 
     
@@ -283,6 +287,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodesAfterLabelChange, newEdgesAfterCleanUp);
         setNodes(layoutedNewNodes);
         setEdges(layoutedNewEdges);
+        setCanCollapseAll(false);
     }
 
     const collapseNonTopSubtree = (node: Node) => {
@@ -300,17 +305,33 @@ const FlowComponent = (props: FlowComponentProps) => {
         const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodesWithEtc, newEdgesWithEtc);
         setNodes(layoutedNewNodes);
         setEdges(layoutedNewEdges);
+        setCanCollapseNonTop(false);
     }
 
     
     const handleNodeClick = (event: MouseEvent, node: Node) => {
         setSelectedNodeId(node.id);
+        // change node color
+        const newNodes = nodes.map((prevNode)=> {
+            if (prevNode.id === node.id) {
+                prevNode.style = {...prevNode.style, background: '#e06666'};
+            }
+            else {
+                // if (prevNode.data.nodeType === 'plot') {
+                //     prevNode.style = {...prevNode.style, background: '#9AB75E'};
+                // }
+                prevNode.style = {...prevNode.style, background: nodeColor(prevNode)};
+            }
+            return prevNode;
+        });
+        setNodes(newNodes);
+
         if (node.data.nodeType !== 'plot') {
             const selectedNodeHasChildren = nodes.some((n) => n.data.parent === node.id);
             setCanExpandAll(!selectedNodeHasChildren);
             setCanCollapseAll(selectedNodeHasChildren);
             const etcNodeInChildren = allNodes.find((n) => n.data.parent === node.id && n.data.nodeType === 'etc');
-            const selectedNodeCanCollapseNonTop = (etcNodeInChildren !== undefined) && !(nodes.some((n) => {n.id === etcNodeInChildren.id}));
+            const selectedNodeCanCollapseNonTop = (etcNodeInChildren !== undefined) && !(nodes.some((n) => {n.data.parent === etcNodeInChildren.id}));
             setCanCollapseNonTop(selectedNodeCanCollapseNonTop);
             if (node.data.nodeType === 'etc') {
                 expandEtcNode(node);
@@ -321,20 +342,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             // disable buttons
             setCanExpandAll(false);
             setCanCollapseAll(false);
-            // change note color
             if(props.notebookTracker && props.notebookTracker.currentWidget) {
-                const newNodes = nodes.map((prevNode)=> {
-                    if (prevNode.id === node.id) {
-                        prevNode.style = {...prevNode.style, background: '#e06666'};
-                    }
-                    else {
-                        if (prevNode.data.nodeType === 'plot') {
-                            prevNode.style = {...prevNode.style, background: '#9AB75E'};
-                        }
-                    }
-                    return prevNode;
-                });
-                setNodes(newNodes);
                 // jump to the corresponding notebook and cell
                 const cellIndex = node.data.cellIndex;
                 props.notebookTracker.currentWidget.content.activeCellIndex = cellIndex;
@@ -385,7 +393,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         <ReactFlow
             nodes={nodes}
             edges={edges}
-            // nodeTypes={nodeTypes}
+            nodeTypes={nodeTypes}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
@@ -414,6 +422,12 @@ const FlowComponent = (props: FlowComponentProps) => {
         <button onClick={expandAllNodes} style={{ marginRight: 5 }}>
           Expand all nodes
         </button>
+        </div>
+        <div style={{ position: 'absolute', right: 10, top: 50, zIndex: 3 }}>
+            <button style = {{marginRight: 5}}>
+                Refresh the tree
+            </button>
+            Test text box.
         </div>
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
         <Controls/>

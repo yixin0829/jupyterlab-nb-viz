@@ -1,9 +1,12 @@
-.react-flow__node-etc {
-    font-size: 12px;
-    background: #eee;
+.react-flow__node-insight {
+    font-size: 8px;
+    background: #a2d2bc;
     border: 1px solid #555;
     border-radius: 5px;
-    text-align: center;
-    height: "15px";
-    width: "130px";
+    display: inline-block;
+    width: auto;
+    height: auto;
+    text-align: left;
+    max-width: "130px";
+    padding: 5px;
 }
