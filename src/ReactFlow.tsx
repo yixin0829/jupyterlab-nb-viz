@@ -27,6 +27,7 @@ import InsightNode from "./InsightNode";
 
 import allNodes from './NB1/Nodes.json'
 import allEdges from './NB1/Edges.json'
+import axios from "axios";
 
 const panOnDrag = [1, 2];
 
@@ -155,13 +156,10 @@ const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
 );
 
 
-
-
 interface FlowComponentProps {
     notebookPanel: NotebookPanel | null;
     notebookTracker: INotebookTracker | null;
 }
-
 
 
 const nodeTypes = {
@@ -388,6 +386,22 @@ const FlowComponent = (props: FlowComponentProps) => {
         }
     }
 
+    const refreshSMITree = () => {
+        console.log('[refreshSMITree] refreshSMITree.');
+        if (!props.notebookPanel) {
+            console.log('[refreshSMITree] no notebook panel to be passed!');
+            return;
+        }
+        const request = {
+            notebook: JSON.stringify(props.notebookPanel!.model!.toJSON()),
+        }
+        axios.post('http://localhost:5000/last-cell', request).then((response) => {
+            console.log(`[refreshSMITree] response: ${JSON.stringify(response.data)}`);
+        }).catch((error) => {
+            console.log(`[refreshSMITree] error: ${error}`);
+        });
+    }
+
     
   return (
         <ReactFlow
@@ -423,11 +437,10 @@ const FlowComponent = (props: FlowComponentProps) => {
           Expand all nodes
         </button>
         </div>
-        <div style={{ position: 'absolute', right: 10, top: 50, zIndex: 3 }}>
-            <button style = {{marginRight: 5}}>
+        <div style={{ position: 'absolute', right: 10, top: 50, zIndex: 4 }}>
+            <button onClick={refreshSMITree} style={{marginRight: 5}}>
                 Refresh the tree
             </button>
-            Test text box.
         </div>
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
         <Controls/>
@@ -458,8 +471,9 @@ export class FlowWidget extends ReactWidget {
         console.log('FlowWidget created');
         console.log('notebook panel assigned to FlowWidget:');
         console.log(this._notebookPanel);
-        this._notebookPanel = panel ? panel : null;
+        // this._notebookPanel = panel ? panel : null;
         this._notebookTracker = tracker ? tracker : null;
+        this._notebookPanel = tracker ? tracker.currentWidget : null;
     }
 
 
