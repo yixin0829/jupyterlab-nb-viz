@@ -395,11 +395,20 @@ const FlowComponent = (props: FlowComponentProps) => {
         const request = {
             notebook: JSON.stringify(props.notebookPanel!.model!.toJSON()),
         }
-        axios.post('http://localhost:5000/last-cell', request).then((response) => {
-            console.log(`[refreshSMITree] response: ${JSON.stringify(response.data)}`);
+        axios.post('http://localhost:5000/smi-tree', request).then((response) => {
+            console.log(`[refreshSMITree] get response.`);
+            const refreshedNodes = response.data.nodes;
+            const refreshedEdges = response.data.edges;
+            // allNodes = refreshedNodes;
+            // allEdges = refreshedEdges;
+            const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(refreshedNodes, refreshedEdges);
+            setNodes(layoutedNodes);
+            setEdges(layoutedEdges);
         }).catch((error) => {
             console.log(`[refreshSMITree] error: ${error}`);
         });
+
+
     }
 
     
