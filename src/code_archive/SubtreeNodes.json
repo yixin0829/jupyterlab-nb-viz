@@ -1,0 +1,128 @@
+[
+    {
+        "id": "1-3",
+        "type": "raw",
+        "data": {
+            "label": "OverTime",
+            "parent": "1-dot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+
+    {
+        "id": "2-4",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "1-3"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+
+    {
+        "id": "3-4",
+        "type": "plot",
+        "data": {
+            "label": "scatterplot",
+            "parent": "2-4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+
+    {
+        "id": "1-4",
+        "type": "raw",
+        "data": {
+            "label": "TotalWorkingYears",
+            "parent": "1-dot"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+
+    {
+        "id": "2-5",
+        "type": "secondary",
+        "data": {
+            "label": "employee",
+            "parent": "1-4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+
+    {
+        "id": "3-5",
+        "type": "plot",
+        "data": {
+            "label": "swarmplot",
+            "parent": "2-5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "100px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    }
+
+]

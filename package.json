@@ -64,7 +64,9 @@
     "@types/dagre": "^0.7.48",
     "axios": "^1.4.0",
     "dagre": "^0.8.5",
+    "react-loader-spinner": "^5.3.4",
     "react-markdown": "^8.0.7",
+    "react-promise-tracker": "^2.1.1",
     "reactflow": "^11.7.0"
   },
   "devDependencies": {

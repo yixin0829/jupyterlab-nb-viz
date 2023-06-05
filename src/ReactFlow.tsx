@@ -20,14 +20,23 @@ import dagre from 'dagre';
 import { NotebookPanel } from '@jupyterlab/notebook';
 import { INotebookTracker } from '@jupyterlab/notebook';
 
+import axios from "axios";
+import { usePromiseTracker } from "react-promise-tracker";
+import { trackPromise } from 'react-promise-tracker';
+import { ThreeDots } from 'react-loader-spinner';
+
+import { translateTreeUtilCommand } from "./TreeUtils";
 import InsightNode from "./InsightNode";
+import { Legend } from "./Legend";
 
 // import allNodes from './Nodes.json'
 // import allEdges from './Edges.json'
 
-import allNodes from './NB1/Nodes.json'
-import allEdges from './NB1/Edges.json'
-import axios from "axios";
+import allNodesStatic from './NodesAndEdges/NB1/Nodes.json'
+import allEdgesStatic from './NodesAndEdges/NB1/Edges.json'
+// import allNodesStatic from './NodesAndEdges/backend/Nodes.json'
+// import allEdgesStatic from './NodesAndEdges/backend/Edges.json'
+
 
 const panOnDrag = [1, 2];
 
@@ -64,14 +73,14 @@ const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') => {
     });
 
     // edge cleanup to avoid orphan edges
-    edges = edges.filter((e) => nodes.some((n) => n.id === e.source) && nodes.some((n) => n.id === e.target));
+    const edgesAfterCleanUp = edges.filter((e) => nodes.some((n) => n.id === e.source) && nodes.some((n) => n.id === e.target));
 
     // Add nodes and edges into dagreGraph ob ect
     nodes.forEach((node:Node) => {
         dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
     });
 
-    edges.forEach((edge:Edge) => {
+    edgesAfterCleanUp.forEach((edge:Edge) => {
         dagreGraph.setEdge(edge.source, edge.target);
     });
 
@@ -92,11 +101,12 @@ const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') => {
         return node;
     });
 
-    return { nodes, edges };
+    console.log(`[getLayoutedElements] Layouted nodes and edges.`);
+    return { nodes: nodes, edges: edgesAfterCleanUp };
 };
 
 
-const getEdgeLabel = (sourceId: String, targetId: String) => {
+const getEdgeLabel = (sourceId: String, targetId: String, allEdges: Edge[]) => {
     // Find the edge weight between sourceId and targetId
     const edge = allEdges.find((e) => e.source === sourceId && e.target === targetId);
     if (edge === undefined || edge.label === undefined) {
@@ -105,7 +115,7 @@ const getEdgeLabel = (sourceId: String, targetId: String) => {
     return edge.label;
 }
 
-const getSubtreeElements = (node: Node, nodes: Node[], skipSubtreeOfEtc: boolean = true) => {
+const getSubtreeElements = (node: Node, curNodes: Node[], allEdges: Edge[], skipSubtreeOfEtc: boolean = true) => {
     // Find all the nodes that belongs to the subtree whose root is node
     // subtree does NOT include the node itself
     const subtreeNodes:Node[] = [];
@@ -119,61 +129,69 @@ const getSubtreeElements = (node: Node, nodes: Node[], skipSubtreeOfEtc: boolean
                 continue;
             }
         }
-        const children = nodes.filter((n) => n.data.parent === currentNode.id);
+        const children = curNodes.filter((n) => n.data.parent === currentNode.id);
         children.forEach((child) => {
             queue.push(child);
             subtreeEdges.push({
                 id: `${currentNode.id}-${child.id}`,
                 source: currentNode.id,
                 target: child.id,
-                label: getEdgeLabel(currentNode.id, child.id) });
+                label: getEdgeLabel(currentNode.id, child.id, allEdges)});
         });
     }
     return { subtreeNodes, subtreeEdges };
 }
 
 
-const getInitialElements = (nodes: Node[]) => {
+const getInitialElements = (allNodes: Node[], allEdges: Edge[]) => {
     // Find the root node
-    const rootNode = nodes.find((n) => n.data.label === 'root');
+    const rootNode = allNodes.find((n) => n.data.label === 'root');
     if (rootNode === undefined) {
         throw new Error('No root node found');
     }
     // Find all the nodes that belongs to the subtree whose root is rootNode
-    const {subtreeNodes: initialNodes, subtreeEdges: initialEdges} = getSubtreeElements(rootNode, nodes);
+    const {subtreeNodes: initialNodes, subtreeEdges: initialEdges} = getSubtreeElements(rootNode, allNodes, allEdges);
     initialNodes.push(rootNode);
     return { initialNodes, initialEdges };
 }
 
+const LoadIndicator = () => {
+    const { promiseInProgress } = usePromiseTracker();
+    return promiseInProgress ? (
+    <div style={{marginRight: 5}}>
+        <ThreeDots height="80" width="80" radius="9" color="#e8ac6e" ariaLabel="three-dots-loading" visible={true}/>
+    </div>) : (<></>);
+}
 
-const {initialNodes: initialNodes, initialEdges: initialEdges} = getInitialElements(allNodes);
+const nodeTypes = {
+    insight: InsightNode,
+};
 
-
-// Get layouted nodes and edges with assigned x/y coordinates using dagre
-const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
-  initialNodes,
-  initialEdges,
-);
-
+const { nodes: initialNodesStatic, edges: initialEdgesStatic } = translateTreeUtilCommand(
+    'GetInitial',
+    null,
+    null,
+    null,
+    allNodesStatic,
+    allEdgesStatic
+)
 
 interface FlowComponentProps {
     notebookPanel: NotebookPanel | null;
     notebookTracker: INotebookTracker | null;
 }
 
-
-const nodeTypes = {
-    insight: InsightNode,
-};
-
-
 const FlowComponent = (props: FlowComponentProps) => {
-    const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
-    const [selectedNodeId, setSelectedNodeId] = useState('');
+    const [selectedNode, setSelectedNode] = useState<Node | null>(null);;
     const [canExpandAll, setCanExpandAll] = useState(false);
     const [canCollapseAll, setCanCollapseAll] = useState(false);
     const [canCollapseNonTop, setCanCollapseNonTop] = useState(false);
+
+    const [allNodes, setAllNodes] = useState(allNodesStatic);
+    const [allEdges, setAllEdges] = useState(allEdgesStatic);
+
+    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodesStatic);
+    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdgesStatic);
     
     const onConnect = useCallback(
         (params) =>
@@ -183,142 +201,30 @@ const FlowComponent = (props: FlowComponentProps) => {
         []
     );
 
-    const expandAllNodes = () => {
-        // show all nodes and edges except the etc nodes
-        const newNodes = allNodes.filter((n) => n.data.nodeType !== 'etc');
-        let newEdges = allEdges;
-        for(let node of allNodes) {
-            if (node.data.nodeType === 'etc') {
-                const curEctNode = node;
-                newEdges = newEdges.map((e) => {
-                    if (e.source === curEctNode.id) {
-                        e.source = curEctNode.data.parent!;
-                    }
-                    return e;
-                })
-            }
-        }
-        const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodes, newEdges);
-        setNodes(layoutedNewNodes);
-        setEdges(layoutedNewEdges);
-    }
-
     const collapseBackToInitial = () => {
         // collapse the tree to initial state
-        const {initialNodes: initialNodes, initialEdges: initialEdges} = getInitialElements(allNodes);
-        const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(initialNodes, initialEdges);
-        setNodes(layoutedNewNodes);
-        setEdges(layoutedNewEdges);
+        const { nodes: newNodes, edges: newEdges } = translateTreeUtilCommand(
+            'CollapseBackToInitial',
+            null,
+            nodes,
+            edges,
+            allNodes,
+            allEdges
+        )
+        setNodes(newNodes);
+        setEdges(newEdges);
     }
-
-    const expandEtcNode = (node: Node) => {
-        if (node.data.nodeType !== 'etc') {
-            console.log('Not an etcNode so cannot do expandEtcNode');
-            return;
-        }
-        const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(node, allNodes);
-        const labelWhenExpand = node.data.nodeType === 'etc' ? '(-)' : node.data.rawData;
-        let newNodes = nodes.concat(subtreeNodes).map((n) => {
-            if (n.id === node.id) {
-                n.data = {...n.data, label: labelWhenExpand} 
-            };
-            return n;
-            }
-        );
-        let newEdges = edges.concat(subtreeEdges);
-        // remove the etc node from tree
-        const newNodesAfterCleanUp = newNodes.filter((n) => n.id !== node.id);
-        // connect the children of etc node to its parent
-        const newEdgesAfterCleanUp = newEdges.map((e) => {
-            if (e.source === node.id) {
-                e.source = node.data.parent;
-            }
-            return e;
-        }).filter((e) => e.target !== node.id);
-        // remove the edge from parent to etcNode
-        newNodes = newNodesAfterCleanUp;
-        newEdges = newEdgesAfterCleanUp;
-        
-        const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodes, newEdges);
-        setNodes(layoutedNewNodes);
-        setEdges(layoutedNewEdges);
-    }
-
-    const expandAllSubtree = (node: Node) => {
-        // expand the all subtree of a node
-        if (node.data.nodeType === 'etc') {
-            expandEtcNode(node);
-            return;
-        }
-        const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(node, allNodes);
-        const labelWhenExpand = node.data.nodeType === 'etc' ? '(-)' : node.data.rawData;
-        const newNodes = nodes.concat(subtreeNodes).map((n) => {
-            if (n.id === node.id) {
-                n.data = {...n.data, label: labelWhenExpand} 
-            };
-            return n;
-            }
-        );
-        const newEdges = edges.concat(subtreeEdges);
-        const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodes, newEdges);
-        setNodes(layoutedNewNodes);
-        setEdges(layoutedNewEdges);
-        setCanExpandAll(false);
-    }
-
-    
-
-    const collapseAllSubtree = (node: Node) => {
-        // collapse the subtree
-        const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(node, nodes, false);
-        const newNodes = nodes.filter((n) => !subtreeNodes.some((sn) => sn.id === n.id)); // remove all the nodes in subtree
-        const labelWhenCollapse = node.data.rawData + ' (+)';
-        const newNodesAfterLabelChange = newNodes.map((n) => {
-            if (n.id === node.id) {
-                n.data = {...n.data, label: labelWhenCollapse} 
-            };
-            return n;
-            }
-        );
-        const newEdges = edges.filter((e) => !subtreeEdges.some((se) => se.id === e.id)); // remove all the edges in subtree
-        const newEdgesAfterCleanUp = newEdges.filter((e) => !subtreeNodes.some((sn) => sn.id === e.source)); // remove all edges that has source in subtree
-        const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodesAfterLabelChange, newEdgesAfterCleanUp);
-        setNodes(layoutedNewNodes);
-        setEdges(layoutedNewEdges);
-        setCanCollapseAll(false);
-    }
-
-    const collapseNonTopSubtree = (node: Node) => {
-        const etcNode = allNodes.find((n) => n.data.parent === node.id && n.data.nodeType === 'etc');
-        if (! etcNode) {
-            console.log('No etc node found in children so cannot do collapseNonTop');
-            return;
-        }
-        const {subtreeNodes: etcSubtreeNodes, subtreeEdges: etcSubtreeEdges} = getSubtreeElements(etcNode!, allNodes, false);
-        const newNodes = nodes.filter((n) => !etcSubtreeNodes.some((sn) => sn.id === n.id)); // remove all the nodes in subtree
-        const newEdges = edges.filter((e) => !etcSubtreeEdges.some((se) => se.id === e.id)); // remove all the edges in subtree
-        // add the etcNode to newNodes
-        const newNodesWithEtc = newNodes.concat(etcNode);
-        const newEdgesWithEtc = newEdges.concat(allEdges.filter((e) => e.target === etcNode.id));
-        const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodesWithEtc, newEdgesWithEtc);
-        setNodes(layoutedNewNodes);
-        setEdges(layoutedNewEdges);
-        setCanCollapseNonTop(false);
-    }
-
     
     const handleNodeClick = (event: MouseEvent, node: Node) => {
-        setSelectedNodeId(node.id);
+        setSelectedNode(node);
         // change node color
         const newNodes = nodes.map((prevNode)=> {
             if (prevNode.id === node.id) {
-                prevNode.style = {...prevNode.style, background: '#e06666'};
+                // prevNode.style = {...prevNode.style, background: '#e06666'};
+                prevNode.style = {...prevNode.style, borderWidth: '2px'};
             }
             else {
-                // if (prevNode.data.nodeType === 'plot') {
-                //     prevNode.style = {...prevNode.style, background: '#9AB75E'};
-                // }
-                prevNode.style = {...prevNode.style, background: nodeColor(prevNode)};
+                prevNode.style = {...prevNode.style, borderWidth: '1px'};
             }
             return prevNode;
         });
@@ -329,10 +235,21 @@ const FlowComponent = (props: FlowComponentProps) => {
             setCanExpandAll(!selectedNodeHasChildren);
             setCanCollapseAll(selectedNodeHasChildren);
             const etcNodeInChildren = allNodes.find((n) => n.data.parent === node.id && n.data.nodeType === 'etc');
-            const selectedNodeCanCollapseNonTop = (etcNodeInChildren !== undefined) && !(nodes.some((n) => {n.data.parent === etcNodeInChildren.id}));
+            const etcNodeAlreadyExists = nodes.find((n) => n.data.parent === node.id && n.data.nodeType === 'etc');
+            const selectedNodeCanCollapseNonTop = (etcNodeAlreadyExists === undefined) && (etcNodeInChildren !== undefined) && !(nodes.some((n) => {n.data.parent === etcNodeInChildren.id}));
             setCanCollapseNonTop(selectedNodeCanCollapseNonTop);
             if (node.data.nodeType === 'etc') {
-                expandEtcNode(node);
+                const { nodes: newNodes, edges: newEdges } = translateTreeUtilCommand(
+                    'ExpandEtcNode',
+                    node,
+                    nodes,
+                    edges,
+                    allNodes,
+                    allEdges
+                )
+                setNodes(newNodes);
+                setEdges(newEdges);
+                return;
             }
         }
         else {
@@ -356,20 +273,38 @@ const FlowComponent = (props: FlowComponentProps) => {
     }
 
     const handleExpandAllButtonClick = () => {
-        console.log(`Expand all: ${selectedNodeId}`);
-        if(canExpandAll) {
-            expandAllSubtree(nodes.find((n) => n.id === selectedNodeId)!);
+        if(selectedNode && canExpandAll) {
+            const { nodes: newNodes, edges: newEdges} = translateTreeUtilCommand(
+                'ExpandSubtree',
+                selectedNode,
+                nodes,
+                edges,
+                allNodes,
+                allEdges
+            );
+            setNodes(newNodes);
+            setEdges(newEdges);
+            setCanExpandAll(false);
         }
         else {
-            console.log('Cannot do expandAll to this node!');
+            console.log(`Cannot do expandAll to this node.`);
         }
 
     }
 
     const handleCollapseAllButtonClick = () => {
-        console.log(`Collapse all: ${selectedNodeId}`);
         if(canCollapseAll) {
-            collapseAllSubtree(nodes.find((n) => n.id === selectedNodeId)!);
+            const { nodes: newNodes, edges: newEdges} = translateTreeUtilCommand(
+                'CollapseSubtree',
+                selectedNode,
+                nodes,
+                edges,
+                allNodes,
+                allEdges
+            );
+            setNodes(newNodes);
+            setEdges(newEdges);
+            setCanCollapseAll(false);
         }
         else {
             console.log('Cannot do collapseAll to this node!');
@@ -377,17 +312,47 @@ const FlowComponent = (props: FlowComponentProps) => {
     }
 
     const handleCollapseNonTopButtonClick = () => {
-        console.log(`Collapse non-top-3: ${selectedNodeId}`);
         if (canCollapseNonTop) {
-            collapseNonTopSubtree(nodes.find((n) => n.id === selectedNodeId)!);
+            const { nodes: newNodes, edges: newEdges} = translateTreeUtilCommand(
+                'CollapseNonTop',
+                selectedNode,
+                nodes,
+                edges,
+                allNodes,
+                allEdges
+            );
+            setNodes(newNodes);
+            setEdges(newEdges);
+            setCanCollapseNonTop(false);
         }
         else {
             console.log('Cannot do collapseNonTop to this node!');
         }
     }
 
+    const handleExpandAllNodesButtonClick = () => {
+        const { nodes: newNodes, edges: newEdges } = translateTreeUtilCommand(
+            'ExpandAllNodes',
+            null,
+            nodes,
+            edges,
+            allNodes,
+            allEdges
+        )
+        setNodes(newNodes);
+        setEdges(newEdges);
+    }
+
+    const resetNodeStyles = () => {
+        // const resetNodes = nodes.map((prevNode)=> {prevNode.style = {...prevNode.style, background: nodeColor(prevNode)}; return prevNode;});
+        const resetNodes = nodes.map((prevNode)=> {prevNode.style = {...prevNode.style, borderWidth: '1px'}; return prevNode;});
+        setNodes(resetNodes);
+    }
+
     const refreshSMITree = () => {
         console.log('[refreshSMITree] refreshSMITree.');
+        resetNodeStyles();
+        setSelectedNode(null);
         if (!props.notebookPanel) {
             console.log('[refreshSMITree] no notebook panel to be passed!');
             return;
@@ -395,20 +360,22 @@ const FlowComponent = (props: FlowComponentProps) => {
         const request = {
             notebook: JSON.stringify(props.notebookPanel!.model!.toJSON()),
         }
+        trackPromise(
         axios.post('http://localhost:5000/smi-tree', request).then((response) => {
             console.log(`[refreshSMITree] get response.`);
             const refreshedNodes = response.data.nodes;
             const refreshedEdges = response.data.edges;
-            // allNodes = refreshedNodes;
-            // allEdges = refreshedEdges;
-            const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(refreshedNodes, refreshedEdges);
+            console.log(`[refreshSMITree] refreshedNodes: ${JSON.stringify(refreshedNodes)}`);
+            setAllNodes(refreshedNodes);
+            setAllEdges(refreshedEdges);
+            const {initialNodes: initialRefreshedNodes, initialEdges: initialRefreshedEdges} = getInitialElements(refreshedNodes, refreshedEdges);
+            const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialRefreshedNodes, initialRefreshedEdges);
             setNodes(layoutedNodes);
             setEdges(layoutedEdges);
+            console.log(`[refreshSMITree] successfully refreshed nodes and edges.`);
         }).catch((error) => {
             console.log(`[refreshSMITree] error: ${error}`);
-        });
-
-
+        }));
     }
 
     
@@ -427,29 +394,35 @@ const FlowComponent = (props: FlowComponentProps) => {
             selectionOnDrag
             panOnDrag={panOnDrag}
             selectionMode={SelectionMode.Partial}
+            onPaneClick={() => {
+                resetNodeStyles()
+                setSelectedNode(null)
+              }}
         >
         <Background />
+        <div style={{ position: 'absolute', left: 10, top: 10, zIndex: 4 }}>
+            <Legend />
+        </div>
         <div style={{ position: 'absolute', right: 10, top: 10, zIndex: 4 }}>
-        <button onClick={handleCollapseAllButtonClick} disabled={!canCollapseAll} style={{ marginRight: 5 }}>
-          Collapse all children
-        </button>
-        <button onClick={handleCollapseNonTopButtonClick} disabled={!canCollapseNonTop} style={{ marginRight: 5 }}>
-          Collapse non-top-3 children
-        </button>
-        <button onClick={collapseBackToInitial} style={{ marginRight: 5 }}>
-          Collapse back to initial
-        </button>
-        <button onClick={handleExpandAllButtonClick} disabled={!canExpandAll} style={{ marginRight: 5 }}>
-          Expand all children
-        </button>
-        <button onClick={expandAllNodes} style={{ marginRight: 5 }}>
-          Expand all nodes
-        </button>
+            <button onClick={handleCollapseAllButtonClick} disabled={!canCollapseAll} style={{ marginRight: 5 }}>
+                Collapse all children
+            </button>
+            <button onClick={handleCollapseNonTopButtonClick} disabled={!canCollapseNonTop} style={{ marginRight: 5 }}>
+                Collapse non-top-3 children
+            </button>
+            <button onClick={handleExpandAllButtonClick} disabled={!canExpandAll} style={{ marginRight: 5 }}>
+                Expand all children
+            </button>
+            <button onClick={collapseBackToInitial} style={{ marginRight: 5 }}>
+                Collapse back to initial
+            </button>
+            <button onClick={handleExpandAllNodesButtonClick} style={{ marginRight: 5 }}>
+                Expand all nodes
+            </button>
         </div>
         <div style={{ position: 'absolute', right: 10, top: 50, zIndex: 4 }}>
-            <button onClick={refreshSMITree} style={{marginRight: 5}}>
-                Refresh the tree
-            </button>
+            <button onClick={refreshSMITree} style={{marginRight: 5}}>Refresh the tree</button>
+            <LoadIndicator/>
         </div>
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
         <Controls/>
