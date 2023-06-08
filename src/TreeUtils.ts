@@ -1,7 +1,7 @@
 import { Node, Edge } from "reactflow";
 import dagre from 'dagre';
 
-const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') => {
+export const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') => {
     const dagreGraph = new dagre.graphlib.Graph();
     const nodeWidth:number = 60;
     const nodeHeight:number = 20;
@@ -83,7 +83,7 @@ function getSubtreeElements(node: Node, curNodes: Node[], allEdges: Edge[], skip
     return { subtreeNodes, subtreeEdges };
 }
 
-function getInitialElements(allNodes: Node[], allEdges: Edge[]) {
+export function getInitialElements(allNodes: Node[], allEdges: Edge[]) {
     // Find the root node
     const rootNode = allNodes.find((n) => n.data.label === 'root');
     if (rootNode === undefined) {
@@ -187,8 +187,11 @@ function collapseNonTopChildren(selectedNode: Node|null, curNodes: Node[]|null, 
 
 
 
-function getNewNodesAndEdges(command:string, selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[], allEdges: Edge[]) {
+function getNewNodesAndEdges(command:string, selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[]|null, allEdges: Edge[]|null) {
     console.log(`[getNewNodesAndEdges] command=${command}, selectedNode=${selectedNode?.data.label}`);
+    if (allNodes === null || allEdges === null) {
+        return { nodes: curNodes, edges: curEdges};
+    }
     switch (command) {
         case 'GetInitial': {
             return getInitialElements(allNodes, allEdges);
@@ -219,7 +222,7 @@ function getNewNodesAndEdges(command:string, selectedNode: Node|null, curNodes: 
 }
 
 
-export function translateTreeUtilCommand(command:string, selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[], allEdges: Edge[]) {
+export function translateTreeUtilCommand(command:string, selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[]|null, allEdges: Edge[]|null) {
     const { nodes: newNodes, edges: newEdges } = getNewNodesAndEdges(command, selectedNode, curNodes, curEdges, allNodes, allEdges);
     const { nodes:layoutedNodes, edges: layoutedEdges} = getLayoutedElements(newNodes!, newEdges!);
     return { nodes: layoutedNodes, edges: layoutedEdges };

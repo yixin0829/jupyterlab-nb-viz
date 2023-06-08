@@ -1,0 +1,251 @@
+[
+    {
+        "id": "0",
+        "type": "default",
+        "data": {
+            "nodeType": "root",
+            "label": "root",
+            "rawData": "root",
+            "children": [
+                1,
+                5
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8A9A9"
+        }
+    },
+    {
+        "id": "5",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Attrition",
+            "rawData": "Attrition",
+            "children": [
+                6
+            ],
+            "parent": "0"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "6",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MonthlyIncome",
+            "rawData": "MonthlyIncome",
+            "children": [
+                7
+            ],
+            "parent": "5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "7",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "df",
+            "rawData": "df",
+            "children": [
+                8
+            ],
+            "parent": "6"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "8",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "box (cell 4)",
+            "rawData": "box",
+            "children": [
+                9
+            ],
+            "parent": "7",
+            "cellIndex": 3
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "9",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "text cell below cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell.",
+            "rawData": "text cell below cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell. This is a super long text cell.",
+            "children": [],
+            "parent": "8"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "1",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobLevel",
+            "rawData": "JobLevel",
+            "children": [
+                2
+            ],
+            "parent": "0"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "2",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsAtCompany",
+            "rawData": "YearsAtCompany",
+            "children": [
+                3
+            ],
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "3",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "df",
+            "rawData": "df",
+            "children": [
+                4
+            ],
+            "parent": "2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "4",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "boxplot (cell 3)",
+            "rawData": "boxplot",
+            "children": [],
+            "parent": "3",
+            "cellIndex": 2
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    }
+]

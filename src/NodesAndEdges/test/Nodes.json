@@ -1,0 +1,22 @@
+[
+    {
+        "id": "node1",
+        "data": {
+            "label": "Node 1"
+        },
+        "position": {
+            "x": 400,
+            "y": 300
+        }
+    },
+    {
+        "id": "node2",
+        "data": {
+            "label": "Node 2"
+        },
+        "position": {
+            "x": 250,
+            "y": 400
+        }
+    }
+]

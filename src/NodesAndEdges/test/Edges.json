@@ -1,0 +1,10 @@
+[
+    {
+        "id": "1-2",
+        "source": "edges-4",
+        "target": "edges-5",
+        "animated": true,
+        "label": "animated styled edge",
+        "style": { "stroke": "red" }
+      }
+]

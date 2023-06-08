@@ -6,9 +6,9 @@ import '../style/node.css'
 
 import ReactFlow, {
   Node,
+  Edge,
   addEdge,
   Background,
-  Edge,
   useNodesState,
   useEdgesState,
   MiniMap,
@@ -16,7 +16,6 @@ import ReactFlow, {
   SelectionMode,
   ConnectionLineType
 } from "reactflow";
-import dagre from 'dagre';
 import { NotebookPanel } from '@jupyterlab/notebook';
 import { INotebookTracker } from '@jupyterlab/notebook';
 
@@ -25,17 +24,21 @@ import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from 'react-promise-tracker';
 import { ThreeDots } from 'react-loader-spinner';
 
-import { translateTreeUtilCommand } from "./TreeUtils";
+import { 
+    translateTreeUtilCommand, 
+    getLayoutedElements} from "./TreeUtils";
 import InsightNode from "./InsightNode";
 import { Legend } from "./Legend";
 
 // import allNodes from './Nodes.json'
 // import allEdges from './Edges.json'
 
-import allNodesStatic from './NodesAndEdges/NB1/Nodes.json'
-import allEdgesStatic from './NodesAndEdges/NB1/Edges.json'
-// import allNodesStatic from './NodesAndEdges/backend/Nodes.json'
-// import allEdgesStatic from './NodesAndEdges/backend/Edges.json'
+// import allNodesStatic from './NodesAndEdges/NB1/Nodes.json'
+// import allEdgesStatic from './NodesAndEdges/NB1/Edges.json'
+import allNodesStatic from './NodesAndEdges/backend/Nodes.json';
+import allEdgesStatic from './NodesAndEdges/backend/Edges.json';
+// import recommendedNodes from './NodesAndEdges/recommendations/RecNodes.json';
+// import recommendedEdges from './NodesAndEdges/recommendations/RecEdges.json';
 
 
 const panOnDrag = [1, 2];
@@ -58,102 +61,6 @@ const nodeColor = (node: Node) => {
   }
 };
 
-const nodeWidth:number = 60;
-const nodeHeight:number = 20;
-
-const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') => {
-    const dagreGraph = new dagre.graphlib.Graph();
-    dagreGraph.setDefaultEdgeLabel(() => ({}));
-    const isHorizontal = direction === 'LR';
-    dagreGraph.setGraph({ rankdir: direction, nodesep: 80 });
-
-    // set the postiions to 0
-    nodes.forEach((node:Node) => {
-        return {...node, position: { x: 0, y: 0 } }
-    });
-
-    // edge cleanup to avoid orphan edges
-    const edgesAfterCleanUp = edges.filter((e) => nodes.some((n) => n.id === e.source) && nodes.some((n) => n.id === e.target));
-
-    // Add nodes and edges into dagreGraph ob ect
-    nodes.forEach((node:Node) => {
-        dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
-    });
-
-    edgesAfterCleanUp.forEach((edge:Edge) => {
-        dagreGraph.setEdge(edge.source, edge.target);
-    });
-
-    dagre.layout(dagreGraph);
-
-    nodes.forEach((node:any) => {
-        const nodeWithPosition = dagreGraph.node(node.id);
-        node.targetPosition = isHorizontal ? 'left' : 'top';
-        node.sourcePosition = isHorizontal ? 'right' : 'bottom';
-
-        // We are shifting the dagre node position (anchor=center center) to the top left
-        // so it matches the React Flow node anchor point (top left).
-        node.position = {
-        x: nodeWithPosition.x - nodeWidth / 2,
-        y: nodeWithPosition.y - nodeHeight / 2,
-        };
-
-        return node;
-    });
-
-    console.log(`[getLayoutedElements] Layouted nodes and edges.`);
-    return { nodes: nodes, edges: edgesAfterCleanUp };
-};
-
-
-const getEdgeLabel = (sourceId: String, targetId: String, allEdges: Edge[]) => {
-    // Find the edge weight between sourceId and targetId
-    const edge = allEdges.find((e) => e.source === sourceId && e.target === targetId);
-    if (edge === undefined || edge.label === undefined) {
-        return undefined;
-    }
-    return edge.label;
-}
-
-const getSubtreeElements = (node: Node, curNodes: Node[], allEdges: Edge[], skipSubtreeOfEtc: boolean = true) => {
-    // Find all the nodes that belongs to the subtree whose root is node
-    // subtree does NOT include the node itself
-    const subtreeNodes:Node[] = [];
-    const subtreeEdges:Edge[] = [];
-    const queue:Node[] = [node];
-    while (queue.length > 0) {
-        const currentNode: Node = queue.shift()!;
-        if (currentNode !== node) {
-            subtreeNodes.push(currentNode);
-            if (skipSubtreeOfEtc && currentNode.data.nodeType === 'etc') {
-                continue;
-            }
-        }
-        const children = curNodes.filter((n) => n.data.parent === currentNode.id);
-        children.forEach((child) => {
-            queue.push(child);
-            subtreeEdges.push({
-                id: `${currentNode.id}-${child.id}`,
-                source: currentNode.id,
-                target: child.id,
-                label: getEdgeLabel(currentNode.id, child.id, allEdges)});
-        });
-    }
-    return { subtreeNodes, subtreeEdges };
-}
-
-
-const getInitialElements = (allNodes: Node[], allEdges: Edge[]) => {
-    // Find the root node
-    const rootNode = allNodes.find((n) => n.data.label === 'root');
-    if (rootNode === undefined) {
-        throw new Error('No root node found');
-    }
-    // Find all the nodes that belongs to the subtree whose root is rootNode
-    const {subtreeNodes: initialNodes, subtreeEdges: initialEdges} = getSubtreeElements(rootNode, allNodes, allEdges);
-    initialNodes.push(rootNode);
-    return { initialNodes, initialEdges };
-}
 
 const LoadIndicator = () => {
     const { promiseInProgress } = usePromiseTracker();
@@ -187,8 +94,8 @@ const FlowComponent = (props: FlowComponentProps) => {
     const [canCollapseAll, setCanCollapseAll] = useState(false);
     const [canCollapseNonTop, setCanCollapseNonTop] = useState(false);
 
-    const [allNodes, setAllNodes] = useState(allNodesStatic);
-    const [allEdges, setAllEdges] = useState(allEdgesStatic);
+    const [allNodes, setAllNodes] = useState<Node[] | null>(allNodesStatic);
+    const [allEdges, setAllEdges] = useState<Edge[] | null>(allEdgesStatic);
 
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodesStatic);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdgesStatic);
@@ -216,6 +123,10 @@ const FlowComponent = (props: FlowComponentProps) => {
     }
     
     const handleNodeClick = (event: MouseEvent, node: Node) => {
+        if (allNodes === null || allEdges === null) {
+            console.log('[handleNodeClick] allNodes or allEdges is null')
+            return;
+        }
         setSelectedNode(node);
         // change node color
         const newNodes = nodes.map((prevNode)=> {
@@ -368,14 +279,52 @@ const FlowComponent = (props: FlowComponentProps) => {
             console.log(`[refreshSMITree] refreshedNodes: ${JSON.stringify(refreshedNodes)}`);
             setAllNodes(refreshedNodes);
             setAllEdges(refreshedEdges);
-            const {initialNodes: initialRefreshedNodes, initialEdges: initialRefreshedEdges} = getInitialElements(refreshedNodes, refreshedEdges);
-            const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialRefreshedNodes, initialRefreshedEdges);
+            // const {initialNodes: initialRefreshedNodes, initialEdges: initialRefreshedEdges} = getInitialElements(refreshedNodes, refreshedEdges);
+            // const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialRefreshedNodes, initialRefreshedEdges);
+            const { nodes: layoutedNodes, edges: layoutedEdges } = translateTreeUtilCommand(
+                'GetInitial',
+                null,
+                null,
+                null,
+                refreshedNodes,
+                refreshedEdges
+            );
             setNodes(layoutedNodes);
             setEdges(layoutedEdges);
             console.log(`[refreshSMITree] successfully refreshed nodes and edges.`);
         }).catch((error) => {
             console.log(`[refreshSMITree] error: ${error}`);
         }));
+    }
+
+    const getRecommendations = () => {
+        if (allNodes === null || allEdges === null) {
+            console.log('[getRecommendations] allNodes or allEdges is null')
+            return;
+        }
+        resetNodeStyles();
+        setSelectedNode(null);
+        const request = {
+            nodes: JSON.stringify(nodes),
+            edges: JSON.stringify(edges),
+        }; // send current Nodes and Edges to backend so that recommendations will not be generated for hidden nodes
+        axios.post('http://localhost:5000/recommendations', request).then((response) => {
+            console.log(`[getRecommendations] get response: ${JSON.stringify(response.data)}`);
+            const recommendedNodes = response.data.recommendedNodes;
+            const recommendedEdges = response.data.recommendedEdges;
+            const newAllNodes = allNodes.concat(recommendedNodes);
+            const newAllEdges = [...allEdges, ...recommendedEdges];
+            setAllNodes(newAllNodes);
+            setAllEdges(newAllEdges);
+            const newNodes = nodes.concat(recommendedNodes);
+            const newEdges = edges.concat(recommendedEdges);
+            const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(newNodes, newEdges);
+            setNodes(layoutedNodes);
+            setEdges(layoutedEdges);
+        }).catch((error) => {
+            console.log(`[getRecommendations] error: ${error}`);
+        });
+        
     }
 
     
@@ -423,6 +372,9 @@ const FlowComponent = (props: FlowComponentProps) => {
         <div style={{ position: 'absolute', right: 10, top: 50, zIndex: 4 }}>
             <button onClick={refreshSMITree} style={{marginRight: 5}}>Refresh the tree</button>
             <LoadIndicator/>
+        </div>
+        <div style={{ position: 'absolute', right: 10, top: 90, zIndex: 4 }}>
+              <button onClick={getRecommendations}>Get recommendations</button>
         </div>
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
         <Controls/>
