@@ -23,10 +23,13 @@ import axios from "axios";
 import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from 'react-promise-tracker';
 import { ThreeDots } from 'react-loader-spinner';
+import { CodeMirrorEditor } from "@jupyterlab/codemirror";
 
 import { 
     translateTreeUtilCommand, 
-    getLayoutedElements} from "./TreeUtils";
+    getLayoutedElements,
+    isEdgeRemoveable,
+    removeEdge} from "./TreeUtils";
 import InsightNode from "./InsightNode";
 import { Legend } from "./Legend";
 
@@ -42,6 +45,7 @@ import allEdgesStatic from './NodesAndEdges/backend/Edges.json';
 
 
 const panOnDrag = [1, 2];
+const HIGHLIGHTED_LINE_CLASS = "jp-InputArea-editor-dependencyline";
 
 // Node colour schema
 const nodeColor = (node: Node) => {
@@ -89,10 +93,14 @@ interface FlowComponentProps {
 }
 
 const FlowComponent = (props: FlowComponentProps) => {
-    const [selectedNode, setSelectedNode] = useState<Node | null>(null);;
+    const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+    const [selectedEdge, setSelectedEdge] = useState<Edge | null>(null);
+    const [isSelectedEdgeRemovable, setIsSelectedEdgeRemovable] = useState(false);
     const [canExpandAll, setCanExpandAll] = useState(false);
     const [canCollapseAll, setCanCollapseAll] = useState(false);
     const [canCollapseNonTop, setCanCollapseNonTop] = useState(false);
+    const [isRecommendationDisplayed, setIsRecommendationDisplayed] = useState(false);
+    const [highlightedCellLines, setHighlightedCellLines] = useState<number[][]>([]); // [[cellIndex, lineNumber], ...
 
     const [allNodes, setAllNodes] = useState<Node[] | null>(allNodesStatic);
     const [allEdges, setAllEdges] = useState<Edge[] | null>(allEdgesStatic);
@@ -121,14 +129,72 @@ const FlowComponent = (props: FlowComponentProps) => {
         setNodes(newNodes);
         setEdges(newEdges);
     }
+
+    const highlightCellLine = (cellIndex: number, lineNumber: number) => {
+        // get cell by cellIndex
+        // console.log(`[highlightCell] cellIndex: ${cellIndex}, lineNumber=${lineNumber}`);
+        if (props.notebookTracker === null || props.notebookTracker.currentWidget === null) {
+            console.log('[highlightCell] no notebookTracker or no notebookPanel.');
+            return;
+        }
+        const cellList = props.notebookTracker.currentWidget.content.widgets;
+        const cell = cellList[cellIndex];
+        if (cell && cell.editor instanceof CodeMirrorEditor) {
+            const editor = cell.editor.editor;
+            editor.addLineClass(lineNumber, "background", HIGHLIGHTED_LINE_CLASS); // TODO: lineNumber = 0 for testing purpose
+            // if (cell instanceof MarkdownCell) {
+                // console.log(`[highlightCell] MarkdownCell.`);
+            // }
+            return true;
+        }
+        else {
+            console.log('[highlightCell] the editor of activeCell is not a CodeMirrorEditor');
+            return false;
+        }
+    }
+
+    const clearHighlightedCellLines = () => {
+        if (props.notebookTracker === null || props.notebookTracker.currentWidget === null) {
+            console.log('[clearHighlightedCellLines] no notebookTracker or no notebookPanel.');
+            return;
+        }
+        const cellList = props.notebookTracker.currentWidget.content.widgets;
+        for(let [cellIndex, lineNumber] of highlightedCellLines) {
+            const cell = cellList[cellIndex];
+            if (cell && cell.editor instanceof CodeMirrorEditor) {
+                const editor = cell.editor.editor;
+                editor.removeLineClass(lineNumber, "background", HIGHLIGHTED_LINE_CLASS);
+                // console.log(`[clearHighlightedCellLines] successfully remove highlights cellIndex: ${cellIndex}, lineNumber=${lineNumber}`)
+            }
+            else {
+                console.log('[clearHighlightedCellLines] the editor of activeCell is not a CodeMirrorEditor');
+            }
+            setHighlightedCellLines([]);
+        }
     
+
+    }
+
+    const setActiveCell = (cellIndex: number) => {
+        if (props.notebookTracker === null || props.notebookTracker.currentWidget === null) {
+            console.log('[highlightCell] no notebookTracker or no notebookPanel.');
+            return;
+        }
+        const notebookPanel = props.notebookTracker.currentWidget;
+        notebookPanel.content.activeCellIndex = cellIndex;
+        const activeCell = props.notebookTracker.currentWidget.content.activeCell!;
+        notebookPanel.content.scrollToCell(activeCell);
+        console.log(`activeCellIndex after setFocusCell: ${props.notebookTracker.currentWidget.content.activeCellIndex}`);
+    }
+
+
     const handleNodeClick = (event: MouseEvent, node: Node) => {
         if (allNodes === null || allEdges === null) {
             console.log('[handleNodeClick] allNodes or allEdges is null')
             return;
         }
         setSelectedNode(node);
-        // change node color
+        // change node border width
         const newNodes = nodes.map((prevNode)=> {
             if (prevNode.id === node.id) {
                 // prevNode.style = {...prevNode.style, background: '#e06666'};
@@ -141,7 +207,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         });
         setNodes(newNodes);
 
-        if (node.data.nodeType !== 'plot') {
+        if ((node.data.nodeType !== 'plot') && (node.data.nodeType !== 'insight')) {
             const selectedNodeHasChildren = nodes.some((n) => n.data.parent === node.id);
             setCanExpandAll(!selectedNodeHasChildren);
             setCanCollapseAll(selectedNodeHasChildren);
@@ -164,23 +230,33 @@ const FlowComponent = (props: FlowComponentProps) => {
             }
         }
         else {
-            console.log('PlotNode clicked');
             // disable buttons
             setCanExpandAll(false);
             setCanCollapseAll(false);
+            clearHighlightedCellLines();
             if(props.notebookTracker && props.notebookTracker.currentWidget) {
                 // jump to the corresponding notebook and cell
                 const cellIndex = node.data.cellIndex;
-                props.notebookTracker.currentWidget.content.activeCellIndex = cellIndex;
-                const activeCell = props.notebookTracker.currentWidget.content.activeCell!;
-                props.notebookTracker.currentWidget.content.scrollToCell(activeCell);
-                console.log(`activeCellIndex after setFocusCell: ${props.notebookTracker.currentWidget.content.activeCellIndex}`);
+                setActiveCell(cellIndex);
+                for (let slice of node.data.slices) {
+                    const cellIndex = slice[0];
+                    const lineNumber = slice[1];
+                    const isHighlightSuccessful = highlightCellLine(cellIndex, lineNumber);
+                    if (isHighlightSuccessful)
+                        highlightedCellLines.push([cellIndex, lineNumber]);
+                }
+                setHighlightedCellLines(highlightedCellLines);
             }
             else {
                 console.log('FlowWidget: No notebookTracker');
             }
         }
 
+    }
+
+    const handleEdgeClick = (event: MouseEvent, edge: Edge) => {
+        setSelectedEdge(edge);
+        setIsSelectedEdgeRemovable(isEdgeRemoveable(edge, nodes, edges));
     }
 
     const handleExpandAllButtonClick = () => {
@@ -258,6 +334,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         // const resetNodes = nodes.map((prevNode)=> {prevNode.style = {...prevNode.style, background: nodeColor(prevNode)}; return prevNode;});
         const resetNodes = nodes.map((prevNode)=> {prevNode.style = {...prevNode.style, borderWidth: '1px'}; return prevNode;});
         setNodes(resetNodes);
+        clearHighlightedCellLines();
     }
 
     const refreshSMITree = () => {
@@ -308,6 +385,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             nodes: JSON.stringify(nodes),
             edges: JSON.stringify(edges),
         }; // send current Nodes and Edges to backend so that recommendations will not be generated for hidden nodes
+        trackPromise(
         axios.post('http://localhost:5000/recommendations', request).then((response) => {
             console.log(`[getRecommendations] get response: ${JSON.stringify(response.data)}`);
             const recommendedNodes = response.data.recommendedNodes;
@@ -321,10 +399,49 @@ const FlowComponent = (props: FlowComponentProps) => {
             const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(newNodes, newEdges);
             setNodes(layoutedNodes);
             setEdges(layoutedEdges);
+            setIsRecommendationDisplayed(true);
         }).catch((error) => {
             console.log(`[getRecommendations] error: ${error}`);
-        });
-        
+        }));
+    }
+
+    const disableRecommendations = () => {
+        if (allNodes === null || allEdges === null) {
+            console.log('[disableRecommendations] allNodes or allEdges is null')
+            return;
+        }
+        if (selectedNode?.data.nodeType === 'recommended') {
+            resetNodeStyles();
+            setSelectedNode(null);
+        }
+        // remove the recommended nodes and edges
+        const newAllNodes = allNodes.filter((n) => n.data.nodeType !== 'recommended');
+        const newAllEdges = allEdges.filter((e) => (!e.source.startsWith('rec') && ! e.target.startsWith('rec')));
+        setAllNodes(newAllNodes);
+        setAllEdges(newAllEdges);
+        const newNodes = nodes.filter((n) => n.data.nodeType !== 'recommended');
+        const newEdges = edges.filter((e) => (!e.source.startsWith('rec') && ! e.target.startsWith('rec')));
+        const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(newNodes, newEdges);
+        setNodes(layoutedNodes);
+        setEdges(layoutedEdges);
+        setIsRecommendationDisplayed(false);
+    }
+
+    const removeSelectedEdge = () => {
+        if (nodes === null || edges === null) {
+            console.log('[removeSelectedEdge] nodes or edges is null')
+            return;
+        }
+        if (selectedEdge && isSelectedEdgeRemovable) {
+            const { nodes: layoutedNodes, edges: layoutedEdges } = removeEdge(selectedEdge, nodes, edges);
+            if (layoutedNodes === null || layoutedEdges === null) {
+                console.log('[removeSelectedEdge] layoutedNodes or layoutedEdges is null')
+                return;
+            }
+            setNodes(layoutedNodes);
+            setEdges(layoutedEdges);
+            console.log(`[removeSelectedEdge] successfully removed edge: ${JSON.stringify(selectedEdge)}`);
+        }
     }
 
     
@@ -337,6 +454,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             onNodeClick={handleNodeClick}
+            onEdgeClick={handleEdgeClick}
             connectionLineType={ConnectionLineType.SmoothStep}
             fitView
             panOnScroll
@@ -370,11 +488,15 @@ const FlowComponent = (props: FlowComponentProps) => {
             </button>
         </div>
         <div style={{ position: 'absolute', right: 10, top: 50, zIndex: 4 }}>
-            <button onClick={refreshSMITree} style={{marginRight: 5}}>Refresh the tree</button>
-            <LoadIndicator/>
+            <button onClick={removeSelectedEdge} disabled={!isSelectedEdgeRemovable} style={{marginRight: 5}}>Remove edge</button>
         </div>
         <div style={{ position: 'absolute', right: 10, top: 90, zIndex: 4 }}>
-              <button onClick={getRecommendations}>Get recommendations</button>
+        <button onClick={refreshSMITree} style={{marginRight: 5}}>Refresh the tree</button>
+              <button onClick={getRecommendations} style={{ marginRight: 5 }}>Get recommendations</button>
+              <button onClick={disableRecommendations} disabled={!isRecommendationDisplayed}>Disable recommendations</button>
+        </div>
+        <div style={{ position: 'absolute', right: 10, top: 130, zIndex: 4 }}>
+            <LoadIndicator/>
         </div>
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
         <Controls/>

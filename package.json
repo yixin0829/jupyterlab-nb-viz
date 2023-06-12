@@ -61,6 +61,7 @@
     "@jupyterlab/mainmenu": "^3.6.3",
     "@jupyterlab/ui-components": "^3.6.3",
     "@lumino/widgets": "^1.37.2",
+    "@types/codemirror": "^5.60.8",
     "@types/dagre": "^0.7.48",
     "axios": "^1.4.0",
     "dagre": "^0.8.5",

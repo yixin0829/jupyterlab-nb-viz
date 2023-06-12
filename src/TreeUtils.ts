@@ -42,8 +42,6 @@ export const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') 
 
         return node;
     });
-
-    // console.log(`[getLayoutedElements] from TreeUitls`);
     return { nodes: nodes, edges: edgesAfterCleanUp };
 };
 
@@ -186,7 +184,6 @@ function collapseNonTopChildren(selectedNode: Node|null, curNodes: Node[]|null, 
 }
 
 
-
 function getNewNodesAndEdges(command:string, selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[]|null, allEdges: Edge[]|null) {
     console.log(`[getNewNodesAndEdges] command=${command}, selectedNode=${selectedNode?.data.label}`);
     if (allNodes === null || allEdges === null) {
@@ -225,5 +222,29 @@ function getNewNodesAndEdges(command:string, selectedNode: Node|null, curNodes: 
 export function translateTreeUtilCommand(command:string, selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[]|null, allEdges: Edge[]|null) {
     const { nodes: newNodes, edges: newEdges } = getNewNodesAndEdges(command, selectedNode, curNodes, curEdges, allNodes, allEdges);
     const { nodes:layoutedNodes, edges: layoutedEdges} = getLayoutedElements(newNodes!, newEdges!);
+    return { nodes: layoutedNodes, edges: layoutedEdges };
+}
+
+export function isEdgeRemoveable(selectedEdge: Edge, curNodes: Node[]|null, curEdges: Edge[]|null) {
+    if (curEdges === null || curNodes === null) {
+        console.log('[removeEdge] curEdges or curNodes is null');
+        return false;
+    }  
+    // the target node must have at least edges connected to it
+    const targetNode = curNodes.find((n) => n.id === selectedEdge.target);
+    if (targetNode === undefined) {
+        return true;
+    }
+    const edgesConnectedToTarget = curEdges.filter((e) => e.target === targetNode.id);
+    return edgesConnectedToTarget.length > 1;
+}
+
+export function removeEdge(selectedEdge: Edge, curNodes: Node[]|null, curEdges: Edge[]|null) {
+    if (curEdges === null || curNodes === null) {
+        console.log('[removeEdge] curEdges or curNodes is null');
+        return {nodes: curNodes, edges: curEdges};
+    }    
+    const newEdges = curEdges!.filter((e) => e.id !== selectedEdge.id);
+    const { nodes:layoutedNodes, edges: layoutedEdges} = getLayoutedElements(curNodes, newEdges);
     return { nodes: layoutedNodes, edges: layoutedEdges };
 }

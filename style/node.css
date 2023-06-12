@@ -10,3 +10,7 @@
     max-width: "130px";
     padding: 5px;
 }
+
+div.CodeMirror-linebackground.jp-InputArea-editor-dependencyline {
+    background-color: #e6d4f4;
+  }
