@@ -20,24 +20,26 @@ const InsightNode = ({ data }: NodeProps) => {
     const handleMouseLeave = () => { setIsHovered(false); }
 
     return (
-        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ position: 'relative' }}>
+        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <Handle type="target" position={Position.Top} />
-            <ReactMarkdown>{displayInsight}</ReactMarkdown>
-                {isHovered && (<div
-                style={{
-                  position: 'absolute',
-                  top: '-40px',
-                  left: '0%',
-                  backgroundColor: '#ffffff',
-                  padding: '8px',
-                  width: "auto",
-                  height: "auto",
-                  minWidth: "130px",
-                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                }}
-              >
-                <ReactMarkdown>{data.label}</ReactMarkdown>
-              </div>)}
+            <div>
+              <ReactMarkdown>{displayInsight}</ReactMarkdown>
+                  {isHovered && (<div
+                  style={{
+                    position: 'absolute',
+                    top: '-40px',
+                    left: '0%',
+                    backgroundColor: '#ffffff',
+                    padding: '8px',
+                    width: "auto",
+                    height: "auto",
+                    minWidth: "130px",
+                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                  }}
+                >
+                  <ReactMarkdown>{data.label}</ReactMarkdown>
+                </div>)}
+              </div>
         </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, { useCallback, MouseEvent } from "react";
+import React, { useCallback, MouseEvent, useRef } from "react";
 import { useState } from "react";
 import { ReactWidget } from '@jupyterlab/apputils'; // for converting a react component to a react widget in JL
 import "reactflow/dist/style.css";
@@ -14,7 +14,7 @@ import ReactFlow, {
   MiniMap,
   Controls,
   SelectionMode,
-  ConnectionLineType
+  ConnectionLineType,
 } from "reactflow";
 import { NotebookPanel } from '@jupyterlab/notebook';
 import { INotebookTracker } from '@jupyterlab/notebook';
@@ -29,12 +29,12 @@ import {
     translateTreeUtilCommand, 
     getLayoutedElements,
     isEdgeRemoveable,
-    removeEdge} from "./TreeUtils";
+    removeEdge,
+    isEdgeConnectable,
+    EdgeOperation} from "./TreeUtils";
 import InsightNode from "./InsightNode";
+import PlotNode from "./PlotNode";
 import { Legend } from "./Legend";
-
-// import allNodes from './Nodes.json'
-// import allEdges from './Edges.json'
 
 // import allNodesStatic from './NodesAndEdges/NB1/Nodes.json'
 // import allEdgesStatic from './NodesAndEdges/NB1/Edges.json'
@@ -76,6 +76,7 @@ const LoadIndicator = () => {
 
 const nodeTypes = {
     insight: InsightNode,
+    plot: PlotNode
 };
 
 const { nodes: initialNodesStatic, edges: initialEdgesStatic } = translateTreeUtilCommand(
@@ -84,7 +85,8 @@ const { nodes: initialNodesStatic, edges: initialEdgesStatic } = translateTreeUt
     null,
     null,
     allNodesStatic,
-    allEdgesStatic
+    allEdgesStatic,
+    []
 )
 
 interface FlowComponentProps {
@@ -100,21 +102,16 @@ const FlowComponent = (props: FlowComponentProps) => {
     const [canCollapseAll, setCanCollapseAll] = useState(false);
     const [canCollapseNonTop, setCanCollapseNonTop] = useState(false);
     const [isRecommendationDisplayed, setIsRecommendationDisplayed] = useState(false);
-    const [highlightedCellLines, setHighlightedCellLines] = useState<number[][]>([]); // [[cellIndex, lineNumber], ...
 
     const [allNodes, setAllNodes] = useState<Node[] | null>(allNodesStatic);
     const [allEdges, setAllEdges] = useState<Edge[] | null>(allEdgesStatic);
 
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodesStatic);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdgesStatic);
-    
-    const onConnect = useCallback(
-        (params) =>
-          setEdges((eds) =>
-            addEdge({ ...params, type: ConnectionLineType.SmoothStep, animated: true }, eds)
-          ),
-        []
-    );
+
+    // const edgeUpdateSuccessful = useRef(true)
+    const highlightedCellLines = useRef<number[][]>([]); // [[cellIndex, lineNumber], ...
+    const edgeOperations = useRef<EdgeOperation[]>([]);
 
     const collapseBackToInitial = () => {
         // collapse the tree to initial state
@@ -124,7 +121,8 @@ const FlowComponent = (props: FlowComponentProps) => {
             nodes,
             edges,
             allNodes,
-            allEdges
+            allEdges,
+            edgeOperations.current
         )
         setNodes(newNodes);
         setEdges(newEdges);
@@ -159,20 +157,17 @@ const FlowComponent = (props: FlowComponentProps) => {
             return;
         }
         const cellList = props.notebookTracker.currentWidget.content.widgets;
-        for(let [cellIndex, lineNumber] of highlightedCellLines) {
+        for(let [cellIndex, lineNumber] of highlightedCellLines.current) {
             const cell = cellList[cellIndex];
             if (cell && cell.editor instanceof CodeMirrorEditor) {
                 const editor = cell.editor.editor;
                 editor.removeLineClass(lineNumber, "background", HIGHLIGHTED_LINE_CLASS);
-                // console.log(`[clearHighlightedCellLines] successfully remove highlights cellIndex: ${cellIndex}, lineNumber=${lineNumber}`)
             }
             else {
                 console.log('[clearHighlightedCellLines] the editor of activeCell is not a CodeMirrorEditor');
             }
-            setHighlightedCellLines([]);
         }
-    
-
+        highlightedCellLines.current = [];
     }
 
     const setActiveCell = (cellIndex: number) => {
@@ -222,7 +217,8 @@ const FlowComponent = (props: FlowComponentProps) => {
                     nodes,
                     edges,
                     allNodes,
-                    allEdges
+                    allEdges,
+                    edgeOperations.current
                 )
                 setNodes(newNodes);
                 setEdges(newEdges);
@@ -243,9 +239,8 @@ const FlowComponent = (props: FlowComponentProps) => {
                     const lineNumber = slice[1];
                     const isHighlightSuccessful = highlightCellLine(cellIndex, lineNumber);
                     if (isHighlightSuccessful)
-                        highlightedCellLines.push([cellIndex, lineNumber]);
+                        highlightedCellLines.current.push([cellIndex, lineNumber]);
                 }
-                setHighlightedCellLines(highlightedCellLines);
             }
             else {
                 console.log('FlowWidget: No notebookTracker');
@@ -257,6 +252,7 @@ const FlowComponent = (props: FlowComponentProps) => {
     const handleEdgeClick = (event: MouseEvent, edge: Edge) => {
         setSelectedEdge(edge);
         setIsSelectedEdgeRemovable(isEdgeRemoveable(edge, nodes, edges));
+        console.log(`[handleEdgeClick] selectedEdge: ${JSON.stringify(edge)}`);
     }
 
     const handleExpandAllButtonClick = () => {
@@ -267,7 +263,8 @@ const FlowComponent = (props: FlowComponentProps) => {
                 nodes,
                 edges,
                 allNodes,
-                allEdges
+                allEdges,
+                edgeOperations.current
             );
             setNodes(newNodes);
             setEdges(newEdges);
@@ -287,7 +284,8 @@ const FlowComponent = (props: FlowComponentProps) => {
                 nodes,
                 edges,
                 allNodes,
-                allEdges
+                allEdges,
+                edgeOperations.current
             );
             setNodes(newNodes);
             setEdges(newEdges);
@@ -306,7 +304,8 @@ const FlowComponent = (props: FlowComponentProps) => {
                 nodes,
                 edges,
                 allNodes,
-                allEdges
+                allEdges,
+                edgeOperations.current
             );
             setNodes(newNodes);
             setEdges(newEdges);
@@ -324,7 +323,8 @@ const FlowComponent = (props: FlowComponentProps) => {
             nodes,
             edges,
             allNodes,
-            allEdges
+            allEdges,
+            edgeOperations.current
         )
         setNodes(newNodes);
         setEdges(newEdges);
@@ -337,10 +337,17 @@ const FlowComponent = (props: FlowComponentProps) => {
         clearHighlightedCellLines();
     }
 
-    const refreshSMITree = () => {
-        console.log('[refreshSMITree] refreshSMITree.');
+    const resetAllStatus = () => {
         resetNodeStyles();
         setSelectedNode(null);
+        setSelectedEdge(null);
+        edgeOperations.current = [];
+    }
+
+    const refreshSMITree = () => {
+        console.log('[refreshSMITree] refreshSMITree.');
+        resetAllStatus();
+        highlightedCellLines.current = [];
         if (!props.notebookPanel) {
             console.log('[refreshSMITree] no notebook panel to be passed!');
             return;
@@ -364,7 +371,8 @@ const FlowComponent = (props: FlowComponentProps) => {
                 null,
                 null,
                 refreshedNodes,
-                refreshedEdges
+                refreshedEdges,
+                edgeOperations.current
             );
             setNodes(layoutedNodes);
             setEdges(layoutedEdges);
@@ -379,8 +387,8 @@ const FlowComponent = (props: FlowComponentProps) => {
             console.log('[getRecommendations] allNodes or allEdges is null')
             return;
         }
-        resetNodeStyles();
-        setSelectedNode(null);
+        resetAllStatus();
+        highlightedCellLines.current = [];
         const request = {
             nodes: JSON.stringify(nodes),
             edges: JSON.stringify(edges),
@@ -429,7 +437,7 @@ const FlowComponent = (props: FlowComponentProps) => {
 
     const removeSelectedEdge = () => {
         if (nodes === null || edges === null) {
-            console.log('[removeSelectedEdge] nodes or edges is null')
+            console.log('[removeSelectedEdge] nodes or edges is null');
             return;
         }
         if (selectedEdge && isSelectedEdgeRemovable) {
@@ -441,9 +449,19 @@ const FlowComponent = (props: FlowComponentProps) => {
             setNodes(layoutedNodes);
             setEdges(layoutedEdges);
             console.log(`[removeSelectedEdge] successfully removed edge: ${JSON.stringify(selectedEdge)}`);
+            edgeOperations.current.push({operation: 'remove', edge: selectedEdge});
         }
     }
 
+    const onConnect = useCallback((newEdge) => {
+        console.log(`[onConnect] newEdge: ${JSON.stringify(newEdge)}`);
+        if (!isEdgeConnectable(newEdge, nodes)) {
+            console.log(`[onConnect] edge is not connectable.`);
+            return;
+        }
+        setEdges((els) => addEdge(newEdge, els));
+        edgeOperations.current.push({operation: 'add', edge: newEdge});
+    }, []);
     
   return (
         <ReactFlow
@@ -462,9 +480,9 @@ const FlowComponent = (props: FlowComponentProps) => {
             panOnDrag={panOnDrag}
             selectionMode={SelectionMode.Partial}
             onPaneClick={() => {
-                resetNodeStyles()
-                setSelectedNode(null)
+                resetAllStatus();
               }}
+            deleteKeyCode={null}
         >
         <Background />
         <div style={{ position: 'absolute', left: 10, top: 10, zIndex: 4 }}>

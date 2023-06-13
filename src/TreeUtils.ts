@@ -45,20 +45,20 @@ export const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') 
     return { nodes: nodes, edges: edgesAfterCleanUp };
 };
 
-function getEdgeLabel(sourceId: String, targetId: String, allEdges: Edge[]) {
-    // Find the edge weight between sourceId and targetId
-    const edge = allEdges.find((e) => e.source === sourceId && e.target === targetId);
-    if (edge === undefined || edge.label === undefined) {
-        return undefined;
-    }
-    return edge.label;
-}
+// function getEdgeLabel(sourceId: String, targetId: String, allEdges: Edge[]) {
+//     // Find the edge weight between sourceId and targetId
+//     const edge = allEdges.find((e) => e.source === sourceId && e.target === targetId);
+//     if (edge === undefined || edge.label === undefined) {
+//         return undefined;
+//     }
+//     return edge.label;
+// }
 
 function getSubtreeElements(node: Node, curNodes: Node[], allEdges: Edge[], skipSubtreeOfEtc: boolean = true) {
     // Find all the nodes that belongs to the subtree whose root is node
     // subtree does NOT include the node itself
     const subtreeNodes:Node[] = [];
-    const subtreeEdges:Edge[] = [];
+    // const subtreeEdges:Edge[] = [];
     const queue:Node[] = [node];
     while (queue.length > 0) {
         const currentNode: Node = queue.shift()!;
@@ -71,13 +71,16 @@ function getSubtreeElements(node: Node, curNodes: Node[], allEdges: Edge[], skip
         const children = curNodes.filter((n) => n.data.parent === currentNode.id);
         children.forEach((child) => {
             queue.push(child);
-            subtreeEdges.push({
-                id: `${currentNode.id}-${child.id}`,
-                source: currentNode.id,
-                target: child.id,
-                label: getEdgeLabel(currentNode.id, child.id, allEdges)});
+            // subtreeEdges.push({
+            //     id: `${currentNode.id}-${child.id}`,
+            //     source: currentNode.id,
+            //     target: child.id,
+            //     label: getEdgeLabel(currentNode.id, child.id, allEdges)});
         });
     }
+    const subtreeEdges = allEdges.filter((e) => subtreeNodes.some((sn) => sn.id === e.target) && subtreeNodes.some((sn) => sn.id === e.source)); 
+    subtreeEdges.concat(allEdges.filter((e) => (e.source === node.id) && subtreeNodes.some((sn) => sn.id === e.source)));
+
     return { subtreeNodes, subtreeEdges };
 }
 
@@ -218,25 +221,83 @@ function getNewNodesAndEdges(command:string, selectedNode: Node|null, curNodes: 
     }
 }
 
+export interface EdgeOperation {
+    operation: string, // add / remove
+    edge: Edge
+}
 
-export function translateTreeUtilCommand(command:string, selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[]|null, allEdges: Edge[]|null) {
+export function applyEdgeOperations(edgeOperations: EdgeOperation[], curNodes: Node[]|null, curEdges: Edge[]|null) {
+    if (curEdges === null || curNodes === null) {
+        console.log('[applyEdgeOperations] curEdges or curNodes is null');
+        return curEdges;
+    }
+    for(let edgeOp of edgeOperations) {
+        const sourceNode = curNodes.find((n) => n.id === edgeOp.edge.source);
+        const targetNode = curNodes.find((n) => n.id === edgeOp.edge.target);
+        if (sourceNode === undefined || targetNode === undefined) {
+            continue;
+        }
+        if(edgeOp.operation === 'add') {
+            curEdges.push(edgeOp.edge);
+        }
+        else if (edgeOp.operation === 'remove') {
+            curEdges = curEdges.filter((e) => e.id !== edgeOp.edge.id);
+        }
+        else {
+            console.log(`[applyEdgeOperations] invalid operation: ${edgeOp.operation}`);
+        }
+    }
+    return curEdges;
+}
+
+
+export function translateTreeUtilCommand(command:string,
+    selectedNode: Node|null,
+    curNodes: Node[]|null,
+    curEdges: Edge[]|null,
+    allNodes: Node[]|null,
+    allEdges: Edge[]|null,
+    edgeOperations: EdgeOperation[]) {
     const { nodes: newNodes, edges: newEdges } = getNewNodesAndEdges(command, selectedNode, curNodes, curEdges, allNodes, allEdges);
-    const { nodes:layoutedNodes, edges: layoutedEdges} = getLayoutedElements(newNodes!, newEdges!);
+    const updatedEdges = applyEdgeOperations(edgeOperations, newNodes, newEdges);
+    const { nodes:layoutedNodes, edges: layoutedEdges} = getLayoutedElements(newNodes!, updatedEdges!);
     return { nodes: layoutedNodes, edges: layoutedEdges };
 }
 
-export function isEdgeRemoveable(selectedEdge: Edge, curNodes: Node[]|null, curEdges: Edge[]|null) {
-    if (curEdges === null || curNodes === null) {
-        console.log('[removeEdge] curEdges or curNodes is null');
-        return false;
+function getTargetNode(selectedEdge: Edge, curNodes: Node[]|null) {
+    if (curNodes === null || selectedEdge === null || selectedEdge === undefined) {
+        return null;
     }  
-    // the target node must have at least edges connected to it
+    // the target node must have at least 1 edge connected to it
     const targetNode = curNodes.find((n) => n.id === selectedEdge.target);
-    if (targetNode === undefined) {
+    return targetNode;
+}
+
+export function isEdgeRemoveable(selectedEdge: Edge, curNodes: Node[]|null, curEdges: Edge[]|null) {
+    if (curEdges === null || curNodes === null || !selectedEdge) {
+        console.log('[removeEdge] curEdges or curNodes or selectedEdge is null');
+    }
+    const targetNode = getTargetNode(selectedEdge, curNodes);
+    if (targetNode === undefined || targetNode === null) {
         return true;
     }
-    const edgesConnectedToTarget = curEdges.filter((e) => e.target === targetNode.id);
+    if (targetNode.data.nodeType !== 'insight') {
+        return false;
+    }
+    const edgesConnectedToTarget = curEdges!.filter((e) => e.target === targetNode.id);
     return edgesConnectedToTarget.length > 1;
+}
+
+export function isEdgeConnectable(newEdge: Edge, curNodes: Node[] | null) {
+    if (curNodes === null || !newEdge) {
+        console.log('[removeEdge] curEdges or curNodes or selectedEdge is null');
+    }
+    const targetNode = curNodes!.find((n) => n.id === newEdge.target);
+    if (targetNode === undefined || targetNode === null) {
+        return false;
+    }
+    return targetNode.data.nodeType === 'insight';
+
 }
 
 export function removeEdge(selectedEdge: Edge, curNodes: Node[]|null, curEdges: Edge[]|null) {
@@ -248,3 +309,20 @@ export function removeEdge(selectedEdge: Edge, curNodes: Node[]|null, curEdges: 
     const { nodes:layoutedNodes, edges: layoutedEdges} = getLayoutedElements(curNodes, newEdges);
     return { nodes: layoutedNodes, edges: layoutedEdges };
 }
+
+
+export function isEdgeUpdatable(selectedEdge: Edge, curNodes: Node[]|null) {
+    if (selectedEdge === undefined || selectedEdge === null || curNodes === null) {
+        console.log('[isEdgeUpdatable] selectedEdge or curNodes is null');
+        return false;
+    }
+    const targetNode = curNodes.find((n) => n.id === selectedEdge.target);
+    console.log(`[isEdgeUpdatable] targetNode=${targetNode}`);
+    if (targetNode === undefined) {
+        console.log(`[isEdgeUpdatable] the target of selectedEdge is not found`);
+        return false;
+    }
+    console.log(`[isEdgeUpdatable] targetNode.data.nodeType=${targetNode.data.nodeType}`);
+    return targetNode.data.nodeType === 'insight';
+}
+
