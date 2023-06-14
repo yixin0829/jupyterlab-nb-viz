@@ -8,7 +8,7 @@ export const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') 
     const isHorizontal = direction === 'LR';
 
     dagreGraph.setDefaultEdgeLabel(() => ({}));
-    dagreGraph.setGraph({ rankdir: direction, nodesep: 80 });
+    dagreGraph.setGraph({ rankdir: direction, nodesep: 80});
 
     // set the postiions to 0
     nodes.forEach((node:Node) => {
@@ -39,6 +39,10 @@ export const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') 
             x: nodeWithPosition.x - nodeWidth / 2,
             y: nodeWithPosition.y - nodeHeight / 2,
         };
+
+        if (node.data.nodeType === 'insight') {
+            node.position.y = node.position.y + 100;
+        }
 
         return node;
     });
@@ -71,16 +75,12 @@ function getSubtreeElements(node: Node, curNodes: Node[], allEdges: Edge[], skip
         const children = curNodes.filter((n) => n.data.parent === currentNode.id);
         children.forEach((child) => {
             queue.push(child);
-            // subtreeEdges.push({
-            //     id: `${currentNode.id}-${child.id}`,
-            //     source: currentNode.id,
-            //     target: child.id,
-            //     label: getEdgeLabel(currentNode.id, child.id, allEdges)});
         });
     }
-    const subtreeEdges = allEdges.filter((e) => subtreeNodes.some((sn) => sn.id === e.target) && subtreeNodes.some((sn) => sn.id === e.source)); 
-    subtreeEdges.concat(allEdges.filter((e) => (e.source === node.id) && subtreeNodes.some((sn) => sn.id === e.source)));
-
+    const subtreeEdgesExceptRoot = allEdges.filter((e) => subtreeNodes.some((sn) => sn.id === e.target) && subtreeNodes.some((sn) => sn.id === e.source)); 
+    const rootEdges = allEdges.filter((e) => (e.source === node.id) && subtreeNodes.some((sn) => sn.id === e.target));
+    console.log(`[getSubtreeElements] rootEdges=${rootEdges.length}`);
+    const subtreeEdges = subtreeEdgesExceptRoot.concat(rootEdges);
     return { subtreeNodes, subtreeEdges };
 }
 
