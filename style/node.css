@@ -23,3 +23,7 @@
     text-align: center;
     padding: 5px;
 }
+
+div.CodeMirror-linebackground.jp-InputArea-editor-dependencyline {
+    background-color: #f0c633;
+  }

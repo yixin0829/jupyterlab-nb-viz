@@ -33,7 +33,7 @@ export class TangerinePanel extends StackedPanel {
         this._translator = translator || nullTranslator;
         this._trans = this._translator.load('jupyterlab');
         this.id = 'Tangerine'
-        this.title.label = this._trans.__(`Tangerine View`);
+        this.title.label = this._trans.__(`Tracking Tree`);
         this.title.closable = true;
         this._notebookTracker = notebookTracker;
         

@@ -111,6 +111,7 @@ const FlowComponent = (props: FlowComponentProps) => {
 
     // const edgeUpdateSuccessful = useRef(true)
     const highlightedCellLines = useRef<number[][]>([]); // [[cellIndex, lineNumber], ...
+    const highlightedCells = useRef<number[]>([]); // [[cellIndex, lineNumber], ...
     const edgeOperations = useRef<EdgeOperation[]>([]);
 
     const collapseBackToInitial = () => {
@@ -139,16 +140,24 @@ const FlowComponent = (props: FlowComponentProps) => {
         const cell = cellList[cellIndex];
         if (cell && cell.editor instanceof CodeMirrorEditor) {
             const editor = cell.editor.editor;
-            editor.addLineClass(lineNumber, "background", HIGHLIGHTED_LINE_CLASS); // TODO: lineNumber = 0 for testing purpose
-            // if (cell instanceof MarkdownCell) {
-                // console.log(`[highlightCell] MarkdownCell.`);
-            // }
-            return true;
+            editor.addLineClass(lineNumber, "background", HIGHLIGHTED_LINE_CLASS);
+            highlightedCellLines.current.push([cellIndex, lineNumber]);
         }
         else {
             console.log('[highlightCell] the editor of activeCell is not a CodeMirrorEditor');
-            return false;
         }
+    }
+
+    const highlightCell = (cellIndex: number) => {
+        if (props.notebookTracker === null || props.notebookTracker.currentWidget === null) {
+            console.log('[highlightCell] no notebookTracker or no notebookPanel.');
+            return;
+        }
+        const cellList = props.notebookTracker.currentWidget.content.widgets;
+        const cell = cellList[cellIndex];
+        cell.node.style.backgroundColor = '#f0c633';
+        highlightedCells.current.push(cellIndex);
+        return true;
     }
 
     const clearHighlightedCellLines = () => {
@@ -168,6 +177,20 @@ const FlowComponent = (props: FlowComponentProps) => {
             }
         }
         highlightedCellLines.current = [];
+    }
+
+    const clearHighlightedCells = () => {
+        if (props.notebookTracker === null || props.notebookTracker.currentWidget === null) {
+            console.log('[clearHighlightedCellLines] no notebookTracker or no notebookPanel.');
+            return;
+        }
+        const cellList = props.notebookTracker.currentWidget.content.widgets;
+        for(let cellIndex of highlightedCells.current) {
+            const cell = cellList[cellIndex];
+            cell.node.style.backgroundColor = '';
+        }
+        highlightedCells.current = [];
+        // console.log(`[clearHighlightedCells] clear highlighted cells.`);
     }
 
     const setActiveCell = (cellIndex: number) => {
@@ -230,17 +253,21 @@ const FlowComponent = (props: FlowComponentProps) => {
             setCanExpandAll(false);
             setCanCollapseAll(false);
             clearHighlightedCellLines();
+            clearHighlightedCells();
             if(props.notebookTracker && props.notebookTracker.currentWidget) {
                 // jump to the corresponding notebook and cell
                 const cellIndex = node.data.cellIndex;
                 setActiveCell(cellIndex);
+                if (node.data.nodeType === 'insight') {
+                    highlightCell(cellIndex);
+                }
+                // console.log(`[handleNodeClick] node.data.slices=${JSON.stringify(node.data.slices)}`);
                 for (let slice of node.data.slices) {
                     const cellIndex = slice[0];
                     const lineNumber = slice[1];
-                    const isHighlightSuccessful = highlightCellLine(cellIndex, lineNumber);
-                    if (isHighlightSuccessful)
-                        highlightedCellLines.current.push([cellIndex, lineNumber]);
+                    highlightCellLine(cellIndex, lineNumber);
                 }
+                
             }
             else {
                 console.log('FlowWidget: No notebookTracker');
@@ -335,6 +362,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         const resetNodes = nodes.map((prevNode)=> {prevNode.style = {...prevNode.style, borderWidth: '1px'}; return prevNode;});
         setNodes(resetNodes);
         clearHighlightedCellLines();
+        clearHighlightedCells();
     }
 
     const resetAllStatus = () => {
@@ -347,7 +375,6 @@ const FlowComponent = (props: FlowComponentProps) => {
     const refreshSMITree = () => {
         console.log('[refreshSMITree] refreshSMITree.');
         resetAllStatus();
-        highlightedCellLines.current = [];
         if (!props.notebookPanel) {
             console.log('[refreshSMITree] no notebook panel to be passed!');
             return;
@@ -356,7 +383,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             notebook: JSON.stringify(props.notebookPanel!.model!.toJSON()),
         }
         trackPromise(
-        axios.post('http://localhost:5000/smi-tree', request).then((response) => {
+        axios.post('http://localhost:5000/tracking-tree', request).then((response) => {
             console.log(`[refreshSMITree] get response.`);
             const refreshedNodes = response.data.nodes;
             const refreshedEdges = response.data.edges;
@@ -376,7 +403,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             );
             setNodes(layoutedNodes);
             setEdges(layoutedEdges);
-            console.log(`[refreshSMITree] successfully refreshed nodes and edges.`);
+            // console.log(`[refreshSMITree] successfully refreshed nodes and edges.`);
         }).catch((error) => {
             console.log(`[refreshSMITree] error: ${error}`);
         }));
@@ -388,7 +415,6 @@ const FlowComponent = (props: FlowComponentProps) => {
             return;
         }
         resetAllStatus();
-        highlightedCellLines.current = [];
         const request = {
             nodes: JSON.stringify(nodes),
             edges: JSON.stringify(edges),
