@@ -65,6 +65,7 @@
     "@types/dagre": "^0.7.48",
     "axios": "^1.4.0",
     "dagre": "^0.8.5",
+    "html-to-image": "^1.11.11",
     "react-loader-spinner": "^5.3.4",
     "react-markdown": "^8.0.7",
     "react-promise-tracker": "^2.1.1",

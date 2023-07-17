@@ -1,4 +1,4 @@
-import React, { useCallback, MouseEvent, useRef } from "react";
+import React, { MouseEvent, useRef, useEffect } from "react";
 import { useState } from "react";
 import { ReactWidget } from '@jupyterlab/apputils'; // for converting a react component to a react widget in JL
 import "reactflow/dist/style.css";
@@ -15,6 +15,7 @@ import ReactFlow, {
   Controls,
   SelectionMode,
   ConnectionLineType,
+  Connection,
 } from "reactflow";
 import { NotebookPanel } from '@jupyterlab/notebook';
 import { INotebookTracker } from '@jupyterlab/notebook';
@@ -35,11 +36,13 @@ import {
 import InsightNode from "./InsightNode";
 import PlotNode from "./PlotNode";
 import { Legend } from "./Legend";
+import RecommendEdge from "./RecommendEdge";
 
 // import allNodesStatic from './NodesAndEdges/NB1/Nodes.json'
 // import allEdgesStatic from './NodesAndEdges/NB1/Edges.json'
-import allNodesStatic from './NodesAndEdges/backend/Nodes.json';
-import allEdgesStatic from './NodesAndEdges/backend/Edges.json';
+// import allNodesStart from './NodesAndEdges/backend/Nodes.json';
+// import allEdgesStart from './NodesAndEdges/backend/Edges.json';
+import DownloadButton from "./DownloadButton";
 // import recommendedNodes from './NodesAndEdges/recommendations/RecNodes.json';
 // import recommendedEdges from './NodesAndEdges/recommendations/RecEdges.json';
 
@@ -64,8 +67,6 @@ const nodeColor = (node: Node) => {
       return '#ffffff';
   }
 };
-
-
 const LoadIndicator = () => {
     const { promiseInProgress } = usePromiseTracker();
     return promiseInProgress ? (
@@ -73,21 +74,24 @@ const LoadIndicator = () => {
         <ThreeDots height="80" width="80" radius="9" color="#e8ac6e" ariaLabel="three-dots-loading" visible={true}/>
     </div>) : (<></>);
 }
-
 const nodeTypes = {
     insight: InsightNode,
     plot: PlotNode
 };
+const edgeTypes = {
+    recommended: RecommendEdge,
+}
 
-const { nodes: initialNodesStatic, edges: initialEdgesStatic } = translateTreeUtilCommand(
-    'GetInitial',
-    null,
-    null,
-    null,
-    allNodesStatic,
-    allEdgesStatic,
-    []
-)
+
+// const { nodes: initialNodesStatic, edges: initialEdgesStatic } = translateTreeUtilCommand(
+//     'GetInitial',
+//     null,
+//     null,
+//     null,
+//     allNodesStart,
+//     allEdgesStart,
+//     []
+// )
 
 interface FlowComponentProps {
     notebookPanel: NotebookPanel | null;
@@ -103,16 +107,24 @@ const FlowComponent = (props: FlowComponentProps) => {
     const [canCollapseNonTop, setCanCollapseNonTop] = useState(false);
     const [isRecommendationDisplayed, setIsRecommendationDisplayed] = useState(false);
 
-    const [allNodes, setAllNodes] = useState<Node[] | null>(allNodesStatic);
-    const [allEdges, setAllEdges] = useState<Edge[] | null>(allEdgesStatic);
+    const [allNodes, setAllNodes] = useState<Node[] | null>([]);
+    const [allEdges, setAllEdges] = useState<Edge[] | null>([]);
 
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodesStatic);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdgesStatic);
+    const [nodes, setNodes, onNodesChange] = useNodesState([]);
+    const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
     // const edgeUpdateSuccessful = useRef(true)
     const highlightedCellLines = useRef<number[][]>([]); // [[cellIndex, lineNumber], ...
     const highlightedCells = useRef<number[]>([]); // [[cellIndex, lineNumber], ...
     const edgeOperations = useRef<EdgeOperation[]>([]);
+
+    useEffect(() => {
+        console.log(`allEdges changed.`)
+        const focusedEdge = edges.find((e) => e.target === '10');
+        if (focusedEdge) {
+            console.log(`focusedEdge=${JSON.stringify(focusedEdge)}`);
+        }
+    }, [allEdges]);
 
     const collapseBackToInitial = () => {
         // collapse the tree to initial state
@@ -190,7 +202,6 @@ const FlowComponent = (props: FlowComponentProps) => {
             cell.node.style.backgroundColor = '';
         }
         highlightedCells.current = [];
-        // console.log(`[clearHighlightedCells] clear highlighted cells.`);
     }
 
     const setActiveCell = (cellIndex: number) => {
@@ -211,11 +222,11 @@ const FlowComponent = (props: FlowComponentProps) => {
             console.log('[handleNodeClick] allNodes or allEdges is null')
             return;
         }
+        console.log(`[handleNodeClick] clicked node id=${node.id}`);
         setSelectedNode(node);
         // change node border width
         const newNodes = nodes.map((prevNode)=> {
             if (prevNode.id === node.id) {
-                // prevNode.style = {...prevNode.style, background: '#e06666'};
                 prevNode.style = {...prevNode.style, borderWidth: '2px'};
             }
             else {
@@ -275,6 +286,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         }
 
     }
+
 
     const handleEdgeClick = (event: MouseEvent, edge: Edge) => {
         setSelectedEdge(edge);
@@ -374,6 +386,7 @@ const FlowComponent = (props: FlowComponentProps) => {
 
     const refreshSMITree = () => {
         console.log('[refreshSMITree] refreshSMITree.');
+        disableRecommendations();
         resetAllStatus();
         if (!props.notebookPanel) {
             console.log('[refreshSMITree] no notebook panel to be passed!');
@@ -387,7 +400,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             console.log(`[refreshSMITree] get response.`);
             const refreshedNodes = response.data.nodes;
             const refreshedEdges = response.data.edges;
-            console.log(`[refreshSMITree] refreshedNodes: ${JSON.stringify(refreshedNodes)}`);
+            // console.log(`[refreshSMITree] refreshedNodes: ${JSON.stringify(refreshedNodes)}`);
             setAllNodes(refreshedNodes);
             setAllEdges(refreshedEdges);
             // const {initialNodes: initialRefreshedNodes, initialEdges: initialRefreshedEdges} = getInitialElements(refreshedNodes, refreshedEdges);
@@ -414,6 +427,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             console.log('[getRecommendations] allNodes or allEdges is null')
             return;
         }
+        disableRecommendations();
         resetAllStatus();
         const request = {
             nodes: JSON.stringify(nodes),
@@ -479,21 +493,28 @@ const FlowComponent = (props: FlowComponentProps) => {
         }
     }
 
-    const onConnect = useCallback((newEdge) => {
-        console.log(`[onConnect] newEdge: ${JSON.stringify(newEdge)}`);
-        if (!isEdgeConnectable(newEdge, nodes)) {
+    const onConnect = (connection: Connection) => {
+        console.log(`[onConnect] newEdge: ${JSON.stringify(connection)}`);
+        console.log(`[onConnect] nodes: ${JSON.stringify(nodes)}`);
+        if (!isEdgeConnectable(connection, nodes)) {
             console.log(`[onConnect] edge is not connectable.`);
             return;
         }
+        const newEdge: Edge = {
+            'id': `${connection.source}-${connection.target}`,
+            'source': connection.source!,
+            'target': connection.target!
+        };
         setEdges((els) => addEdge(newEdge, els));
         edgeOperations.current.push({operation: 'add', edge: newEdge});
-    }, []);
+    }
     
   return (
         <ReactFlow
             nodes={nodes}
             edges={edges}
             nodeTypes={nodeTypes}
+            edgeTypes={edgeTypes}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
@@ -533,11 +554,12 @@ const FlowComponent = (props: FlowComponentProps) => {
         </div>
         <div style={{ position: 'absolute', right: 10, top: 50, zIndex: 4 }}>
             <button onClick={removeSelectedEdge} disabled={!isSelectedEdgeRemovable} style={{marginRight: 5}}>Remove edge</button>
+            <button onClick={refreshSMITree} style={{marginRight: 5}}>Refresh the tree</button>
+            <button onClick={getRecommendations} style={{ marginRight: 5 }}>Get recommendations</button>
+            <button onClick={disableRecommendations} disabled={!isRecommendationDisplayed}>Disable recommendations</button>
         </div>
         <div style={{ position: 'absolute', right: 10, top: 90, zIndex: 4 }}>
-        <button onClick={refreshSMITree} style={{marginRight: 5}}>Refresh the tree</button>
-              <button onClick={getRecommendations} style={{ marginRight: 5 }}>Get recommendations</button>
-              <button onClick={disableRecommendations} disabled={!isRecommendationDisplayed}>Disable recommendations</button>
+            <DownloadButton/>
         </div>
         <div style={{ position: 'absolute', right: 10, top: 130, zIndex: 4 }}>
             <LoadIndicator/>

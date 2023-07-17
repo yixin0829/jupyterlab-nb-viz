@@ -1,4 +1,4 @@
-import { Node, Edge } from "reactflow";
+import { Node, Edge, Connection } from "reactflow";
 import dagre from 'dagre';
 
 export const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') => {
@@ -79,7 +79,6 @@ function getSubtreeElements(node: Node, curNodes: Node[], allEdges: Edge[], skip
     }
     const subtreeEdgesExceptRoot = allEdges.filter((e) => subtreeNodes.some((sn) => sn.id === e.target) && subtreeNodes.some((sn) => sn.id === e.source)); 
     const rootEdges = allEdges.filter((e) => (e.source === node.id) && subtreeNodes.some((sn) => sn.id === e.target));
-    console.log(`[getSubtreeElements] rootEdges=${rootEdges.length}`);
     const subtreeEdges = subtreeEdgesExceptRoot.concat(rootEdges);
     return { subtreeNodes, subtreeEdges };
 }
@@ -123,9 +122,12 @@ function expandEtcNode(selectedNode: Node|null, curNodes: Node[]|null, curEdges:
     let newEdges = curEdges.concat(subtreeEdges).map((e) => {
         if (e.source === selectedNode.id) {
             e.source = selectedNode.data.parent;
+            // TODO: when collasping, the source of this edge should be changed back to the etc node
         }
         return e;
-    }).filter((e) => e.target !== selectedNode.id);;
+    }).filter((e) => e.target !== selectedNode.id);
+    console.log(`[expandEtcNode] After expandEtcNode:\nedges=${JSON.stringify(newEdges)}\nallEdges=${JSON.stringify(allEdges)}`);
+
     return { nodes: newNodes, edges: newEdges };
 }
 
@@ -144,14 +146,43 @@ function expandSubtree(selectedNode: Node|null, curNodes: Node[]|null, curEdges:
     return { nodes: newNodes, edges: newEdges };
 }
 
+
+
+function collapseBackEtcNode(parentNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[], allEdges: Edge[]) {
+    if (parentNode === null || curNodes === null || curEdges === null) {
+        console.log(`[TreeUtils] Invalid input: selectedNode=${parentNode}`);
+        return { nodes: curNodes, edges: curEdges };
+    }
+    const etcNode = allNodes.find((n) => n.data.parent === parentNode.id && n.data.nodeType === 'etc');
+    if (! etcNode) {
+        console.log('No etc node found in children so cannot do collapseNonTop');
+        return {nodes: curNodes, edges: curEdges};
+    }
+    const {subtreeNodes: etcSubtreeNodes, subtreeEdges: etcSubtreeEdges} = getSubtreeElements(etcNode!, allNodes, allEdges, false);
+    const edgesAfterSettingSourceBackToEtc = curEdges.map((e) => {
+        if (e.source === parentNode.id && etcSubtreeNodes.some((sn) => sn.id === e.target)) {
+            // set the nodes whose source was originally etcNode back to the etcNode
+            e.source = etcNode.id;
+        }
+        return e;
+    });
+    const newNodes = curNodes.filter((n) => !etcSubtreeNodes.some((sn) => sn.id === n.id)); // remove all the nodes in subtree
+    const newEdges = edgesAfterSettingSourceBackToEtc.filter((e) => !etcSubtreeEdges.some((se) => se.id === e.id)); // remove all the edges in subtree
+    // add the etcNode to newNodes
+    const newNodesWithEtc = newNodes.concat(etcNode);
+    const newEdgesWithEtc = newEdges.concat(allEdges.filter((e) => e.target === etcNode.id));
+    console.log(`[expandEtcNode] After expandEtcNode:\nedges=${JSON.stringify(newEdgesWithEtc)}\nallEdges=${JSON.stringify(allEdges)}`);
+    return { nodes: newNodesWithEtc, edges: newEdgesWithEtc };
+}
+
 function collapseSubtree(selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[], allEdges: Edge[]) {
     if (selectedNode === null || curNodes === null || curEdges === null) {
         console.log(`[TreeUtils] Invalid input: selectedNode=${selectedNode}`);
         return { nodes: curNodes, edges: curEdges };
     }
+    const { nodes: nodesAfterCollapseEtcBack, edges: edgesAfterCollapseEtcBack } = collapseBackEtcNode(selectedNode, curNodes, curEdges, allNodes, allEdges);
     const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(selectedNode, allNodes, allEdges, false);
-    console.log(`[collapseSubtree] subtreeNodes length=${subtreeNodes.length}`);
-    const newNodes = curNodes.filter((n) => !subtreeNodes.some((sn) => sn.id === n.id)); // remove all the nodes in subtree
+    const newNodes = nodesAfterCollapseEtcBack!.filter((n) => !subtreeNodes.some((sn) => sn.id === n.id)); // remove all the nodes in subtree
     console.log(`[collapseSubtree] prevNodes length=${curNodes.length}, newNodes length=${newNodes.length}`);
     const labelWhenCollapse = selectedNode.data.rawData + ' (+)';
     const newNodesAfterLabelChange = newNodes.map((n) => {
@@ -161,29 +192,9 @@ function collapseSubtree(selectedNode: Node|null, curNodes: Node[]|null, curEdge
         return n;
         }
     );
-    const newEdges = curEdges.filter((e) => !subtreeEdges.some((se) => se.id === e.id)); // remove all the edges in subtree
+    const newEdges = edgesAfterCollapseEtcBack!.filter((e) => !subtreeEdges.some((se) => se.id === e.id)); // remove all the edges in subtree
     const newEdgesAfterCleanUp = newEdges.filter((e) => !subtreeNodes.some((sn) => sn.id === e.source)); // remove all edges that has source in subtree
     return { nodes: newNodesAfterLabelChange, edges: newEdgesAfterCleanUp };
-}
-
-function collapseNonTopChildren(selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[], allEdges: Edge[]) {
-    if (selectedNode === null || curNodes === null || curEdges === null) {
-        console.log(`[TreeUtils] Invalid input: selectedNode=${selectedNode}`);
-        return { nodes: curNodes, edges: curEdges };
-    }
-    
-    const etcNode = allNodes.find((n) => n.data.parent === selectedNode.id && n.data.nodeType === 'etc');
-    if (! etcNode) {
-        console.log('No etc node found in children so cannot do collapseNonTop');
-        return {nodes: curNodes, edges: curEdges};
-    }
-    const {subtreeNodes: etcSubtreeNodes, subtreeEdges: etcSubtreeEdges} = getSubtreeElements(etcNode!, allNodes, allEdges, false);
-    const newNodes = curNodes.filter((n) => !etcSubtreeNodes.some((sn) => sn.id === n.id)); // remove all the nodes in subtree
-    const newEdges = curEdges.filter((e) => !etcSubtreeEdges.some((se) => se.id === e.id)); // remove all the edges in subtree
-    // add the etcNode to newNodes
-    const newNodesWithEtc = newNodes.concat(etcNode);
-    const newEdgesWithEtc = newEdges.concat(allEdges.filter((e) => e.target === etcNode.id));
-    return { nodes: newNodesWithEtc, edges: newEdgesWithEtc };
 }
 
 
@@ -212,7 +223,7 @@ function getNewNodesAndEdges(command:string, selectedNode: Node|null, curNodes: 
             return collapseSubtree(selectedNode, curNodes, curEdges, allNodes, allEdges);
         }
         case 'CollapseNonTop': {
-            return collapseNonTopChildren(selectedNode, curNodes, curEdges, allNodes, allEdges);
+            return collapseBackEtcNode(selectedNode, curNodes, curEdges, allNodes, allEdges);
         }
         default: {
             console.log(`[getNewNodesAndEdges] invalid command: ${command}`);
@@ -288,14 +299,20 @@ export function isEdgeRemoveable(selectedEdge: Edge, curNodes: Node[]|null, curE
     return edgesConnectedToTarget.length > 1;
 }
 
-export function isEdgeConnectable(newEdge: Edge, curNodes: Node[] | null) {
-    if (curNodes === null || !newEdge) {
+export function isEdgeConnectable(connection: Connection, curNodes: Node[] | null) {
+    console.log(`[isEdgeConnectable] newEdge.target_id=${connection.target}`);
+    if (curNodes === null || !connection) {
         console.log('[removeEdge] curEdges or curNodes or selectedEdge is null');
-    }
-    const targetNode = curNodes!.find((n) => n.id === newEdge.target);
-    if (targetNode === undefined || targetNode === null) {
         return false;
     }
+    // print the ids of curNodes as a array
+    console.log(`[isEdgeConnectable] curNodes=${JSON.stringify(curNodes)}`);
+    const targetNode = curNodes!.find((n) => n.id === connection.target);
+    if (targetNode === undefined || targetNode === null) {
+        console.log(`[isEdgeConnectable] the target of newEdge is not found`);
+        return false;
+    }
+    console.log(`[isEdgeConnectable] targetNode.data.nodeType=${targetNode.data.nodeType}`)
     return targetNode.data.nodeType === 'insight';
 
 }

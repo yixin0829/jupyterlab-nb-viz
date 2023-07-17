@@ -14,8 +14,11 @@ import { Legend } from "./Legend";
 import { 
     translateTreeUtilCommand } from "./TreeUtils";
 
+import RecommendEdge from "./RecommendEdge";
+
 import allNodes from "./NodesAndEdges/KnowledgeGraph/Nodes.json";
 import allEdges from "./NodesAndEdges/KnowledgeGraph/Edges.json";
+import DownloadButton from './DownloadButton';
 
 const panOnDrag = [1, 2];
 const nodeColor = (node: Node) => {
@@ -43,6 +46,9 @@ const nodeColor = (node: Node) => {
     allEdges,
     []
 )
+const edgeTypes = {
+    knowledgeGraph: RecommendEdge,
+}
   
 
 const KnowledgeGraphComponent = () => {
@@ -164,7 +170,6 @@ const KnowledgeGraphComponent = () => {
         else {
             console.log(`Cannot do expandAll to this node.`);
         }
-
     }
 
     
@@ -184,6 +189,7 @@ const KnowledgeGraphComponent = () => {
             nodes={nodes}
             edges={edges}
             // nodeTypes={nodeTypes}
+            edgeTypes={edgeTypes}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onNodeClick={handleNodeClick}
@@ -219,6 +225,9 @@ const KnowledgeGraphComponent = () => {
             <button onClick={handleExpandAllNodesButtonClick} style={{ marginRight: 5 }}>
                 Expand all nodes
             </button>
+        </div>
+        <div style={{ position: 'absolute', right: 10, top: 50, zIndex: 4 }}>
+            <DownloadButton />
         </div>
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
         <Controls/>

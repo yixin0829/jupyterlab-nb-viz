@@ -48,6 +48,10 @@ jlpm build
 # after build success run and invoke command prompt by ctrl+shift+c then enter "reactflow"
 jlpm build
 jupyter lab
+
+# alternatively, if you want the extenstion to dynamically update the changes:
+jlpm run watch
+jupyter lab # in another terminal
 ```
 
 - Additional change to reactflow source code to make `jlpm build`
