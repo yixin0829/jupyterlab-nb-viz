@@ -58,7 +58,19 @@ export const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') 
 //     return edge.label;
 // }
 
-function getSubtreeElements(node: Node, curNodes: Node[], allEdges: Edge[], skipSubtreeOfEtc: boolean = true) {
+function getNodeById(nodeId: string, allNodes: Node[]) {
+    const node = allNodes.find((n) => n.id === nodeId);
+    if (node === undefined) {
+        throw new Error(`[getNodeById] Node with id=${nodeId} is not found`);
+    }
+    return node;
+}
+
+function getSubtreeElements(node: Node, 
+    curNodes: Node[], 
+    allEdges: Edge[], 
+    skipSubtreeOfEtc: boolean = true, 
+    includeRootEdges: boolean = true) {
     // Find all the nodes that belongs to the subtree whose root is node
     // subtree does NOT include the node itself
     const subtreeNodes:Node[] = [];
@@ -78,8 +90,12 @@ function getSubtreeElements(node: Node, curNodes: Node[], allEdges: Edge[], skip
         });
     }
     const subtreeEdgesExceptRoot = allEdges.filter((e) => subtreeNodes.some((sn) => sn.id === e.target) && subtreeNodes.some((sn) => sn.id === e.source)); 
-    const rootEdges = allEdges.filter((e) => (e.source === node.id) && subtreeNodes.some((sn) => sn.id === e.target));
-    const subtreeEdges = subtreeEdgesExceptRoot.concat(rootEdges);
+    if (includeRootEdges) {
+        const rootEdges = allEdges.filter((e) => (e.source === node.id) && subtreeNodes.some((sn) => sn.id === e.target));
+        const subtreeEdges = subtreeEdgesExceptRoot.concat(rootEdges);
+        return { subtreeNodes, subtreeEdges };
+    }
+    const subtreeEdges = subtreeEdgesExceptRoot;
     return { subtreeNodes, subtreeEdges };
 }
 
@@ -117,18 +133,29 @@ function expandEtcNode(selectedNode: Node|null, curNodes: Node[]|null, curEdges:
         return { nodes: curNodes, edges: curEdges };
     }
     
-    const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(selectedNode, allNodes, allEdges);
+    const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(selectedNode, allNodes, allEdges, true, false);
     const newNodes = curNodes.concat(subtreeNodes).filter((n) => n.id !== selectedNode.id);
-    let newEdges = curEdges.concat(subtreeEdges).map((e) => {
-        if (e.source === selectedNode.id) {
-            e.source = selectedNode.data.parent;
-            // TODO: when collasping, the source of this edge should be changed back to the etc node
-        }
-        return e;
-    }).filter((e) => e.target !== selectedNode.id);
+    // const newEdges = curEdges.concat(subtreeEdges).map((e) => {
+    //     if (e.source === selectedNode.id) {
+    //         e.source = selectedNode.data.parent;
+    //     }
+    //     return e;
+    // }).filter((e) => e.target !== selectedNode.id);
+    const directChildrenOfEtc = allNodes.filter((n) => n.data.parent === selectedNode.id);
+    const parentNodeId = selectedNode.data.parent;
+    const parentDirectChildrenEdges: Edge[] = directChildrenOfEtc.map((child) => {
+        return {
+            id: `${parentNodeId}-${child.id}`,
+            source: parentNodeId,
+            target: child.id,
+        };
+    })
+    const parentEtcEdge = curEdges.find((e) => e.source === parentNodeId && e.target === selectedNode.id);
+    // newEdges = curEdges - parentEtcEdge + subtreeEdges + parentDirectChildrenEdges
+    const newEdges = curEdges.filter((e) => e.id !== parentEtcEdge!.id).concat(subtreeEdges).concat(parentDirectChildrenEdges);
     console.log(`[expandEtcNode] After expandEtcNode:\nedges=${JSON.stringify(newEdges)}\nallEdges=${JSON.stringify(allEdges)}`);
 
-    return { nodes: newNodes, edges: newEdges };
+    return { nodes: newNodes, edges: newEdges};
 }
 
 function expandSubtree(selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[], allEdges: Edge[]) {
@@ -143,9 +170,16 @@ function expandSubtree(selectedNode: Node|null, curNodes: Node[]|null, curEdges:
     const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(selectedNode, allNodes, allEdges);
     const newNodes = curNodes.concat(subtreeNodes);
     const newEdges = curEdges.concat(subtreeEdges);
-    return { nodes: newNodes, edges: newEdges };
+    const newNodesAfterLabelChange = newNodes.map((n) => {
+        if (n.id === selectedNode.id && n.data.label.endsWith(" (+)")) {
+            const curLabel = n.data.label;
+            n.data = {...n.data, label: curLabel.substring(0, curLabel.length - 4)} 
+        };
+        return n;
+        }
+    );
+    return { nodes: newNodesAfterLabelChange, edges: newEdges };
 }
-
 
 
 function collapseBackEtcNode(parentNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[], allEdges: Edge[]) {
@@ -158,21 +192,15 @@ function collapseBackEtcNode(parentNode: Node|null, curNodes: Node[]|null, curEd
         console.log('No etc node found in children so cannot do collapseNonTop');
         return {nodes: curNodes, edges: curEdges};
     }
-    const {subtreeNodes: etcSubtreeNodes, subtreeEdges: etcSubtreeEdges} = getSubtreeElements(etcNode!, allNodes, allEdges, false);
-    const edgesAfterSettingSourceBackToEtc = curEdges.map((e) => {
-        if (e.source === parentNode.id && etcSubtreeNodes.some((sn) => sn.id === e.target)) {
-            // set the nodes whose source was originally etcNode back to the etcNode
-            e.source = etcNode.id;
-        }
-        return e;
-    });
-    const newNodes = curNodes.filter((n) => !etcSubtreeNodes.some((sn) => sn.id === n.id)); // remove all the nodes in subtree
-    const newEdges = edgesAfterSettingSourceBackToEtc.filter((e) => !etcSubtreeEdges.some((se) => se.id === e.id)); // remove all the edges in subtree
+    const {subtreeNodes: etcSubtreeNodes, subtreeEdges: etcSubtreeEdges} = getSubtreeElements(etcNode!, allNodes, allEdges, false, false);
+    const newNodes = curNodes.filter((n) => !etcSubtreeNodes.some((sn) => sn.id === n.id)).concat(etcNode); // remove all the nodes in subtree
+    const parentChildrenEdges = curEdges.filter((e) => e.source === parentNode.id && getNodeById(e.target, allNodes).data.parent === etcNode.id);
+    const etcEdge = allEdges.filter((e) => e.target === etcNode.id && e.source === parentNode.id);
+    // newEdges = curEdges - etcSubtreeEdges (without root edges) - parentChildrenEdges + etcNodeEdge
+    const newEdges = curEdges.filter((e) => !etcSubtreeEdges.some((se) => se.id === e.id)).filter((e) => !parentChildrenEdges.some((pce) => pce.id === e.id)).concat(etcEdge);
     // add the etcNode to newNodes
-    const newNodesWithEtc = newNodes.concat(etcNode);
-    const newEdgesWithEtc = newEdges.concat(allEdges.filter((e) => e.target === etcNode.id));
-    console.log(`[expandEtcNode] After expandEtcNode:\nedges=${JSON.stringify(newEdgesWithEtc)}\nallEdges=${JSON.stringify(allEdges)}`);
-    return { nodes: newNodesWithEtc, edges: newEdgesWithEtc };
+    console.log(`[expandEtcNode] After expandEtcNode:\nedges=${JSON.stringify(newEdges)}\nallEdges=${JSON.stringify(allEdges)}`);
+    return { nodes: newNodes, edges: newEdges };
 }
 
 function collapseSubtree(selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[], allEdges: Edge[]) {
