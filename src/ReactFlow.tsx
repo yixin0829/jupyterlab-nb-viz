@@ -1,8 +1,9 @@
-import React, { MouseEvent, useRef, useEffect } from "react";
+import React, { MouseEvent, useRef } from "react";
 import { useState } from "react";
 import { ReactWidget } from '@jupyterlab/apputils'; // for converting a react component to a react widget in JL
 import "reactflow/dist/style.css";
 import '../style/node.css'
+import '@coreui/coreui/dist/css/coreui.min.css'
 
 import ReactFlow, {
   Node,
@@ -37,14 +38,9 @@ import InsightNode from "./InsightNode";
 import PlotNode from "./PlotNode";
 import { Legend } from "./Legend";
 import RecommendEdge from "./RecommendEdge";
-
-// import allNodesStatic from './NodesAndEdges/NB1/Nodes.json'
-// import allEdgesStatic from './NodesAndEdges/NB1/Edges.json'
-// import allNodesStart from './NodesAndEdges/backend/Nodes.json';
-// import allEdgesStart from './NodesAndEdges/backend/Edges.json';
 import DownloadButton from "./DownloadButton";
-// import recommendedNodes from './NodesAndEdges/recommendations/RecNodes.json';
-// import recommendedEdges from './NodesAndEdges/recommendations/RecEdges.json';
+import RawNode from "./RawNode";
+import { CDropdown, CDropdownItem, CDropdownMenu, CDropdownToggle } from "@coreui/react";
 
 
 const panOnDrag = [1, 2];
@@ -76,22 +72,13 @@ const LoadIndicator = () => {
 }
 const nodeTypes = {
     insight: InsightNode,
-    plot: PlotNode
+    plot: PlotNode,
+    raw: RawNode
 };
 const edgeTypes = {
     recommended: RecommendEdge,
 }
 
-
-// const { nodes: initialNodesStatic, edges: initialEdgesStatic } = translateTreeUtilCommand(
-//     'GetInitial',
-//     null,
-//     null,
-//     null,
-//     allNodesStart,
-//     allEdgesStart,
-//     []
-// )
 
 interface FlowComponentProps {
     notebookPanel: NotebookPanel | null;
@@ -117,14 +104,6 @@ const FlowComponent = (props: FlowComponentProps) => {
     const highlightedCellLines = useRef<number[][]>([]); // [[cellIndex, lineNumber], ...
     const highlightedCells = useRef<number[]>([]); // [[cellIndex, lineNumber], ...
     const edgeOperations = useRef<EdgeOperation[]>([]);
-
-    useEffect(() => {
-        console.log(`allEdges changed.`)
-        const focusedEdge = edges.find((e) => e.target === '10');
-        if (focusedEdge) {
-            console.log(`focusedEdge=${JSON.stringify(focusedEdge)}`);
-        }
-    }, [allEdges]);
 
     const collapseBackToInitial = () => {
         // collapse the tree to initial state
@@ -222,7 +201,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             console.log('[handleNodeClick] allNodes or allEdges is null')
             return;
         }
-        console.log(`[handleNodeClick] clicked node id=${node.id}`);
+        console.log(`[handleNodeClick] node clicked, id=${node.id}`);
         setSelectedNode(node);
         // change node border width
         const newNodes = nodes.map((prevNode)=> {
@@ -294,7 +273,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         console.log(`[handleEdgeClick] selectedEdge: ${JSON.stringify(edge)}`);
     }
 
-    const handleExpandAllButtonClick = () => {
+    const handleExpandAllChildrenButtonClick = () => {
         if(selectedNode && canExpandAll) {
             const { nodes: newNodes, edges: newEdges} = translateTreeUtilCommand(
                 'ExpandSubtree',
@@ -508,6 +487,32 @@ const FlowComponent = (props: FlowComponentProps) => {
         setEdges((els) => addEdge(newEdge, els));
         edgeOperations.current.push({operation: 'add', edge: newEdge});
     }
+
+    const getEnabledOptions= () => {
+        const enabledOptions = [];
+        if (selectedNode && canCollapseAll) {
+            enabledOptions.push(<CDropdownItem onClick={handleCollapseAllButtonClick}>Collapse all children</CDropdownItem>);
+        }
+        if (selectedNode && canCollapseNonTop) {
+            enabledOptions.push(<CDropdownItem onClick={handleCollapseNonTopButtonClick}>Collapse non-top-3 children</CDropdownItem>);
+        }
+        if (selectedNode && canExpandAll) {
+            enabledOptions.push(<CDropdownItem onClick={handleExpandAllChildrenButtonClick}>Expand all children</CDropdownItem>);
+        }
+        if (selectedNode) {
+            enabledOptions.push(<CDropdownItem onClick={collapseBackToInitial}>Collapse back to initial</CDropdownItem>);
+            enabledOptions.push(<CDropdownItem onClick={handleExpandAllNodesButtonClick}>Expand all nodes</CDropdownItem>);
+        }
+        if (selectedEdge && isSelectedEdgeRemovable) {
+            enabledOptions.push(<CDropdownItem onClick={removeSelectedEdge} style={{marginRight: 5}}>Remove edge</CDropdownItem>)
+        }
+        return enabledOptions;
+    }
+
+    const dropdownButtonStyle = {
+        height: "35px", 
+        marginLeft: "10px",
+        color: "white"}
     
   return (
         <ReactFlow
@@ -535,28 +540,25 @@ const FlowComponent = (props: FlowComponentProps) => {
         <div style={{ position: 'absolute', left: 10, top: 10, zIndex: 4 }}>
             <Legend />
         </div>
-        <div style={{ position: 'absolute', right: 10, top: 10, zIndex: 4 }}>
-            <button onClick={handleCollapseAllButtonClick} disabled={!canCollapseAll} style={{ marginRight: 5 }}>
-                Collapse all children
-            </button>
-            <button onClick={handleCollapseNonTopButtonClick} disabled={!canCollapseNonTop} style={{ marginRight: 5 }}>
-                Collapse non-top-3 children
-            </button>
-            <button onClick={handleExpandAllButtonClick} disabled={!canExpandAll} style={{ marginRight: 5 }}>
-                Expand all children
-            </button>
-            <button onClick={collapseBackToInitial} style={{ marginRight: 5 }}>
-                Collapse back to initial
-            </button>
-            <button onClick={handleExpandAllNodesButtonClick} style={{ marginRight: 5 }}>
-                Expand all nodes
-            </button>
+        <div style={{ position: 'absolute', right: 10, top: 10, zIndex: 100 }}>
+            <CDropdown style={dropdownButtonStyle}>
+                <CDropdownToggle color="secondary">Choose the operation you want to perform (on the selected node/edge)</CDropdownToggle>
+                <CDropdownMenu>
+                    {...getEnabledOptions()}
+                </CDropdownMenu>
+            </CDropdown>
         </div>
         <div style={{ position: 'absolute', right: 10, top: 50, zIndex: 4 }}>
-            <button onClick={removeSelectedEdge} disabled={!isSelectedEdgeRemovable} style={{marginRight: 5}}>Remove edge</button>
-            <button onClick={refreshSMITree} style={{marginRight: 5}}>Refresh the tree</button>
-            <button onClick={getRecommendations} style={{ marginRight: 5 }}>Get recommendations</button>
-            <button onClick={disableRecommendations} disabled={!isRecommendationDisplayed}>Disable recommendations</button>
+            <CDropdown style={dropdownButtonStyle}>
+                <CDropdownToggle color="secondary">What kind of help are you seeking for data exploration?</CDropdownToggle>
+                <CDropdownMenu>
+                    <CDropdownItem onClick={refreshSMITree}>What is my exploration process like so far?</CDropdownItem>
+                    <CDropdownItem onClick={getRecommendations}>Which columns shall I explore next? </CDropdownItem>
+                    <CDropdownItem onClick={disableRecommendations} disabled={!isRecommendationDisplayed}>Hide recommendations</CDropdownItem>
+                    <CDropdownItem>Save the tree as an image</CDropdownItem>
+                </CDropdownMenu>
+            </CDropdown>
+            
         </div>
         <div style={{ position: 'absolute', right: 10, top: 90, zIndex: 4 }}>
             <DownloadButton/>

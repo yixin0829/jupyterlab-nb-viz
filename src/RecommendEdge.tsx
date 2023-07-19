@@ -1,7 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { BaseEdge, EdgeLabelRenderer, EdgeProps, getBezierPath } from 'reactflow';
-
 
 
 export default function RecommendEdge({
@@ -26,12 +25,12 @@ export default function RecommendEdge({
     targetPosition,
   });
 
-    const [isHovered, setIsHovered] = useState(false);
-    const handleMouseEnter = () => { 
-        setIsHovered(true);
+    // const [isHovered, setIsHovered] = useState(false);
+    // const handleMouseEnter = () => { 
+        // setIsHovered(true);
         // console.log('sourceNotebooks=', data.sourceNotebooks);
-    }
-    const handleMouseLeave = () => { setIsHovered(false); }
+    // }
+    // const handleMouseLeave = () => { setIsHovered(false); }
 
     // const notebooks = [];
 
@@ -52,10 +51,10 @@ export default function RecommendEdge({
                 pointerEvents: 'all',
             }}
             >
-                <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleMouseEnter}>
+                <div /*onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleMouseEnter}*/>
                     {label}
                 </div>
-                {isHovered && (<div
+                {/* {isHovered && (<div
                   style={{
                     position: 'absolute',
                     top: '-40px',
@@ -73,7 +72,7 @@ export default function RecommendEdge({
                     <ul>
                         {data.sourceNotebooks.map((nbId: string, index: string) => (<li key={index}>{nbId}</li>))}
                     </ul>
-                </div>)}
+                </div>)} */}
             </div>
         </EdgeLabelRenderer>
         </>

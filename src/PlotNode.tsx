@@ -5,6 +5,15 @@ import axios from "axios";
 
 const PlotNode = ({ data }: NodeProps) => {
     const [imageData, setImageData] = useState<string|null>(null);
+    const clipTextStyle = {
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap" as "nowrap",
+    };
+    const codeStyle = {
+        fontSize: "8px",
+        color: "black"
+    }
     // const [imageData, setImageData] = useState<Blob|null>(null);
     
     // useEffect(() => {
@@ -57,7 +66,8 @@ const PlotNode = ({ data }: NodeProps) => {
     return (
         <div>
             <Handle type="target" position={Position.Top} />
-              <div>{data.label}</div>
+              {/* <div>{data.label}</div> */}
+              <div style={clipTextStyle}><code style={codeStyle}>{data.code}</code></div>
               <div>{imageData && <img src={imageData} style={{maxWidth: '120px', maxHeight: '100px'}} onError={handleImageError}/>}</div>           
             <Handle type="source" position={Position.Bottom} />
         </div>

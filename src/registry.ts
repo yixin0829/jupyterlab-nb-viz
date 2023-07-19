@@ -28,7 +28,6 @@ export class TangerineRegistry implements DocumentRegistry.IWidgetExtension<Note
             // }
             // console.log(`Notebook: ${this._notebook}`);
             // console.log(`Notebook model: ${this._notebook.model}`);
-            console.log(`NotebookPanel created, cell 11: ${this._notebook.model?.cells.get(11).value.text}`);
         });
 
         return new DisposableDelegate(() => {});

@@ -55,14 +55,18 @@
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
+    "@coreui/coreui": "^5.0.0-alpha.1",
+    "@coreui/react": "^5.0.0-alpha.0",
     "@jupyterlab/application": "^3.6.3",
     "@jupyterlab/apputils": "^3.6.3",
     "@jupyterlab/docmanager": "^3.6.3",
     "@jupyterlab/mainmenu": "^3.6.3",
     "@jupyterlab/ui-components": "^3.6.3",
     "@lumino/widgets": "^1.37.2",
+    "@popperjs/core": "^2.11.8",
     "@types/codemirror": "^5.60.8",
     "@types/dagre": "^0.7.48",
+    "add": "^2.0.6",
     "axios": "^1.4.0",
     "dagre": "^0.8.5",
     "html-to-image": "^1.11.11",
