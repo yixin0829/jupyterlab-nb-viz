@@ -19,7 +19,7 @@ const PlotNode = ({ data }: NodeProps) => {
     // useEffect(() => {
     //     const fetchImage = async() => {
     //         try {
-    //             const response = await axios.get('http://localhost:5000/plot');
+    //             const response = await axios.get('http://128.100.10.43:4000/plot');
     //             if (response.status === 200) {
     //                 const imageBlob = new Blob([response.data], {type: response.headers['content-type']});
     //                 setImageData(imageBlob);
@@ -44,7 +44,7 @@ const PlotNode = ({ data }: NodeProps) => {
     
     useEffect(() => {
         // Fetch the image data from the server
-        axios.get(`http://localhost:5000/plot/${data.methodId}`, { responseType: 'blob' })
+        axios.get(`http://127.0.0.1:4000/plot/${data.methodId}`, { responseType: 'blob', withCredentials: true })
           .then((response) => {
             const blob = response.data;
             const reader = new FileReader();

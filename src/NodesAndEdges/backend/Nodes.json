@@ -1,1 +1,298 @@
-/home/meng-wsl/notebooks-analysis/notebooks/frontend/Nodes.json
+[
+    {
+        "id": "root",
+        "type": "default",
+        "data": {
+            "nodeType": "root",
+            "label": "root",
+            "rawData": "root",
+            "children": [
+                1
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8A9A9"
+        }
+    },
+    {
+        "id": "1",
+        "type": "raw",
+        "data": {
+            "nodeType": "raw",
+            "label": "Attrition",
+            "rawData": "Attrition",
+            "children": [
+                3,
+                5,
+                7,
+                2
+            ],
+            "parent": "root"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc1",
+        "type": "default",
+        "data": {
+            "nodeType": "etc",
+            "label": "1",
+            "rawData": "1",
+            "children": [],
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "50px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff",
+            "z-index": "-1"
+        }
+    },
+    {
+        "id": "2",
+        "type": "plot",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "etc1",
+            "cellIndex": 1,
+            "methodId": 0,
+            "slices": [
+                [
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    3
+                ],
+                [
+                    1,
+                    1
+                ]
+            ],
+            "code": "sns.catplot(y=\"Attrition\", data=df, kind=\"count\", palette= \"prism\")"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "7",
+        "type": "raw",
+        "data": {
+            "nodeType": "raw",
+            "label": "MonthlyIncome",
+            "rawData": "MonthlyIncome",
+            "children": [
+                8
+            ],
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "8",
+        "type": "plot",
+        "data": {
+            "nodeType": "plot",
+            "label": "boxplot",
+            "rawData": "boxplot",
+            "children": [],
+            "parent": "7",
+            "cellIndex": 4,
+            "methodId": 3,
+            "slices": [
+                [
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    3
+                ],
+                [
+                    4,
+                    0
+                ]
+            ],
+            "code": "sns.boxplot(x=\"Attrition\", y=\"MonthlyIncome\", data=df, palette='Spectral')"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "5",
+        "type": "raw",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsWithCurrManager",
+            "rawData": "YearsWithCurrManager",
+            "children": [
+                6
+            ],
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "6",
+        "type": "plot",
+        "data": {
+            "nodeType": "plot",
+            "label": "swarmplot",
+            "rawData": "swarmplot",
+            "children": [],
+            "parent": "5",
+            "cellIndex": 3,
+            "methodId": 2,
+            "slices": [
+                [
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    3
+                ],
+                [
+                    3,
+                    0
+                ]
+            ],
+            "code": "sns.swarmplot(x='Attrition', y='YearsWithCurrManager', data=df)"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "3",
+        "type": "raw",
+        "data": {
+            "nodeType": "raw",
+            "label": "Age",
+            "rawData": "Age",
+            "children": [
+                4
+            ],
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "4",
+        "type": "plot",
+        "data": {
+            "nodeType": "plot",
+            "label": "swarmplot",
+            "rawData": "swarmplot",
+            "children": [],
+            "parent": "3",
+            "cellIndex": 2,
+            "methodId": 1,
+            "slices": [
+                [
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    3
+                ],
+                [
+                    2,
+                    1
+                ]
+            ],
+            "code": "sns.swarmplot(x='Attrition', y='Age', data=df)"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "backgroundColor": "#9AB75E"
+        }
+    }
+]

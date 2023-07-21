@@ -1,4 +1,5 @@
-import React from 'react';
+import { CButton, CCard, CCardBody, CCollapse } from '@coreui/react';
+import React, {useState} from 'react';
 
 export function Legend() {
     const legendItemStyle = {
@@ -28,42 +29,93 @@ export function Legend() {
         maxWidth: "150px",
         wordWrap: "break-word" as "break-word"
     }
+    const legendCardStyle = {
+        display: 'flex', 
+        justifyContent: 'left'
+    }
+    const [visible, setVisible] = useState(false);
     
+    // return (
+    //     <div style={{backgroundColor: '#E1E1E1', opacity: '0.8', padding: '10px', width: "300px"}}>
+    //         <div style={{display: 'flex', justifyContent: 'center' }}>
+    //             <h4>Legend</h4>
+    //         </div>
+    //         <ul>
+    //             <li>
+    //                 <div style={ legendItemStyle }>
+    //                     <div style={{...legendNodeStyle, backgroundColor: '#e8ac6e'}}></div>
+    //                     Column name
+    //                 </div>
+    //             </li>
+    //             <li>
+    //                 <div style={legendItemStyle}>
+    //                     <div style={{...legendNodeStyle, backgroundColor: '#9ab75e'}}></div>
+    //                     Method
+    //                 </div>
+    //             </li>
+    //             <li>
+    //                 <div style={legendItemStyle}>
+    //                     <div style={{...legendNodeStyle, backgroundColor: '#a2d2bc'}}></div>
+    //                     Insight
+    //                 </div>
+    //             </li>
+    //             <li>
+    //                 <div style={legendItemStyle}>
+    //                     <div style={legendNodeStyle}>
+    //                         <span style={redStyle}>----</span>x/y<span style={redStyle}>----</span>
+    //                     </div>
+    //                     <span style={legendLongText}>
+    //                         Recommendation edge: this column combination appears in y notebooks for x times.
+    //                         </span>
+    //                 </div>
+    //             </li>
+    //         </ul>
+    //     </div>
+    // )
+
     return (
-        <div style={{backgroundColor: '#E1E1E1', opacity: '0.8', padding: '10px', width: "250px"}}>
-            <div style={{display: 'flex', justifyContent: 'center', marginBottom: '-20px' }}>
-                <h2>Legend</h2>
-            </div>
-            <ul>
-                <li>
-                    <div style={ legendItemStyle }>
-                        <div style={{...legendNodeStyle, backgroundColor: '#e8ac6e'}}></div>
-                        Column name
-                    </div>
-                </li>
-                <li>
-                    <div style={legendItemStyle}>
-                        <div style={{...legendNodeStyle, backgroundColor: '#9ab75e'}}></div>
-                        Method
-                    </div>
-                </li>
-                <li>
-                    <div style={legendItemStyle}>
-                        <div style={{...legendNodeStyle, backgroundColor: '#a2d2bc'}}></div>
-                        Insight
-                    </div>
-                </li>
-                <li>
-                    <div style={legendItemStyle}>
-                        <div style={legendNodeStyle}>
-                            <span style={redStyle}>-----</span>x/y<span style={redStyle}>-----</span>
+        <div>
+            <CButton className="mb-3" color="warning" onClick={() => setVisible(!visible)} aria-expanded={visible} aria-controls="collapseWidthExample">
+                Show legend
+            </CButton>
+            <div style={{ minHeight: '120px'}}>
+            <CCollapse id="collapseWidthExample" horizontal visible={visible}>
+                <CCard style={legendCardStyle}>
+                <CCardBody style={{backgroundColor: '#E1E1E1', opacity: '0.8', padding: '10px', width: "300px"}}>
+                    <ul>
+                    <li>
+                        <div style={ legendItemStyle }>
+                            <div style={{...legendNodeStyle, backgroundColor: '#e8ac6e'}}></div>
+                            Column name
                         </div>
-                        <span style={legendLongText}>
-                            Recommendation edge: this column combination appears in y notebooks for x times.
-                            </span>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                    <li>
+                        <div style={legendItemStyle}>
+                            <div style={{...legendNodeStyle, backgroundColor: '#9ab75e'}}></div>
+                            Method
+                        </div>
+                    </li>
+                    <li>
+                        <div style={legendItemStyle}>
+                            <div style={{...legendNodeStyle, backgroundColor: '#a2d2bc'}}></div>
+                            Insight
+                        </div>
+                    </li>
+                    <li>
+                        <div style={legendItemStyle}>
+                            <div style={legendNodeStyle}>
+                                <span style={redStyle}>----</span>x/y<span style={redStyle}>----</span>
+                            </div>
+                            <span style={legendLongText}>
+                                Recommendation edge: this column combination appears in y notebooks for x times.
+                                </span>
+                        </div>
+                    </li>
+                </ul>
+                </CCardBody>
+                </CCard>
+            </CCollapse>
+            </div>
         </div>
     )
 }

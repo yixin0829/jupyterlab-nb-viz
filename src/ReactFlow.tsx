@@ -17,6 +17,7 @@ import ReactFlow, {
   SelectionMode,
   ConnectionLineType,
   Connection,
+  Panel,
 } from "reactflow";
 import { NotebookPanel } from '@jupyterlab/notebook';
 import { INotebookTracker } from '@jupyterlab/notebook';
@@ -38,10 +39,11 @@ import InsightNode from "./InsightNode";
 import PlotNode from "./PlotNode";
 import { Legend } from "./Legend";
 import RecommendEdge from "./RecommendEdge";
-import DownloadButton from "./DownloadButton";
 import RawNode from "./RawNode";
-import { CDropdown, CDropdownItem, CDropdownMenu, CDropdownToggle } from "@coreui/react";
-
+import { CButton, CDropdown, CDropdownItem, CDropdownMenu, CDropdownToggle } from "@coreui/react";
+import CIcon from "@coreui/icons-react";
+import { cilReload } from "@coreui/icons";
+import { DownloadButton } from "./DownloadButton";
 
 const panOnDrag = [1, 2];
 const HIGHLIGHTED_LINE_CLASS = "jp-InputArea-editor-dependencyline";
@@ -295,7 +297,7 @@ const FlowComponent = (props: FlowComponentProps) => {
     }
 
     const handleCollapseAllButtonClick = () => {
-        if(canCollapseAll) {
+        if(selectedNode && canCollapseAll) {
             const { nodes: newNodes, edges: newEdges} = translateTreeUtilCommand(
                 'CollapseSubtree',
                 selectedNode,
@@ -315,7 +317,7 @@ const FlowComponent = (props: FlowComponentProps) => {
     }
 
     const handleCollapseNonTopButtonClick = () => {
-        if (canCollapseNonTop) {
+        if (selectedNode && canCollapseNonTop) {
             const { nodes: newNodes, edges: newEdges} = translateTreeUtilCommand(
                 'CollapseNonTop',
                 selectedNode,
@@ -375,7 +377,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             notebook: JSON.stringify(props.notebookPanel!.model!.toJSON()),
         }
         trackPromise(
-        axios.post('http://localhost:5000/tracking-tree', request).then((response) => {
+        axios.post('http://127.0.0.1:4000/tracking-tree', request, {withCredentials: true, }).then((response) => {
             console.log(`[refreshSMITree] get response.`);
             const refreshedNodes = response.data.nodes;
             const refreshedEdges = response.data.edges;
@@ -397,7 +399,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             setEdges(layoutedEdges);
             // console.log(`[refreshSMITree] successfully refreshed nodes and edges.`);
         }).catch((error) => {
-            console.log(`[refreshSMITree] error: ${error}`);
+            console.log(`[refreshSMITree] error: ${error} when sending post request to http://128.100.10.43:4000/tracking-tree`);
         }));
     }
 
@@ -413,7 +415,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             edges: JSON.stringify(edges),
         }; // send current Nodes and Edges to backend so that recommendations will not be generated for hidden nodes
         trackPromise(
-        axios.post('http://localhost:5000/recommendations', request).then((response) => {
+        axios.post('http://127.0.0.1:4000/recommendations', request, {withCredentials: true}).then((response) => {
             console.log(`[getRecommendations] get response: ${JSON.stringify(response.data)}`);
             const recommendedNodes = response.data.recommendedNodes;
             const recommendedEdges = response.data.recommendedEdges;
@@ -488,31 +490,56 @@ const FlowComponent = (props: FlowComponentProps) => {
         edgeOperations.current.push({operation: 'add', edge: newEdge});
     }
 
-    const getEnabledOptions= () => {
-        const enabledOptions = [];
-        if (selectedNode && canCollapseAll) {
-            enabledOptions.push(<CDropdownItem onClick={handleCollapseAllButtonClick}>Collapse all children</CDropdownItem>);
-        }
-        if (selectedNode && canCollapseNonTop) {
-            enabledOptions.push(<CDropdownItem onClick={handleCollapseNonTopButtonClick}>Collapse non-top-3 children</CDropdownItem>);
-        }
-        if (selectedNode && canExpandAll) {
-            enabledOptions.push(<CDropdownItem onClick={handleExpandAllChildrenButtonClick}>Expand all children</CDropdownItem>);
-        }
-        if (selectedNode) {
-            enabledOptions.push(<CDropdownItem onClick={collapseBackToInitial}>Collapse back to initial</CDropdownItem>);
-            enabledOptions.push(<CDropdownItem onClick={handleExpandAllNodesButtonClick}>Expand all nodes</CDropdownItem>);
-        }
-        if (selectedEdge && isSelectedEdgeRemovable) {
-            enabledOptions.push(<CDropdownItem onClick={removeSelectedEdge} style={{marginRight: 5}}>Remove edge</CDropdownItem>)
-        }
-        return enabledOptions;
-    }
+    // const getEnabledOptions= () => {
+    //     const enabledOptions = [];
+    //     enabledOptions.push(<CDropdownItem onClick={collapseBackToInitial}>Collapse back to initial</CDropdownItem>);
+    //     enabledOptions.push(<CDropdownItem onClick={handleExpandAllNodesButtonClick}>Expand all nodes</CDropdownItem>);
+    //     if (selectedNode && canCollapseAll) {
+    //         enabledOptions.push(<CDropdownItem onClick={handleCollapseAllButtonClick}>Collapse all children</CDropdownItem>);
+    //     }
+    //     if (selectedNode && canCollapseNonTop) {
+    //         enabledOptions.push(<CDropdownItem onClick={handleCollapseNonTopButtonClick}>Collapse non-top-3 children</CDropdownItem>);
+    //     }
+    //     if (selectedNode && canExpandAll) {
+    //         enabledOptions.push(<CDropdownItem onClick={handleExpandAllChildrenButtonClick}>Expand all children</CDropdownItem>);
+    //     }
+    // if (selectedEdge && isSelectedEdgeRemovable) {
+    //         enabledOptions.push(<CDropdownItem onClick={removeSelectedEdge} style={{marginRight: 5}}>Remove edge</CDropdownItem>)
+    //     }
+    //     return enabledOptions;
+    // }
 
     const dropdownButtonStyle = {
         height: "35px", 
         marginLeft: "10px",
-        color: "white"}
+    };
+
+    const pageTopContainerStyle = { 
+        display: "flex",
+        width: "100%",
+        zIndex: "100",
+        justifyContent: "space-between",
+    };
+    
+    const buttonContainerStyle = {
+        flex: "1",
+        // marginLeft: "5px",
+        // marginRight: "5px",
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column" as "column",
+    };
+
+    const buttonGroupWithBorderSytle = { 
+        border: "2px dashed black",
+        padding: "5px",
+    };
+
+    const iconStyle = {
+        marginLeft: "5px",
+        marginRight: "5px",
+        cursor: "pointer"
+    }
     
   return (
         <ReactFlow
@@ -537,35 +564,55 @@ const FlowComponent = (props: FlowComponentProps) => {
             deleteKeyCode={null}
         >
         <Background />
-        <div style={{ position: 'absolute', left: 10, top: 10, zIndex: 4 }}>
-            <Legend />
-        </div>
-        <div style={{ position: 'absolute', right: 10, top: 10, zIndex: 100 }}>
-            <CDropdown style={dropdownButtonStyle}>
-                <CDropdownToggle color="secondary">Choose the operation you want to perform (on the selected node/edge)</CDropdownToggle>
-                <CDropdownMenu>
-                    {...getEnabledOptions()}
-                </CDropdownMenu>
-            </CDropdown>
-        </div>
-        <div style={{ position: 'absolute', right: 10, top: 50, zIndex: 4 }}>
-            <CDropdown style={dropdownButtonStyle}>
-                <CDropdownToggle color="secondary">What kind of help are you seeking for data exploration?</CDropdownToggle>
-                <CDropdownMenu>
-                    <CDropdownItem onClick={refreshSMITree}>What is my exploration process like so far?</CDropdownItem>
-                    <CDropdownItem onClick={getRecommendations}>Which columns shall I explore next? </CDropdownItem>
-                    <CDropdownItem onClick={disableRecommendations} disabled={!isRecommendationDisplayed}>Hide recommendations</CDropdownItem>
-                    <CDropdownItem>Save the tree as an image</CDropdownItem>
-                </CDropdownMenu>
-            </CDropdown>
             
+        <Panel position="top-center" style={{width: "100%"}}>
+            <div style={pageTopContainerStyle}>
+            <div style={{flex: "1"}}>
+                <Legend />
+            </div>
+
+            <div style={{flex: "1"}}>
+                {/* <CButton style={dropdownButtonStyle} onClick={refreshSMITree}>Refresh</CButton> */}
+                <CIcon icon={cilReload} style={iconStyle} size="xxl" onClick={refreshSMITree} title={"Generate/refresh the tree"}/>
+                <DownloadButton/>
+            </div>
+
+            <div style={buttonContainerStyle}>
+                <LoadIndicator/>
+            </div>
+            
+            <div style={buttonContainerStyle}>
+                <div style={{...buttonGroupWithBorderSytle, minWidth:"250px"}}>
+                    {(!isRecommendationDisplayed) && <CButton color="warning" style={dropdownButtonStyle} onClick={getRecommendations}>Show recommendations</CButton> }
+                    {(isRecommendationDisplayed) && <CButton color="warning" style={dropdownButtonStyle} onClick={disableRecommendations} disabled={!isRecommendationDisplayed}>Hide recommendations</CButton>}
+                </div>
+                <span>Get help in data explartion</span>
+            </div>
+
+            <div style={buttonContainerStyle}>
+                <div style={{...buttonGroupWithBorderSytle}}>
+                    <CDropdown style={dropdownButtonStyle}>
+                        <CDropdownToggle color="warning">Collapse</CDropdownToggle>
+                        <CDropdownMenu>
+                            <CDropdownItem onClick={handleCollapseNonTopButtonClick}>Collapse non-top-3 children of the selected node</CDropdownItem>
+                            <CDropdownItem onClick={handleCollapseAllButtonClick}>Collapse all children of the selected node</CDropdownItem>
+                            <CDropdownItem onClick={collapseBackToInitial}>Collapse the whole tree back to initial</CDropdownItem>
+                        </CDropdownMenu>
+                    </CDropdown>
+                    <CDropdown style={dropdownButtonStyle}>
+                        <CDropdownToggle color="warning">Expand</CDropdownToggle>
+                        <CDropdownMenu>
+                            <CDropdownItem onClick={handleExpandAllChildrenButtonClick}>Expand all children of the selected node</CDropdownItem>
+                            <CDropdownItem onClick={handleExpandAllNodesButtonClick}>Expand all nodes in the tree</CDropdownItem>
+                        </CDropdownMenu>
+                    </CDropdown>
+                </div>
+                {(selectedEdge && isSelectedEdgeRemovable) &&
+                    <CButton color="warning" style={dropdownButtonStyle} onClick={removeSelectedEdge}> Remove the selected edge</CButton>}
+                <span>Collapse/expand nodes</span>
+                </div>
         </div>
-        <div style={{ position: 'absolute', right: 10, top: 90, zIndex: 4 }}>
-            <DownloadButton/>
-        </div>
-        <div style={{ position: 'absolute', right: 10, top: 130, zIndex: 4 }}>
-            <LoadIndicator/>
-        </div>
+        </Panel>
         <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
         <Controls/>
         </ReactFlow>

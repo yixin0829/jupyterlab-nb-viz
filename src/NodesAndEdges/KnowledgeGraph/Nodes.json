@@ -1,1 +1,4019 @@
-/home/meng-wsl/notebooks-analysis/knowledge_graphs/final/Nodes.json
+[
+    {
+        "id": "root",
+        "type": "default",
+        "data": {
+            "nodeType": "root",
+            "label": "root",
+            "rawData": "root",
+            "children": [
+                1,
+                125,
+                124,
+                135,
+                140,
+                14,
+                137,
+                139,
+                128,
+                136,
+                37,
+                8,
+                148,
+                114,
+                115,
+                116,
+                117,
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                11,
+                26,
+                33
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8A9A9"
+        }
+    },
+    {
+        "id": "etc1",
+        "type": "default",
+        "data": {
+            "nodeType": "etc",
+            "label": "23",
+            "rawData": "23",
+            "children": [],
+            "parent": "root"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "50px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff",
+            "z-index": "-1"
+        }
+    },
+    {
+        "id": "33",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "26",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "OverTime",
+            "rawData": "OverTime",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "11",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Over18",
+            "rawData": "Over18",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "10",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MaritalStatus",
+            "rawData": "MaritalStatus",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "9",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobSatisfaction",
+            "rawData": "JobSatisfaction",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "7",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "EducationField",
+            "rawData": "EducationField",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "6",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Education",
+            "rawData": "Education",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "5",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Department",
+            "rawData": "Department",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "4",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "RelationshipSatisfaction",
+            "rawData": "RelationshipSatisfaction",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "117",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "PercentSalaryHike",
+            "rawData": "PercentSalaryHike",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "116",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "DailyRate",
+            "rawData": "DailyRate",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "115",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MonthlyRate",
+            "rawData": "MonthlyRate",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "114",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Age",
+            "rawData": "Age",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "148",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "work_year",
+            "rawData": "work_year",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "8",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobRole",
+            "rawData": "JobRole",
+            "children": [
+                100
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "100",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "WorkLifeBalance",
+            "rawData": "WorkLifeBalance",
+            "children": [],
+            "parent": "8"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "37",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobLevel",
+            "rawData": "JobLevel",
+            "children": [
+                41,
+                38,
+                101
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "101",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "WorkLifeBalance",
+            "rawData": "WorkLifeBalance",
+            "children": [],
+            "parent": "37"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "38",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Department",
+            "rawData": "Department",
+            "children": [
+                39
+            ],
+            "parent": "37"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "39",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [
+                40
+            ],
+            "parent": "38"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "40",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsAtCompany",
+            "rawData": "YearsAtCompany",
+            "children": [],
+            "parent": "39"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "41",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobRole",
+            "rawData": "JobRole",
+            "children": [
+                42
+            ],
+            "parent": "37"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "42",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [
+                43
+            ],
+            "parent": "41"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "43",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsAtCompany",
+            "rawData": "YearsAtCompany",
+            "children": [],
+            "parent": "42"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "136",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "company_size",
+            "rawData": "company_size",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "128",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "job_title",
+            "rawData": "job_title",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "139",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "employee_residence",
+            "rawData": "employee_residence",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "137",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "remote_ratio",
+            "rawData": "remote_ratio",
+            "children": [
+                138
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "138",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "work_year",
+            "rawData": "work_year",
+            "children": [],
+            "parent": "137"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "14",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MonthlyIncome",
+            "rawData": "MonthlyIncome",
+            "children": [
+                20,
+                15,
+                27,
+                86,
+                89
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc2",
+        "type": "default",
+        "data": {
+            "nodeType": "etc",
+            "label": "2",
+            "rawData": "2",
+            "children": [],
+            "parent": "14"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "50px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff",
+            "z-index": "-1"
+        }
+    },
+    {
+        "id": "89",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobRole",
+            "rawData": "JobRole",
+            "children": [],
+            "parent": "etc2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "86",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Department",
+            "rawData": "Department",
+            "children": [
+                87
+            ],
+            "parent": "etc2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "87",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Gender",
+            "rawData": "Gender",
+            "children": [],
+            "parent": "86"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "27",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "OverTime",
+            "rawData": "OverTime",
+            "children": [],
+            "parent": "14"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "15",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobSatisfaction",
+            "rawData": "JobSatisfaction",
+            "children": [],
+            "parent": "14"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "20",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobLevel",
+            "rawData": "JobLevel",
+            "children": [
+                21,
+                35,
+                55,
+                90
+            ],
+            "parent": "14"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc3",
+        "type": "default",
+        "data": {
+            "nodeType": "etc",
+            "label": "1",
+            "rawData": "1",
+            "children": [],
+            "parent": "20"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "50px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff",
+            "z-index": "-1"
+        }
+    },
+    {
+        "id": "90",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "TotalWorkingYears",
+            "rawData": "TotalWorkingYears",
+            "children": [],
+            "parent": "etc3"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "55",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "DailyRate",
+            "rawData": "DailyRate",
+            "children": [
+                56
+            ],
+            "parent": "20"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "56",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Age",
+            "rawData": "Age",
+            "children": [
+                57
+            ],
+            "parent": "55"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "57",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [
+                58
+            ],
+            "parent": "56"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "58",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsAtCompany",
+            "rawData": "YearsAtCompany",
+            "children": [
+                59
+            ],
+            "parent": "57"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "59",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobSatisfaction",
+            "rawData": "JobSatisfaction",
+            "children": [
+                60
+            ],
+            "parent": "58"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "60",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "PercentSalaryHike",
+            "rawData": "PercentSalaryHike",
+            "children": [
+                61
+            ],
+            "parent": "59"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "61",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "TotalWorkingYears",
+            "rawData": "TotalWorkingYears",
+            "children": [
+                62
+            ],
+            "parent": "60"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "62",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "WorkLifeBalance",
+            "rawData": "WorkLifeBalance",
+            "children": [
+                63
+            ],
+            "parent": "61"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "63",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsWithCurrManager",
+            "rawData": "YearsWithCurrManager",
+            "children": [
+                64
+            ],
+            "parent": "62"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "64",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsInCurrentRole",
+            "rawData": "YearsInCurrentRole",
+            "children": [
+                65
+            ],
+            "parent": "63"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "65",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Education",
+            "rawData": "Education",
+            "children": [
+                66
+            ],
+            "parent": "64"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "66",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MonthlyRate",
+            "rawData": "MonthlyRate",
+            "children": [
+                67
+            ],
+            "parent": "65"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "67",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "DistanceFromHome",
+            "rawData": "DistanceFromHome",
+            "children": [
+                68
+            ],
+            "parent": "66"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "68",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "HourlyRate",
+            "rawData": "HourlyRate",
+            "children": [
+                69
+            ],
+            "parent": "67"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "69",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "RelationshipSatisfaction",
+            "rawData": "RelationshipSatisfaction",
+            "children": [
+                70
+            ],
+            "parent": "68"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "70",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobInvolvement",
+            "rawData": "JobInvolvement",
+            "children": [
+                71
+            ],
+            "parent": "69"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "71",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "EnvironmentSatisfaction",
+            "rawData": "EnvironmentSatisfaction",
+            "children": [
+                72
+            ],
+            "parent": "70"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "72",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsSinceLastPromotion",
+            "rawData": "YearsSinceLastPromotion",
+            "children": [
+                73
+            ],
+            "parent": "71"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "73",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "NumCompaniesWorked",
+            "rawData": "NumCompaniesWorked",
+            "children": [
+                74
+            ],
+            "parent": "72"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "74",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "TrainingTimesLastYear",
+            "rawData": "TrainingTimesLastYear",
+            "children": [
+                75
+            ],
+            "parent": "73"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "75",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "PerformanceRating",
+            "rawData": "PerformanceRating",
+            "children": [
+                76
+            ],
+            "parent": "74"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "76",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StandardHours",
+            "rawData": "StandardHours",
+            "children": [],
+            "parent": "75"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "35",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [
+                36
+            ],
+            "parent": "20"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "36",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsAtCompany",
+            "rawData": "YearsAtCompany",
+            "children": [],
+            "parent": "35"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "21",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobRole",
+            "rawData": "JobRole",
+            "children": [],
+            "parent": "20"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "140",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "company_location",
+            "rawData": "company_location",
+            "children": [
+                146,
+                150
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "150",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "employee_residence",
+            "rawData": "employee_residence",
+            "children": [],
+            "parent": "140"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "146",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "remote_ratio",
+            "rawData": "remote_ratio",
+            "children": [
+                147
+            ],
+            "parent": "140"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "147",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "employee_residence",
+            "rawData": "employee_residence",
+            "children": [],
+            "parent": "146"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "135",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "employment_type",
+            "rawData": "employment_type",
+            "children": [],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "124",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "experience_level",
+            "rawData": "experience_level",
+            "children": [
+                145,
+                133,
+                149
+            ],
+            "parent": "root"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "149",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "employment_type",
+            "rawData": "employment_type",
+            "children": [],
+            "parent": "124"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "133",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "company_location",
+            "rawData": "company_location",
+            "children": [],
+            "parent": "124"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "145",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "job_title",
+            "rawData": "job_title",
+            "children": [],
+            "parent": "124"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "125",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "salary_in_usd",
+            "rawData": "salary_in_usd",
+            "children": [
+                129,
+                126,
+                127,
+                130,
+                132,
+                131,
+                134
+            ],
+            "parent": "root"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc4",
+        "type": "default",
+        "data": {
+            "nodeType": "etc",
+            "label": "4",
+            "rawData": "4",
+            "children": [],
+            "parent": "125"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "50px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff",
+            "z-index": "-1"
+        }
+    },
+    {
+        "id": "134",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "work_year",
+            "rawData": "work_year",
+            "children": [],
+            "parent": "etc4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "131",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "remote_ratio",
+            "rawData": "remote_ratio",
+            "children": [],
+            "parent": "etc4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "132",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "company_size",
+            "rawData": "company_size",
+            "children": [],
+            "parent": "etc4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "130",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "employment_type",
+            "rawData": "employment_type",
+            "children": [
+                142
+            ],
+            "parent": "etc4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "142",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "remote_ratio",
+            "rawData": "remote_ratio",
+            "children": [],
+            "parent": "130"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "127",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "company_location",
+            "rawData": "company_location",
+            "children": [],
+            "parent": "125"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "126",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "job_title",
+            "rawData": "job_title",
+            "children": [],
+            "parent": "125"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "129",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "experience_level",
+            "rawData": "experience_level",
+            "children": [
+                143,
+                141
+            ],
+            "parent": "125"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "141",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "company_size",
+            "rawData": "company_size",
+            "children": [],
+            "parent": "129"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "143",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "job_title",
+            "rawData": "job_title",
+            "children": [
+                144
+            ],
+            "parent": "129"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "144",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "work_year",
+            "rawData": "work_year",
+            "children": [],
+            "parent": "143"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "1",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Attrition",
+            "rawData": "Attrition",
+            "children": [
+                12,
+                2,
+                23,
+                3,
+                17,
+                18,
+                34,
+                83,
+                44,
+                19,
+                81,
+                77,
+                78,
+                79,
+                80,
+                31,
+                85,
+                91,
+                92,
+                93,
+                97,
+                98,
+                99,
+                102,
+                103,
+                104,
+                105,
+                106,
+                107,
+                108
+            ],
+            "parent": "root"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc5",
+        "type": "default",
+        "data": {
+            "nodeType": "etc",
+            "label": "27",
+            "rawData": "27",
+            "children": [],
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "50px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff",
+            "z-index": "-1"
+        }
+    },
+    {
+        "id": "108",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MonthlyRate",
+            "rawData": "MonthlyRate",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "107",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "HourlyRate",
+            "rawData": "HourlyRate",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "106",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "RelationshipSatisfaction",
+            "rawData": "RelationshipSatisfaction",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "105",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "EnvironmentSatisfaction",
+            "rawData": "EnvironmentSatisfaction",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "104",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "PerformanceRating",
+            "rawData": "PerformanceRating",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "103",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "BusinessTravel",
+            "rawData": "BusinessTravel",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "102",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "99",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "WorkLifeBalance",
+            "rawData": "WorkLifeBalance",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "98",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobInvolvement",
+            "rawData": "JobInvolvement",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "97",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "EducationField",
+            "rawData": "EducationField",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "93",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Education",
+            "rawData": "Education",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "92",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MaritalStatus",
+            "rawData": "MaritalStatus",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "91",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "NumCompaniesWorked",
+            "rawData": "NumCompaniesWorked",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "85",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobSatisfaction",
+            "rawData": "JobSatisfaction",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "31",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "OverTime",
+            "rawData": "OverTime",
+            "children": [
+                32
+            ],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "32",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobSatisfaction",
+            "rawData": "JobSatisfaction",
+            "children": [],
+            "parent": "31"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "80",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "PercentSalaryHike",
+            "rawData": "PercentSalaryHike",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "79",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsSinceLastPromotion",
+            "rawData": "YearsSinceLastPromotion",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "78",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "TrainingTimesLastYear",
+            "rawData": "TrainingTimesLastYear",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "77",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "DistanceFromHome",
+            "rawData": "DistanceFromHome",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "81",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Department",
+            "rawData": "Department",
+            "children": [
+                82,
+                109,
+                110
+            ],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "110",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "HourlyRate",
+            "rawData": "HourlyRate",
+            "children": [],
+            "parent": "81"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "109",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MonthlyRate",
+            "rawData": "MonthlyRate",
+            "children": [],
+            "parent": "81"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "82",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Gender",
+            "rawData": "Gender",
+            "children": [],
+            "parent": "81"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "19",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobLevel",
+            "rawData": "JobLevel",
+            "children": [
+                111,
+                112,
+                113
+            ],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "113",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "DailyRate",
+            "rawData": "DailyRate",
+            "children": [],
+            "parent": "19"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "112",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "HourlyRate",
+            "rawData": "HourlyRate",
+            "children": [],
+            "parent": "19"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "111",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MonthlyRate",
+            "rawData": "MonthlyRate",
+            "children": [],
+            "parent": "19"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "44",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "DailyRate",
+            "rawData": "DailyRate",
+            "children": [
+                46,
+                45,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                53,
+                54
+            ],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc6",
+        "type": "default",
+        "data": {
+            "nodeType": "etc",
+            "label": "7",
+            "rawData": "7",
+            "children": [],
+            "parent": "44"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "50px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff",
+            "z-index": "-1"
+        }
+    },
+    {
+        "id": "54",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsWithCurrManager",
+            "rawData": "YearsWithCurrManager",
+            "children": [],
+            "parent": "etc6"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "53",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "PercentSalaryHike",
+            "rawData": "PercentSalaryHike",
+            "children": [],
+            "parent": "etc6"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "52",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsInCurrentRole",
+            "rawData": "YearsInCurrentRole",
+            "children": [],
+            "parent": "etc6"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "51",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "NumCompaniesWorked",
+            "rawData": "NumCompaniesWorked",
+            "children": [],
+            "parent": "etc6"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "50",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "WorkLifeBalance",
+            "rawData": "WorkLifeBalance",
+            "children": [],
+            "parent": "etc6"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "49",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [],
+            "parent": "etc6"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "48",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobSatisfaction",
+            "rawData": "JobSatisfaction",
+            "children": [],
+            "parent": "etc6"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "47",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "EnvironmentSatisfaction",
+            "rawData": "EnvironmentSatisfaction",
+            "children": [],
+            "parent": "44"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "45",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Age",
+            "rawData": "Age",
+            "children": [],
+            "parent": "44"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "46",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Department",
+            "rawData": "Department",
+            "children": [],
+            "parent": "44"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "83",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Gender",
+            "rawData": "Gender",
+            "children": [
+                84,
+                119,
+                120
+            ],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "120",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "DistanceFromHome",
+            "rawData": "DistanceFromHome",
+            "children": [],
+            "parent": "83"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "119",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "TotalWorkingYears",
+            "rawData": "TotalWorkingYears",
+            "children": [],
+            "parent": "83"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "84",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "WorkLifeBalance",
+            "rawData": "WorkLifeBalance",
+            "children": [],
+            "parent": "83"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "34",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsInCurrentRole",
+            "rawData": "YearsInCurrentRole",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "18",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsAtCompany",
+            "rawData": "YearsAtCompany",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "17",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "TotalWorkingYears",
+            "rawData": "TotalWorkingYears",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "3",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsWithCurrManager",
+            "rawData": "YearsWithCurrManager",
+            "children": [],
+            "parent": "etc5"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "23",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobRole",
+            "rawData": "JobRole",
+            "children": [
+                24,
+                118,
+                122,
+                123
+            ],
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc7",
+        "type": "default",
+        "data": {
+            "nodeType": "etc",
+            "label": "1",
+            "rawData": "1",
+            "children": [],
+            "parent": "23"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "50px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff",
+            "z-index": "-1"
+        }
+    },
+    {
+        "id": "123",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "DistanceFromHome",
+            "rawData": "DistanceFromHome",
+            "children": [],
+            "parent": "etc7"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "122",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "PercentSalaryHike",
+            "rawData": "PercentSalaryHike",
+            "children": [],
+            "parent": "23"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "118",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Age",
+            "rawData": "Age",
+            "children": [],
+            "parent": "23"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "24",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [],
+            "parent": "23"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "2",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Age",
+            "rawData": "Age",
+            "children": [
+                95,
+                94,
+                96
+            ],
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "96",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Education",
+            "rawData": "Education",
+            "children": [],
+            "parent": "2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "94",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MaritalStatus",
+            "rawData": "MaritalStatus",
+            "children": [],
+            "parent": "2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "95",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Gender",
+            "rawData": "Gender",
+            "children": [],
+            "parent": "2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "12",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MonthlyIncome",
+            "rawData": "MonthlyIncome",
+            "children": [
+                13,
+                22,
+                25,
+                28,
+                121
+            ],
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc8",
+        "type": "default",
+        "data": {
+            "nodeType": "etc",
+            "label": "2",
+            "rawData": "2",
+            "children": [],
+            "parent": "12"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "50px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff",
+            "z-index": "-1"
+        }
+    },
+    {
+        "id": "121",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Education",
+            "rawData": "Education",
+            "children": [],
+            "parent": "etc8"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "28",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "OverTime",
+            "rawData": "OverTime",
+            "children": [],
+            "parent": "etc8"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "25",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [],
+            "parent": "12"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "22",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobLevel",
+            "rawData": "JobLevel",
+            "children": [
+                29
+            ],
+            "parent": "12"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "29",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "OverTime",
+            "rawData": "OverTime",
+            "children": [
+                30
+            ],
+            "parent": "22"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "30",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobInvolvement",
+            "rawData": "JobInvolvement",
+            "children": [],
+            "parent": "29"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "13",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Department",
+            "rawData": "Department",
+            "children": [
+                16,
+                88
+            ],
+            "parent": "12"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "88",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Gender",
+            "rawData": "Gender",
+            "children": [],
+            "parent": "13"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "16",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "OverTime",
+            "rawData": "OverTime",
+            "children": [],
+            "parent": "13"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "z-index": "-1",
+            "backgroundColor": "#E8AC6E"
+        }
+    }
+]

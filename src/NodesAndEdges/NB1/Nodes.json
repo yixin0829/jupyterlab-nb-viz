@@ -1,1 +1,6407 @@
-/home/meng-wsl/notebooks-analysis/parser/smi_tree/NB1-nodes.json
+[
+    {
+        "id": "0",
+        "type": "default",
+        "data": {
+            "nodeType": "root",
+            "label": "root",
+            "rawData": "root",
+            "children": [
+                1,
+                45,
+                117,
+                10,
+                15,
+                18,
+                21,
+                24,
+                27,
+                30,
+                33,
+                40,
+                81,
+                102,
+                105
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8A9A9"
+        }
+    },
+    {
+        "id": "etc1",
+        "type": "default",
+        "data": {
+            "nodeType": "etc",
+            "label": "12",
+            "rawData": "12",
+            "children": [],
+            "parent": "0"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "50px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff"
+        }
+    },
+    {
+        "id": "105",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "final2",
+            "rawData": "final2",
+            "children": [
+                106
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "106",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "Stock_0",
+            "rawData": "Stock_0",
+            "children": [
+                107
+            ],
+            "parent": "105"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "107",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 104)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "106",
+            "cellIndex": 153,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    23,
+                    0
+                ],
+                [
+                    24,
+                    0
+                ],
+                [
+                    28,
+                    0
+                ],
+                [
+                    28,
+                    1
+                ],
+                [
+                    30,
+                    0
+                ],
+                [
+                    31,
+                    0
+                ],
+                [
+                    32,
+                    0
+                ],
+                [
+                    48,
+                    0
+                ],
+                [
+                    48,
+                    1
+                ],
+                [
+                    48,
+                    2
+                ],
+                [
+                    48,
+                    3
+                ],
+                [
+                    48,
+                    4
+                ],
+                [
+                    49,
+                    0
+                ],
+                [
+                    49,
+                    1
+                ],
+                [
+                    49,
+                    2
+                ],
+                [
+                    49,
+                    3
+                ],
+                [
+                    49,
+                    4
+                ],
+                [
+                    50,
+                    0
+                ],
+                [
+                    50,
+                    1
+                ],
+                [
+                    50,
+                    2
+                ],
+                [
+                    50,
+                    3
+                ],
+                [
+                    50,
+                    4
+                ],
+                [
+                    51,
+                    0
+                ],
+                [
+                    51,
+                    1
+                ],
+                [
+                    51,
+                    2
+                ],
+                [
+                    51,
+                    3
+                ],
+                [
+                    51,
+                    4
+                ],
+                [
+                    52,
+                    0
+                ],
+                [
+                    52,
+                    1
+                ],
+                [
+                    52,
+                    2
+                ],
+                [
+                    52,
+                    3
+                ],
+                [
+                    52,
+                    4
+                ],
+                [
+                    53,
+                    0
+                ],
+                [
+                    53,
+                    1
+                ],
+                [
+                    53,
+                    4
+                ],
+                [
+                    53,
+                    5
+                ],
+                [
+                    53,
+                    6
+                ],
+                [
+                    53,
+                    9
+                ],
+                [
+                    54,
+                    0
+                ],
+                [
+                    55,
+                    0
+                ],
+                [
+                    57,
+                    0
+                ],
+                [
+                    59,
+                    0
+                ],
+                [
+                    60,
+                    0
+                ],
+                [
+                    60,
+                    1
+                ],
+                [
+                    61,
+                    0
+                ],
+                [
+                    64,
+                    0
+                ],
+                [
+                    64,
+                    1
+                ],
+                [
+                    68,
+                    0
+                ],
+                [
+                    76,
+                    0
+                ],
+                [
+                    76,
+                    1
+                ],
+                [
+                    76,
+                    2
+                ],
+                [
+                    76,
+                    4
+                ],
+                [
+                    76,
+                    5
+                ],
+                [
+                    77,
+                    0
+                ],
+                [
+                    77,
+                    1
+                ],
+                [
+                    94,
+                    0
+                ],
+                [
+                    133,
+                    0
+                ],
+                [
+                    133,
+                    1
+                ],
+                [
+                    133,
+                    2
+                ],
+                [
+                    133,
+                    4
+                ],
+                [
+                    133,
+                    5
+                ],
+                [
+                    134,
+                    0
+                ],
+                [
+                    134,
+                    1
+                ],
+                [
+                    140,
+                    0
+                ],
+                [
+                    150,
+                    0
+                ],
+                [
+                    152,
+                    0
+                ],
+                [
+                    152,
+                    1
+                ],
+                [
+                    152,
+                    2
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "102",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [
+                103
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "103",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                104
+            ],
+            "parent": "102"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "104",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 100)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "103",
+            "cellIndex": 149,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "81",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "OverTime",
+            "rawData": "OverTime",
+            "children": [
+                82
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "82",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                83
+            ],
+            "parent": "81"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "83",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 86)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "82",
+            "cellIndex": 132,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "40",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "Importance",
+            "rawData": "Importance",
+            "children": [
+                41
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "41",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "Predictors",
+            "rawData": "Predictors",
+            "children": [
+                42
+            ],
+            "parent": "40"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "42",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "barplot (cell 69)",
+            "rawData": "barplot",
+            "children": [
+                132
+            ],
+            "parent": "41",
+            "cellIndex": 96,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    23,
+                    0
+                ],
+                [
+                    24,
+                    0
+                ],
+                [
+                    28,
+                    0
+                ],
+                [
+                    28,
+                    1
+                ],
+                [
+                    30,
+                    0
+                ],
+                [
+                    31,
+                    0
+                ],
+                [
+                    32,
+                    0
+                ],
+                [
+                    48,
+                    0
+                ],
+                [
+                    48,
+                    1
+                ],
+                [
+                    48,
+                    2
+                ],
+                [
+                    48,
+                    3
+                ],
+                [
+                    48,
+                    4
+                ],
+                [
+                    49,
+                    0
+                ],
+                [
+                    49,
+                    1
+                ],
+                [
+                    49,
+                    2
+                ],
+                [
+                    49,
+                    3
+                ],
+                [
+                    49,
+                    4
+                ],
+                [
+                    50,
+                    0
+                ],
+                [
+                    50,
+                    1
+                ],
+                [
+                    50,
+                    2
+                ],
+                [
+                    50,
+                    3
+                ],
+                [
+                    50,
+                    4
+                ],
+                [
+                    51,
+                    0
+                ],
+                [
+                    51,
+                    1
+                ],
+                [
+                    51,
+                    2
+                ],
+                [
+                    51,
+                    3
+                ],
+                [
+                    51,
+                    4
+                ],
+                [
+                    52,
+                    0
+                ],
+                [
+                    52,
+                    1
+                ],
+                [
+                    52,
+                    2
+                ],
+                [
+                    52,
+                    3
+                ],
+                [
+                    52,
+                    4
+                ],
+                [
+                    53,
+                    0
+                ],
+                [
+                    53,
+                    1
+                ],
+                [
+                    53,
+                    4
+                ],
+                [
+                    53,
+                    5
+                ],
+                [
+                    53,
+                    6
+                ],
+                [
+                    53,
+                    9
+                ],
+                [
+                    54,
+                    0
+                ],
+                [
+                    55,
+                    0
+                ],
+                [
+                    57,
+                    0
+                ],
+                [
+                    59,
+                    0
+                ],
+                [
+                    60,
+                    0
+                ],
+                [
+                    60,
+                    1
+                ],
+                [
+                    61,
+                    0
+                ],
+                [
+                    64,
+                    0
+                ],
+                [
+                    64,
+                    1
+                ],
+                [
+                    68,
+                    0
+                ],
+                [
+                    72,
+                    0
+                ],
+                [
+                    72,
+                    1
+                ],
+                [
+                    76,
+                    0
+                ],
+                [
+                    76,
+                    1
+                ],
+                [
+                    76,
+                    2
+                ],
+                [
+                    76,
+                    4
+                ],
+                [
+                    76,
+                    5
+                ],
+                [
+                    77,
+                    0
+                ],
+                [
+                    77,
+                    1
+                ],
+                [
+                    77,
+                    2
+                ],
+                [
+                    77,
+                    5
+                ],
+                [
+                    77,
+                    6
+                ],
+                [
+                    77,
+                    8
+                ],
+                [
+                    77,
+                    9
+                ],
+                [
+                    79,
+                    0
+                ],
+                [
+                    79,
+                    2
+                ],
+                [
+                    79,
+                    4
+                ],
+                [
+                    79,
+                    6
+                ],
+                [
+                    79,
+                    7
+                ],
+                [
+                    79,
+                    8
+                ],
+                [
+                    81,
+                    0
+                ],
+                [
+                    81,
+                    1
+                ],
+                [
+                    82,
+                    4
+                ],
+                [
+                    84,
+                    0
+                ],
+                [
+                    88,
+                    2
+                ],
+                [
+                    91,
+                    1
+                ],
+                [
+                    92,
+                    1
+                ],
+                [
+                    94,
+                    0
+                ],
+                [
+                    94,
+                    1
+                ],
+                [
+                    94,
+                    2
+                ],
+                [
+                    96,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "132",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "#### Variable Importance  (AFTER BALANCING)\n\n1. Overtime\n2. Monthly Income\n3. Years At Company\n4. Job Level\n5. Age\n6. Years In Current Role\n7. Total Working Years\n8. Stock Option Level\n9. Years With Current Manager\n\nThese are the top factors affecting attrition. \n\n\n*Train Test Split has been fixed with random state of 1.\n\nWithout random state, these 9 variables are still in the top 9 importance but may be in different ranks.\n\n(ex. Monthly Income may become more important than Overtime, but is still within the 9 ranks)*\n\n\n\nLet us now observe the correlation!\n### 1. Attrition and Monthly Income",
+            "rawData": "#### Variable Importance  (AFTER BALANCING)\n\n1. Overtime\n2. Monthly Income\n3. Years At Company\n4. Job Level\n5. Age\n6. Years In Current Role\n7. Total Working Years\n8. Stock Option Level\n9. Years With Current Manager\n\nThese are the top factors affecting attrition. \n\n\n*Train Test Split has been fixed with random state of 1.\n\nWithout random state, these 9 variables are still in the top 9 importance but may be in different ranks.\n\n(ex. Monthly Income may become more important than Overtime, but is still within the 9 ranks)*\n\n\n\nLet us now observe the correlation!\n### 1. Attrition and Monthly Income",
+            "children": [],
+            "parent": "42"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "33",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Over18",
+            "rawData": "Over18",
+            "children": [
+                34
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "34",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "attrition",
+            "rawData": "attrition",
+            "children": [
+                35
+            ],
+            "parent": "33"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "35",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 27)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "34",
+            "cellIndex": 42,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    23,
+                    0
+                ],
+                [
+                    28,
+                    0
+                ],
+                [
+                    28,
+                    1
+                ],
+                [
+                    30,
+                    0
+                ],
+                [
+                    31,
+                    0
+                ],
+                [
+                    32,
+                    0
+                ],
+                [
+                    34,
+                    0
+                ],
+                [
+                    41,
+                    0
+                ],
+                [
+                    42,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "30",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MaritalStatus",
+            "rawData": "MaritalStatus",
+            "children": [
+                31
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "31",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "attrition",
+            "rawData": "attrition",
+            "children": [
+                32
+            ],
+            "parent": "30"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "32",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 27)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "31",
+            "cellIndex": 42,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    23,
+                    0
+                ],
+                [
+                    28,
+                    0
+                ],
+                [
+                    28,
+                    1
+                ],
+                [
+                    30,
+                    0
+                ],
+                [
+                    31,
+                    0
+                ],
+                [
+                    32,
+                    0
+                ],
+                [
+                    34,
+                    0
+                ],
+                [
+                    41,
+                    0
+                ],
+                [
+                    42,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "27",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobSatisfaction",
+            "rawData": "JobSatisfaction",
+            "children": [
+                28
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "28",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "attrition",
+            "rawData": "attrition",
+            "children": [
+                29
+            ],
+            "parent": "27"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "29",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 27)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "28",
+            "cellIndex": 42,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    23,
+                    0
+                ],
+                [
+                    28,
+                    0
+                ],
+                [
+                    28,
+                    1
+                ],
+                [
+                    30,
+                    0
+                ],
+                [
+                    31,
+                    0
+                ],
+                [
+                    32,
+                    0
+                ],
+                [
+                    34,
+                    0
+                ],
+                [
+                    41,
+                    0
+                ],
+                [
+                    42,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "24",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobRole",
+            "rawData": "JobRole",
+            "children": [
+                25
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "25",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "attrition",
+            "rawData": "attrition",
+            "children": [
+                26
+            ],
+            "parent": "24"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "26",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 27)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "25",
+            "cellIndex": 42,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    23,
+                    0
+                ],
+                [
+                    28,
+                    0
+                ],
+                [
+                    28,
+                    1
+                ],
+                [
+                    30,
+                    0
+                ],
+                [
+                    31,
+                    0
+                ],
+                [
+                    32,
+                    0
+                ],
+                [
+                    34,
+                    0
+                ],
+                [
+                    41,
+                    0
+                ],
+                [
+                    42,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "21",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "EducationField",
+            "rawData": "EducationField",
+            "children": [
+                22
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "22",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "attrition",
+            "rawData": "attrition",
+            "children": [
+                23
+            ],
+            "parent": "21"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "23",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 27)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "22",
+            "cellIndex": 42,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    23,
+                    0
+                ],
+                [
+                    28,
+                    0
+                ],
+                [
+                    28,
+                    1
+                ],
+                [
+                    30,
+                    0
+                ],
+                [
+                    31,
+                    0
+                ],
+                [
+                    32,
+                    0
+                ],
+                [
+                    34,
+                    0
+                ],
+                [
+                    41,
+                    0
+                ],
+                [
+                    42,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "18",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Education",
+            "rawData": "Education",
+            "children": [
+                19
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "19",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "attrition",
+            "rawData": "attrition",
+            "children": [
+                20
+            ],
+            "parent": "18"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "20",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 27)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "19",
+            "cellIndex": 42,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    23,
+                    0
+                ],
+                [
+                    28,
+                    0
+                ],
+                [
+                    28,
+                    1
+                ],
+                [
+                    30,
+                    0
+                ],
+                [
+                    31,
+                    0
+                ],
+                [
+                    32,
+                    0
+                ],
+                [
+                    34,
+                    0
+                ],
+                [
+                    41,
+                    0
+                ],
+                [
+                    42,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "15",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Department",
+            "rawData": "Department",
+            "children": [
+                16
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "16",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "attrition",
+            "rawData": "attrition",
+            "children": [
+                17
+            ],
+            "parent": "15"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "17",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 27)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "16",
+            "cellIndex": 42,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    23,
+                    0
+                ],
+                [
+                    28,
+                    0
+                ],
+                [
+                    28,
+                    1
+                ],
+                [
+                    30,
+                    0
+                ],
+                [
+                    31,
+                    0
+                ],
+                [
+                    32,
+                    0
+                ],
+                [
+                    34,
+                    0
+                ],
+                [
+                    41,
+                    0
+                ],
+                [
+                    42,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "10",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "RelationshipSatisfaction",
+            "rawData": "RelationshipSatisfaction",
+            "children": [
+                11
+            ],
+            "parent": "etc1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "11",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "attrition",
+            "rawData": "attrition",
+            "children": [
+                12
+            ],
+            "parent": "10"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "12",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 27)",
+            "rawData": "catplot",
+            "children": [
+                130
+            ],
+            "parent": "11",
+            "cellIndex": 42,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    23,
+                    0
+                ],
+                [
+                    28,
+                    0
+                ],
+                [
+                    28,
+                    1
+                ],
+                [
+                    30,
+                    0
+                ],
+                [
+                    31,
+                    0
+                ],
+                [
+                    32,
+                    0
+                ],
+                [
+                    34,
+                    0
+                ],
+                [
+                    41,
+                    0
+                ],
+                [
+                    42,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "130",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "Most of the people with attrition have the following similarities:\n1. From **Research & Development** department, followed by **Sales** and lastly Human Resources \n2. Have an Education level of 3 (**Bachelor**)\n3. Graduated from **Life Sciences**\n4. Are currently working as **Lab Technicians** / **Research Scientist** / **Sales Representative**\n5. Have a **Job Satisfaction of 3**, followed by **1 (least satisfied)**\n\nNotes:\n\nIt seems that it is least likely for research directors and managers to have attrition, \n\nprobably because they are receiving the highest monthly income and highest job level possible. \n\nA possible reason for managers/research directors with attrition may be retirement as most of them are older than the other employees.",
+            "rawData": "Most of the people with attrition have the following similarities:\n1. From **Research & Development** department, followed by **Sales** and lastly Human Resources \n2. Have an Education level of 3 (**Bachelor**)\n3. Graduated from **Life Sciences**\n4. Are currently working as **Lab Technicians** / **Research Scientist** / **Sales Representative**\n5. Have a **Job Satisfaction of 3**, followed by **1 (least satisfied)**\n\nNotes:\n\nIt seems that it is least likely for research directors and managers to have attrition, \n\nprobably because they are receiving the highest monthly income and highest job level possible. \n\nA possible reason for managers/research directors with attrition may be retirement as most of them are older than the other employees.",
+            "children": [],
+            "parent": "12"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "117",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobLevel",
+            "rawData": "JobLevel",
+            "children": [
+                118
+            ],
+            "parent": "0"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "118",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [
+                119,
+                123
+            ],
+            "parent": "117"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "123",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobRole",
+            "rawData": "JobRole",
+            "children": [
+                124
+            ],
+            "parent": "118"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "124",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsAtCompany",
+            "rawData": "YearsAtCompany",
+            "children": [
+                125
+            ],
+            "parent": "123"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "125",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "att",
+            "rawData": "att",
+            "children": [
+                126
+            ],
+            "parent": "124"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "126",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "density_heatmap (cell 113)",
+            "rawData": "density_heatmap",
+            "children": [],
+            "parent": "125",
+            "cellIndex": 166,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    62,
+                    0
+                ],
+                [
+                    146,
+                    0
+                ],
+                [
+                    164,
+                    0
+                ],
+                [
+                    165,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "119",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsAtCompany",
+            "rawData": "YearsAtCompany",
+            "children": [
+                120
+            ],
+            "parent": "118"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "120",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Department",
+            "rawData": "Department",
+            "children": [
+                121
+            ],
+            "parent": "119"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "121",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "att",
+            "rawData": "att",
+            "children": [
+                122
+            ],
+            "parent": "120"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "122",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "density_heatmap (cell 112)",
+            "rawData": "density_heatmap",
+            "children": [],
+            "parent": "121",
+            "cellIndex": 165,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    62,
+                    0
+                ],
+                [
+                    146,
+                    0
+                ],
+                [
+                    164,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "45",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MonthlyIncome",
+            "rawData": "MonthlyIncome",
+            "children": [
+                63,
+                46,
+                84
+            ],
+            "parent": "0"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "84",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "OverTime",
+            "rawData": "OverTime",
+            "children": [
+                85
+            ],
+            "parent": "45"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "85",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                86
+            ],
+            "parent": "84"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "86",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "boxplot (cell 97)",
+            "rawData": "boxplot",
+            "children": [
+                144
+            ],
+            "parent": "85",
+            "cellIndex": 143,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "144",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "Here we can observe that attrition is the most important variable, its importance value factor is even significantly higher than all the other variables. \n\nAs we have found from the previous tree, overtime and attrition have a strong correlation with one another. \n\nFrom the correlation plot earlier, the **correlation** with overtime is **positive**. \n\nEmployees **with attrition** are more likely those that **do not have overtime**. \n\nPossible reasons for this interesting finding may be that some employees want to work overtime to earn more but they don't see much of a difference in monthly income if they do. Or they want to work overtime but are not given the opportunity to as there are only limited allowance. Hence, employees may leave the company to look for other companies which allows them to work overtime and can earn much more by doing so.",
+            "rawData": "Here we can observe that attrition is the most important variable, its importance value factor is even significantly higher than all the other variables. \n\nAs we have found from the previous tree, overtime and attrition have a strong correlation with one another. \n\nFrom the correlation plot earlier, the **correlation** with overtime is **positive**. \n\nEmployees **with attrition** are more likely those that **do not have overtime**. \n\nPossible reasons for this interesting finding may be that some employees want to work overtime to earn more but they don't see much of a difference in monthly income if they do. Or they want to work overtime but are not given the opportunity to as there are only limited allowance. Hence, employees may leave the company to look for other companies which allows them to work overtime and can earn much more by doing so.",
+            "children": [],
+            "parent": "86"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "46",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobSatisfaction",
+            "rawData": "JobSatisfaction",
+            "children": [
+                47
+            ],
+            "parent": "45"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "47",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                48
+            ],
+            "parent": "46"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "48",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "boxplot (cell 71)",
+            "rawData": "boxplot",
+            "children": [],
+            "parent": "47",
+            "cellIndex": 101,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "63",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobLevel",
+            "rawData": "JobLevel",
+            "children": [
+                66,
+                64,
+                113
+            ],
+            "parent": "45"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "113",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [
+                114
+            ],
+            "parent": "63"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "114",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsAtCompany",
+            "rawData": "YearsAtCompany",
+            "children": [
+                115
+            ],
+            "parent": "113"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "115",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "att",
+            "rawData": "att",
+            "children": [
+                116
+            ],
+            "parent": "114"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "116",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "density_heatmap (cell 111)",
+            "rawData": "density_heatmap",
+            "children": [],
+            "parent": "115",
+            "cellIndex": 164,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    62,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "64",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                65
+            ],
+            "parent": "63"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "65",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 77)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "64",
+            "cellIndex": 116,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "66",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobRole",
+            "rawData": "JobRole",
+            "children": [
+                67
+            ],
+            "parent": "63"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "67",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                68,
+                69
+            ],
+            "parent": "66"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "69",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 79)",
+            "rawData": "catplot",
+            "children": [
+                139
+            ],
+            "parent": "67",
+            "cellIndex": 118,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "139",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "##### Job Level\nis the classification of authority and/or salary levels of positions in an organization. \n\nEx. senior executives, executive, middle management, advisors, associate \n\n\nEach job role has different job levels. \n\nEx. Senior Executive Manager or Executive Manager \n\n\nDifferent job levels have different monthly income.\n\nThe higher your job level, the higher your monthly income. \n\n\nFrom the bar charts we can also see 4 hierarchy: \n\nHighest- Managers and Research Directors \n\n2nd- Sales Executive, Manufacturing Director, Healthcare Representative\n\n3rd- Research Scientist, Lab Technician, Human Resources",
+            "rawData": "##### Job Level\nis the classification of authority and/or salary levels of positions in an organization. \n\nEx. senior executives, executive, middle management, advisors, associate \n\n\nEach job role has different job levels. \n\nEx. Senior Executive Manager or Executive Manager \n\n\nDifferent job levels have different monthly income.\n\nThe higher your job level, the higher your monthly income. \n\n\nFrom the bar charts we can also see 4 hierarchy: \n\nHighest- Managers and Research Directors \n\n2nd- Sales Executive, Manufacturing Director, Healthcare Representative\n\n3rd- Research Scientist, Lab Technician, Human Resources",
+            "children": [],
+            "parent": "69"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "68",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 78)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "67",
+            "cellIndex": 117,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "1",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Attrition",
+            "rawData": "Attrition",
+            "children": [
+                36,
+                4,
+                7,
+                73,
+                2,
+                13,
+                54,
+                57,
+                60,
+                98,
+                110
+            ],
+            "parent": "0"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc2",
+        "type": "default",
+        "data": {
+            "nodeType": "etc",
+            "label": "8",
+            "rawData": "8",
+            "children": [],
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "50px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff"
+        }
+    },
+    {
+        "id": "110",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsInCurrentRole",
+            "rawData": "YearsInCurrentRole",
+            "children": [
+                111
+            ],
+            "parent": "etc2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "111",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                112
+            ],
+            "parent": "110"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "112",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "boxplot (cell 110)",
+            "rawData": "boxplot",
+            "children": [
+                147
+            ],
+            "parent": "111",
+            "cellIndex": 162,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "147",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "In compilation with years with current manager, total working years, and years at company, years in current role also proves how employees with **shorter working years are more likely to attire**.",
+            "rawData": "In compilation with years with current manager, total working years, and years at company, years in current role also proves how employees with **shorter working years are more likely to attire**.",
+            "children": [],
+            "parent": "112"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "98",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "OverTime",
+            "rawData": "OverTime",
+            "children": [
+                99
+            ],
+            "parent": "etc2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "99",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobSatisfaction",
+            "rawData": "JobSatisfaction",
+            "children": [
+                100
+            ],
+            "parent": "98"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "100",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                101
+            ],
+            "parent": "99"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "101",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "box (cell 99)",
+            "rawData": "box",
+            "children": [],
+            "parent": "100",
+            "cellIndex": 146,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "60",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobLevel",
+            "rawData": "JobLevel",
+            "children": [
+                61
+            ],
+            "parent": "etc2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "61",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                62
+            ],
+            "parent": "60"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "62",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "boxplot (cell 76)",
+            "rawData": "boxplot",
+            "children": [
+                138
+            ],
+            "parent": "61",
+            "cellIndex": 114,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "138",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "From the correlation plot earlier, the **correlation** with job level is also **negative**. \n\nEmployees with a **lower job level** are most likely to **attire**. \n\nThis is probably because they are not satisfied with the position they are in now, and want to look for a company that may give them a promotion or better opportunities.",
+            "rawData": "From the correlation plot earlier, the **correlation** with job level is also **negative**. \n\nEmployees with a **lower job level** are most likely to **attire**. \n\nThis is probably because they are not satisfied with the position they are in now, and want to look for a company that may give them a promotion or better opportunities.",
+            "children": [],
+            "parent": "62"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "57",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsAtCompany",
+            "rawData": "YearsAtCompany",
+            "children": [
+                58
+            ],
+            "parent": "etc2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "58",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                59
+            ],
+            "parent": "57"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "59",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "boxplot (cell 75)",
+            "rawData": "boxplot",
+            "children": [
+                137
+            ],
+            "parent": "58",
+            "cellIndex": 111,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "137",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "From the correlation plot earlier, the **correlation** with years at company is also **negative**. \n\nEmployees **with attrition** have **lower working years at the company**. \n\n#2, #3, #4 all shows evidence that employees with less work experience are leaving the company. \n\nWe believe that it is because the employees want to explore other job opportunities and different work environment.\n### 5. Attrition and Job Level",
+            "rawData": "From the correlation plot earlier, the **correlation** with years at company is also **negative**. \n\nEmployees **with attrition** have **lower working years at the company**. \n\n#2, #3, #4 all shows evidence that employees with less work experience are leaving the company. \n\nWe believe that it is because the employees want to explore other job opportunities and different work environment.\n### 5. Attrition and Job Level",
+            "children": [],
+            "parent": "59"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "54",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "TotalWorkingYears",
+            "rawData": "TotalWorkingYears",
+            "children": [
+                55
+            ],
+            "parent": "etc2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "55",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                56
+            ],
+            "parent": "54"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "56",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "boxplot (cell 74)",
+            "rawData": "boxplot",
+            "children": [
+                136
+            ],
+            "parent": "55",
+            "cellIndex": 108,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "136",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "From the correlation plot earlier, the **correlation** with total working years is also **negative**. \n\nEmployees **with attrition** have **lower total working years**.\n### 4. Attrition and Years At Company",
+            "rawData": "From the correlation plot earlier, the **correlation** with total working years is also **negative**. \n\nEmployees **with attrition** have **lower total working years**.\n### 4. Attrition and Years At Company",
+            "children": [],
+            "parent": "56"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "13",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "attrition",
+            "rawData": "attrition",
+            "children": [
+                14
+            ],
+            "parent": "etc2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "14",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 27)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "13",
+            "cellIndex": 42,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    23,
+                    0
+                ],
+                [
+                    28,
+                    0
+                ],
+                [
+                    28,
+                    1
+                ],
+                [
+                    30,
+                    0
+                ],
+                [
+                    31,
+                    0
+                ],
+                [
+                    32,
+                    0
+                ],
+                [
+                    34,
+                    0
+                ],
+                [
+                    41,
+                    0
+                ],
+                [
+                    42,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "2",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                3
+            ],
+            "parent": "etc2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "3",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 6)",
+            "rawData": "catplot",
+            "children": [
+                127
+            ],
+            "parent": "2",
+            "cellIndex": 9,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "127",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "The dataset is **imbalanced**, hence we need to balance it before we do our decision tree.",
+            "rawData": "The dataset is **imbalanced**, hence we need to balance it before we do our decision tree.",
+            "children": [],
+            "parent": "3"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "73",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [
+                74
+            ],
+            "parent": "etc2"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "74",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobRole",
+            "rawData": "JobRole",
+            "children": [
+                75,
+                108
+            ],
+            "parent": "73"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "108",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                109
+            ],
+            "parent": "74"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "109",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 109)",
+            "rawData": "catplot",
+            "children": [
+                146
+            ],
+            "parent": "108",
+            "cellIndex": 159,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "146",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "For every job role except Human Resources, there seems to be a trend where employees with attrition are those that have a lower stock level compared to those without attrition. \n\nOnce again, employees might be attiring because they have a lower stock option level than other employees of the same role.\n### 9. Attrition and Years in Current Role",
+            "rawData": "For every job role except Human Resources, there seems to be a trend where employees with attrition are those that have a lower stock level compared to those without attrition. \n\nOnce again, employees might be attiring because they have a lower stock option level than other employees of the same role.\n### 9. Attrition and Years in Current Role",
+            "children": [],
+            "parent": "109"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "75",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "joblevel2",
+            "rawData": "joblevel2",
+            "children": [
+                76
+            ],
+            "parent": "74"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "76",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "box (cell 82)",
+            "rawData": "box",
+            "children": [
+                141
+            ],
+            "parent": "75",
+            "cellIndex": 123,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    122,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "141",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "Even though those with Job Level 2 have nearly the same median monthly income, it turns out that for all the different Job Roles in this level, employees here with attrition have a lower median stock option level compared to those not attiring.",
+            "rawData": "Even though those with Job Level 2 have nearly the same median monthly income, it turns out that for all the different Job Roles in this level, employees here with attrition have a lower median stock option level compared to those not attiring.",
+            "children": [],
+            "parent": "76"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "7",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "YearsWithCurrManager",
+            "rawData": "YearsWithCurrManager",
+            "children": [
+                8
+            ],
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "8",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                9,
+                53
+            ],
+            "parent": "7"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "53",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "boxplot (cell 73)",
+            "rawData": "boxplot",
+            "children": [
+                135
+            ],
+            "parent": "8",
+            "cellIndex": 105,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "135",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "From the correlation plot earlier, the **correlation** with years with current manager is also **negative**. \n\nEmployees **with attrition** have **lower years with current manager**.\n### 3. Attrition and Total Working Years",
+            "rawData": "From the correlation plot earlier, the **correlation** with years with current manager is also **negative**. \n\nEmployees **with attrition** have **lower years with current manager**.\n### 3. Attrition and Total Working Years",
+            "children": [],
+            "parent": "53"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "9",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "swarmplot (cell 25)",
+            "rawData": "swarmplot",
+            "children": [
+                129
+            ],
+            "parent": "8",
+            "cellIndex": 38,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "129",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "There are actually more people with attrition who have not spent one year with the current manager, \n\nand recall that previously we have also found that a large number of people with attrition are working in their first company. \n\nFrom this information, performance pressure may not be the main cause for attrition, instead our hypothesis is that people are probably just looking for other job opportunities. This hypothesis will be investigated below.\n### Attrition and Count plot",
+            "rawData": "There are actually more people with attrition who have not spent one year with the current manager, \n\nand recall that previously we have also found that a large number of people with attrition are working in their first company. \n\nFrom this information, performance pressure may not be the main cause for attrition, instead our hypothesis is that people are probably just looking for other job opportunities. This hypothesis will be investigated below.\n### Attrition and Count plot",
+            "children": [],
+            "parent": "9"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "4",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Age",
+            "rawData": "Age",
+            "children": [
+                5
+            ],
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "5",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                6,
+                80
+            ],
+            "parent": "4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "80",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "boxplot (cell 85)",
+            "rawData": "boxplot",
+            "children": [
+                143
+            ],
+            "parent": "5",
+            "cellIndex": 129,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "143",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "From the correlation plot earlier, the **correlation** with age is also **negative**. \n\nThere are more **younger** people with **attrition**, meaning that retirement may not be a big influence to attirement. \n\nYounger employees may attire to explore better job opportunities until they find a company they are looking for.\n### 7. Attrition and OverTime\n##### using a Classification Decision Tree",
+            "rawData": "From the correlation plot earlier, the **correlation** with age is also **negative**. \n\nThere are more **younger** people with **attrition**, meaning that retirement may not be a big influence to attirement. \n\nYounger employees may attire to explore better job opportunities until they find a company they are looking for.\n### 7. Attrition and OverTime\n##### using a Classification Decision Tree",
+            "children": [],
+            "parent": "80"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "6",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "swarmplot (cell 24)",
+            "rawData": "swarmplot",
+            "children": [
+                128
+            ],
+            "parent": "5",
+            "cellIndex": 36,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "128",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "There seems to be more **younger people with attrition**. \n\nThis means that retirement is not the main reason for attrition. \n\nThen what may be other possible reasons for attrition?\n\n\n\nAccording to a blog posted by Mahidhar Reddy,\nSource: https://www.linkedin.com/pulse/top-5-reasons-employee-attrition-how-deal-mahidhar-reddy \n\nthe top factors for attrition are listed below:\n\n1. Money (other companies may be willing to pay more)\n2. Quality of Work (mismatches between employees' capabilities and actual work)\n3. Performance Pressure (pressured by high performing co-workers and demanding manager)\n4. Friends (friend group may influence job change)\n5. Location (company may be too far)\n\n\n\n\nWe shall look into variables related to these factors.",
+            "rawData": "There seems to be more **younger people with attrition**. \n\nThis means that retirement is not the main reason for attrition. \n\nThen what may be other possible reasons for attrition?\n\n\n\nAccording to a blog posted by Mahidhar Reddy,\nSource: https://www.linkedin.com/pulse/top-5-reasons-employee-attrition-how-deal-mahidhar-reddy \n\nthe top factors for attrition are listed below:\n\n1. Money (other companies may be willing to pay more)\n2. Quality of Work (mismatches between employees' capabilities and actual work)\n3. Performance Pressure (pressured by high performing co-workers and demanding manager)\n4. Friends (friend group may influence job change)\n5. Location (company may be too far)\n\n\n\n\nWe shall look into variables related to these factors.",
+            "children": [],
+            "parent": "6"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "36",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "MonthlyIncome",
+            "rawData": "MonthlyIncome",
+            "children": [
+                89,
+                49,
+                37,
+                43,
+                70,
+                77
+            ],
+            "parent": "1"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc3",
+        "type": "default",
+        "data": {
+            "nodeType": "etc",
+            "label": "3",
+            "rawData": "3",
+            "children": [],
+            "parent": "36"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "50px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff"
+        }
+    },
+    {
+        "id": "77",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "StockOptionLevel",
+            "rawData": "StockOptionLevel",
+            "children": [
+                78
+            ],
+            "parent": "etc3"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "78",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "joblevel4",
+            "rawData": "joblevel4",
+            "children": [
+                79
+            ],
+            "parent": "77"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "79",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "box (cell 84)",
+            "rawData": "box",
+            "children": [
+                142
+            ],
+            "parent": "78",
+            "cellIndex": 126,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    125,
+                    0
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "142",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "Possible reason for low attrition in Job Level 4: \n\nEven though there is a huge gap in median monthly income, most of the employees there have a high monthly income that may compensate for a lower stock option level. The red, box for those with attrition have no stocks and  a much lower monthly income compared to the rest.\n### 6. Attrition and Age",
+            "rawData": "Possible reason for low attrition in Job Level 4: \n\nEven though there is a huge gap in median monthly income, most of the employees there have a high monthly income that may compensate for a lower stock option level. The red, box for those with attrition have no stocks and  a much lower monthly income compared to the rest.\n### 6. Attrition and Age",
+            "children": [],
+            "parent": "79"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "70",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobLevel",
+            "rawData": "JobLevel",
+            "children": [
+                71
+            ],
+            "parent": "etc3"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "71",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                72
+            ],
+            "parent": "70"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "72",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "box (cell 80)",
+            "rawData": "box",
+            "children": [
+                140
+            ],
+            "parent": "71",
+            "cellIndex": 120,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "140",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "**Difference in Median Monthly Income (Not Attiring - Attiring)** \n\n\n\n\nJob Level 1: \n\n2719-2437= 282 \n\n\n\nJob Level 2: \n\n5334.5-5346= -11.5\n\n\n\nJob Level 3: \n\n9.9825k-9.887k= 0.0955k= 95.9\n\n\n\nJob Level 4:\n\n16.307k-13.194k= 3113\n\n\n\nJob Level 5: \n\n19.1995k-19.545k= -0.3455k= -345.5\n\n\n\n\nFrom this boxplot, we can see how every job level almost has a corresponding range of monthly income. \n\nThe difference in median monthly income (No Attrition - Attrition ) is greatest for Job Level= 4 followed by Job Level= 1. \n\nA possible reason for high attrition rate at Job Level 1 may be that they feel it is unfair to be receiving a lower monthly income than others in the same job level. \n\nHow about Job level 2 then? The monthly income for both are almost equal, so what could be the reason for them attiring? \n\nAlso, if Job Level 4 has such a huge difference, why is the attrition rate low?",
+            "rawData": "**Difference in Median Monthly Income (Not Attiring - Attiring)** \n\n\n\n\nJob Level 1: \n\n2719-2437= 282 \n\n\n\nJob Level 2: \n\n5334.5-5346= -11.5\n\n\n\nJob Level 3: \n\n9.9825k-9.887k= 0.0955k= 95.9\n\n\n\nJob Level 4:\n\n16.307k-13.194k= 3113\n\n\n\nJob Level 5: \n\n19.1995k-19.545k= -0.3455k= -345.5\n\n\n\n\nFrom this boxplot, we can see how every job level almost has a corresponding range of monthly income. \n\nThe difference in median monthly income (No Attrition - Attrition ) is greatest for Job Level= 4 followed by Job Level= 1. \n\nA possible reason for high attrition rate at Job Level 1 may be that they feel it is unfair to be receiving a lower monthly income than others in the same job level. \n\nHow about Job level 2 then? The monthly income for both are almost equal, so what could be the reason for them attiring? \n\nAlso, if Job Level 4 has such a huge difference, why is the attrition rate low?",
+            "children": [],
+            "parent": "72"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "43",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                44
+            ],
+            "parent": "etc3"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "44",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "boxplot (cell 70)",
+            "rawData": "boxplot",
+            "children": [
+                133
+            ],
+            "parent": "43",
+            "cellIndex": 99,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "133",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "From the correlation plot earlier, the **correlation** with monthly income is also **negative**. \n\nEmployees **with attrition** have **lower monthly income**. \n\nWe predict that employees are leaving the company to look for better offers from other companies.",
+            "rawData": "From the correlation plot earlier, the **correlation** with monthly income is also **negative**. \n\nEmployees **with attrition** have **lower monthly income**. \n\nWe predict that employees are leaving the company to look for better offers from other companies.",
+            "children": [],
+            "parent": "44"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "37",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Department",
+            "rawData": "Department",
+            "children": [
+                38
+            ],
+            "parent": "36"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "38",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                39
+            ],
+            "parent": "37"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "39",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 28)",
+            "rawData": "catplot",
+            "children": [
+                131
+            ],
+            "parent": "38",
+            "cellIndex": 44,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "131",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "From this barplot, we observe that those with attrition are receiving a lower monthly income than those without attrition. \n\nIn addition, among employees without attrition, those from human resources department are earning more than sales and research. However among those with attrition, monthly income for human resources is the lowest. \n\n\n\nWith just barplots and boxplots alone, our prediction may not be accurate because the height or size of the plots may be affected by the number of employees corresponding to that category (ex. there are very few employees without attrition, hence there may be bias in the boxplots) \n\nTherefore we decided to create a random forest for a better classification accuracy of people with and without attrition. \n\nThe first step is to encode the numerical variables and then balancing.\n### OneHotEncoding \n\nAngelin and Pratham:",
+            "rawData": "From this barplot, we observe that those with attrition are receiving a lower monthly income than those without attrition. \n\nIn addition, among employees without attrition, those from human resources department are earning more than sales and research. However among those with attrition, monthly income for human resources is the lowest. \n\n\n\nWith just barplots and boxplots alone, our prediction may not be accurate because the height or size of the plots may be affected by the number of employees corresponding to that category (ex. there are very few employees without attrition, hence there may be bias in the boxplots) \n\nTherefore we decided to create a random forest for a better classification accuracy of people with and without attrition. \n\nThe first step is to encode the numerical variables and then balancing.\n### OneHotEncoding \n\nAngelin and Pratham:",
+            "children": [],
+            "parent": "39"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "49",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "OverTime",
+            "rawData": "OverTime",
+            "children": [
+                50,
+                87
+            ],
+            "parent": "36"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "87",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                88
+            ],
+            "parent": "49"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "88",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 98)",
+            "rawData": "catplot",
+            "children": [],
+            "parent": "87",
+            "cellIndex": 145,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "50",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "Department",
+            "rawData": "Department",
+            "children": [
+                51
+            ],
+            "parent": "49"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "51",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "employee",
+            "rawData": "employee",
+            "children": [
+                52
+            ],
+            "parent": "50"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "52",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "catplot (cell 72)",
+            "rawData": "catplot",
+            "children": [
+                134
+            ],
+            "parent": "51",
+            "cellIndex": 102,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "134",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "Attired employees from Research department and working overtime are actually receiving less than those who are not working overtime. They may have felt it was unfair to be receiving less even after working overtime, hence they attire.\n### 2. Attrition and Years With Current Manager",
+            "rawData": "Attired employees from Research department and working overtime are actually receiving less than those who are not working overtime. They may have felt it was unfair to be receiving less even after working overtime, hence they attire.\n### 2. Attrition and Years With Current Manager",
+            "children": [],
+            "parent": "52"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    },
+    {
+        "id": "89",
+        "type": "default",
+        "data": {
+            "nodeType": "raw",
+            "label": "JobInvolvement",
+            "rawData": "JobInvolvement",
+            "children": [
+                90,
+                92,
+                94,
+                96
+            ],
+            "parent": "36"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#E8AC6E"
+        }
+    },
+    {
+        "id": "etc4",
+        "type": "default",
+        "data": {
+            "nodeType": "etc",
+            "label": "1",
+            "rawData": "1",
+            "children": [],
+            "parent": "89"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "font-size": "10px",
+            "width": "50px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#ffffff"
+        }
+    },
+    {
+        "id": "96",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "noovertime_level4",
+            "rawData": "noovertime_level4",
+            "children": [
+                97
+            ],
+            "parent": "etc4"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "97",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "box (cell 99)",
+            "rawData": "box",
+            "children": [],
+            "parent": "96",
+            "cellIndex": 146,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    146,
+                    1
+                ],
+                [
+                    146,
+                    15
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "94",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "noovertime_level3",
+            "rawData": "noovertime_level3",
+            "children": [
+                95
+            ],
+            "parent": "89"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "95",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "box (cell 99)",
+            "rawData": "box",
+            "children": [],
+            "parent": "94",
+            "cellIndex": 146,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    146,
+                    1
+                ],
+                [
+                    146,
+                    11
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "92",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "noovertime_level2",
+            "rawData": "noovertime_level2",
+            "children": [
+                93
+            ],
+            "parent": "89"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "93",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "box (cell 99)",
+            "rawData": "box",
+            "children": [],
+            "parent": "92",
+            "cellIndex": 146,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    146,
+                    1
+                ],
+                [
+                    146,
+                    7
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "90",
+        "type": "default",
+        "data": {
+            "nodeType": "secondary",
+            "label": "noovertime_level1",
+            "rawData": "noovertime_level1",
+            "children": [
+                91
+            ],
+            "parent": "89"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#F0C633"
+        }
+    },
+    {
+        "id": "91",
+        "type": "default",
+        "data": {
+            "nodeType": "plot",
+            "label": "box (cell 99)",
+            "rawData": "box",
+            "children": [
+                145
+            ],
+            "parent": "90",
+            "cellIndex": 146,
+            "slices": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    3,
+                    0
+                ],
+                [
+                    11,
+                    0
+                ],
+                [
+                    12,
+                    0
+                ],
+                [
+                    15,
+                    0
+                ],
+                [
+                    16,
+                    0
+                ],
+                [
+                    17,
+                    0
+                ],
+                [
+                    20,
+                    0
+                ],
+                [
+                    20,
+                    1
+                ],
+                [
+                    146,
+                    1
+                ],
+                [
+                    146,
+                    3
+                ]
+            ]
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "white",
+            "font-size": "10px",
+            "width": "130px",
+            "height": "15px",
+            "padding": "10px 10px 20px 10px",
+            "backgroundColor": "#9AB75E"
+        }
+    },
+    {
+        "id": "145",
+        "type": "insight",
+        "data": {
+            "nodeType": "insight",
+            "label": "Employees without attrition, whether working overtime or not have a median job satisfaction at 3. \n\n\n\nHowever, those with attrition, have a different job satisfaction depending on whether or not they work overtime. \n\nAttiring employees not working overtime are actually less satisfied with their job than those working overtime. \n\n\n\nReasons for dissatisfaction are as follows: \n\nIn the box plot, we can see how job level 1 employees with attrition have a much lower median monthly income for every job involvement value.\n\n\n\nThis could mean that attiring employees feel unfair because they are being paid less than people in the same job level who are also not working overtime and with the same job involvement.\n\n\nThis trend is observed for all the job levels.\n### 8. Attrition and StockOptionLevel\n##### using a Classification Decision Tree",
+            "rawData": "Employees without attrition, whether working overtime or not have a median job satisfaction at 3. \n\n\n\nHowever, those with attrition, have a different job satisfaction depending on whether or not they work overtime. \n\nAttiring employees not working overtime are actually less satisfied with their job than those working overtime. \n\n\n\nReasons for dissatisfaction are as follows: \n\nIn the box plot, we can see how job level 1 employees with attrition have a much lower median monthly income for every job involvement value.\n\n\n\nThis could mean that attiring employees feel unfair because they are being paid less than people in the same job level who are also not working overtime and with the same job involvement.\n\n\nThis trend is observed for all the job levels.\n### 8. Attrition and StockOptionLevel\n##### using a Classification Decision Tree",
+            "children": [],
+            "parent": "91"
+        },
+        "position": {
+            "x": 0,
+            "y": 0
+        },
+        "style": {
+            "color": "black",
+            "display": "inline-block",
+            "width": "auto",
+            "max-width": "130px",
+            "height": "auto",
+            "font-size": "8px",
+            "backgroundColor": "#a2d2bc"
+        }
+    }
+]

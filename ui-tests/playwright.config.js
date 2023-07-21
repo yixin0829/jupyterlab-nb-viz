@@ -12,3 +12,4 @@ module.exports = {
     reuseExistingServer: !process.env.CI
   }
 };
+  
