@@ -26,32 +26,12 @@ conda create -n nb-viz --override-channels --strict-channel-priority -c conda-fo
 pip install -ve .
 # use the `develop` command to create a symbolic link from JupyterLab to our source directory. This means our changes are automatically available in JupyterLab
 jupyter labextension develop --overwrite .
-
-
-# Step 3: Intall additional dependencies
-# use jlpm (jupyter version of package manager) to add dependencies
-jlpm add @jupyterlab/apputils
-jlpm add @jupyterlab/application
-jlpm add @lumino/widgets
-## ui-components are used for creating ReactWidget from react component
-jlpm add @jupyterlab/ui-components
-# add dependencies for reactflow and autolayout (dagre)
-jlpm add reactflow
-jlpm add dagre
-# for dagre.js to work in TypeScript
-jlpm add @types/dagre
-
-# Try build (the build will likely fail, move on to see additional change to reactflow source code)
-jlpm build
+# This step might produce an error saying "ModuleNotFoundError: There is no labextension at ..", but on my end it can run properly even with this error
 
 # see additional change to reactflow source code to make build work
 # after build success run and invoke command prompt by ctrl+shift+c then enter "reactflow"
 jlpm build
 jupyter lab
-
-# alternatively, if you want the extenstion to dynamically update the changes:
-jlpm run watch
-jupyter lab # in another terminal
 ```
 
 - Additional change to reactflow source code to make `jlpm build`
