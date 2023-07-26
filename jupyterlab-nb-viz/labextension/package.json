@@ -71,6 +71,7 @@
     "add": "^2.0.6",
     "axios": "^1.4.0",
     "dagre": "^0.8.5",
+    "highlight.js": "^11.8.0",
     "html-to-image": "^1.11.11",
     "react-loader-spinner": "^5.3.4",
     "react-markdown": "^8.0.7",
@@ -124,7 +125,7 @@
     "extension": true,
     "outputDir": "jupyterlab-nb-viz/labextension",
     "_build": {
-      "load": "static/remoteEntry.c212e1299755ec5aa69e.js",
+      "load": "static/remoteEntry.ff8073e868788220de09.js",
       "extension": "./extension",
       "style": "./style"
     }

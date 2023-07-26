@@ -11,7 +11,7 @@ const PlotNode = ({ data }: NodeProps) => {
       whiteSpace: "nowrap" as "nowrap",
     };
     const codeStyle = {
-        fontSize: "8px",
+        fontSize: "12px",
         color: "black"
     }
     // const [imageData, setImageData] = useState<Blob|null>(null);
@@ -42,9 +42,11 @@ const PlotNode = ({ data }: NodeProps) => {
     //     }
     // }, [imageData]);
     
+    const backendUrl = "http://128.100.10.43:8080/proxy/4000";
+
     useEffect(() => {
         // Fetch the image data from the server
-        axios.get(`http://127.0.0.1:4000/plot/${data.methodId}`, { responseType: 'blob', withCredentials: true })
+        axios.get(backendUrl + `/plot/${data.methodId}`, { responseType: 'blob', withCredentials: true })
           .then((response) => {
             const blob = response.data;
             const reader = new FileReader();

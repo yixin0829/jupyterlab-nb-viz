@@ -26,12 +26,13 @@ export function Legend() {
     }
     const legendLongText= {
         flex: "1",
-        maxWidth: "150px",
+        maxWidth: "200px",
         wordWrap: "break-word" as "break-word"
     }
     const legendCardStyle = {
         display: 'flex', 
-        justifyContent: 'left'
+        justifyContent: 'left',
+        width: '400px',
     }
     const [visible, setVisible] = useState(false);
     
@@ -75,13 +76,13 @@ export function Legend() {
 
     return (
         <div>
-            <CButton className="mb-3" color="warning" onClick={() => setVisible(!visible)} aria-expanded={visible} aria-controls="collapseWidthExample">
+            <CButton className="mb-3" color="warning" onClick={() => setVisible(!visible)} aria-expanded={visible} aria-controls="collapseLegend">
                 Show legend
             </CButton>
             <div style={{ minHeight: '120px'}}>
-            <CCollapse id="collapseWidthExample" horizontal visible={visible}>
+            <CCollapse id="collapseLegend" horizontal visible={visible}>
                 <CCard style={legendCardStyle}>
-                <CCardBody style={{backgroundColor: '#E1E1E1', opacity: '0.8', padding: '10px', width: "300px"}}>
+                <CCardBody style={{backgroundColor: '#E1E1E1', opacity: '0.8', padding: '10px', width: "400px"}}>
                     <ul>
                     <li>
                         <div style={ legendItemStyle }>
@@ -103,11 +104,17 @@ export function Legend() {
                     </li>
                     <li>
                         <div style={legendItemStyle}>
+                            <div style={{...legendNodeStyle, backgroundColor: '#E8AC6E', opacity: "0.5"}}></div>
+                            <span style={legendLongText}>Recommendation column</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div style={legendItemStyle}>
                             <div style={legendNodeStyle}>
                                 <span style={redStyle}>----</span>x/y<span style={redStyle}>----</span>
                             </div>
                             <span style={legendLongText}>
-                                Recommendation edge: this column combination appears in y notebooks for x times.
+                                Recommendation edge
                                 </span>
                         </div>
                     </li>

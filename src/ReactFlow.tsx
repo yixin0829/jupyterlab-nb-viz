@@ -34,16 +34,18 @@ import {
     isEdgeRemoveable,
     removeEdge,
     isEdgeConnectable,
-    EdgeOperation} from "./TreeUtils";
+    EdgeOperation,
+    getPathVariableCombination} from "./TreeUtils";
 import InsightNode from "./InsightNode";
 import PlotNode from "./PlotNode";
 import { Legend } from "./Legend";
-import RecommendEdge from "./RecommendEdge";
+// import RecommendEdge from "./RecommendEdge";
 import RawNode from "./RawNode";
 import { CButton, CDropdown, CDropdownItem, CDropdownMenu, CDropdownToggle } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { cilReload } from "@coreui/icons";
-import { DownloadButton } from "./DownloadButton";
+import { RecommendationCodeSnippets } from "./RecommendationCodeSnippets";
+// import { DownloadButton } from "./DownloadButton";
 
 const panOnDrag = [1, 2];
 const HIGHLIGHTED_LINE_CLASS = "jp-InputArea-editor-dependencyline";
@@ -77,9 +79,9 @@ const nodeTypes = {
     plot: PlotNode,
     raw: RawNode
 };
-const edgeTypes = {
-    recommended: RecommendEdge,
-}
+// const edgeTypes = {
+//     recommended: RecommendEdge,
+// }
 
 
 interface FlowComponentProps {
@@ -95,6 +97,14 @@ const FlowComponent = (props: FlowComponentProps) => {
     const [canCollapseAll, setCanCollapseAll] = useState(false);
     const [canCollapseNonTop, setCanCollapseNonTop] = useState(false);
     const [isRecommendationDisplayed, setIsRecommendationDisplayed] = useState(false);
+    
+    const defaultSrcNbAndCode = {
+        sourceNotebook: "",
+        sourceCode: ["# Loading, please wait for a while..."],
+    };
+    const [isRecommendNodeSelected, setIsRecommendNodeSelected] = useState(false);
+    const [selectedRecommendedPath, setSelectedRecommendedPath] = useState<string[]>([]);
+    const [srcNbAndCodeListForRec, setSrcNbAndCodeListForRec] = useState([defaultSrcNbAndCode,]);
 
     const [allNodes, setAllNodes] = useState<Node[] | null>([]);
     const [allEdges, setAllEdges] = useState<Edge[] | null>([]);
@@ -197,6 +207,29 @@ const FlowComponent = (props: FlowComponentProps) => {
         console.log(`activeCellIndex after setFocusCell: ${props.notebookTracker.currentWidget.content.activeCellIndex}`);
     }
 
+    function fetchCodeSnippetForSelectedRecommendation(variableCombination: string[]) {
+        if (variableCombination.length === 0) {
+            console.log(`[FetchRecommendationCodeSnippets] empty variableCombination`);
+            return [defaultSrcNbAndCode,];
+        }
+        console.log(`[FetchRecommendationCodeSnippets] start to fetch code snippets of variableCombination=${variableCombination}:`);
+        const recommendationCodeSnippetUrl = backendUrl + "/recommendation-code-snippets";
+        const request = {
+            variableCombination: JSON.stringify(variableCombination),
+        }
+        trackPromise(
+        axios.post(recommendationCodeSnippetUrl, request, {withCredentials: true, }).then((response) => {
+            console.log(`[FetchRecommendationCodeSnippets] Fetched code snippets of variableCombination=${variableCombination}:`);
+            const newSrcNbAndCodeList = response.data.srcNotebooksAndCode;
+            if (newSrcNbAndCodeList.length === 0) {
+                newSrcNbAndCodeList.push(defaultSrcNbAndCode);
+            }
+            setSrcNbAndCodeListForRec(newSrcNbAndCodeList);
+        }).catch((error) => {
+            console.error(`Error when fecthing code snippets of variableCombination=${variableCombination}:`, error);
+        }));
+    }
+
 
     const handleNodeClick = (event: MouseEvent, node: Node) => {
         if (allNodes === null || allEdges === null) {
@@ -217,7 +250,9 @@ const FlowComponent = (props: FlowComponentProps) => {
         });
         setNodes(newNodes);
 
-        if ((node.data.nodeType !== 'plot') && (node.data.nodeType !== 'insight')) {
+        const highlightNodeTypes = ["insight", "plot"];
+        if (node.data.nodeType === 'raw') {
+            // update collapse/expand state
             const selectedNodeHasChildren = nodes.some((n) => n.data.parent === node.id);
             setCanExpandAll(!selectedNodeHasChildren);
             setCanCollapseAll(selectedNodeHasChildren);
@@ -240,7 +275,7 @@ const FlowComponent = (props: FlowComponentProps) => {
                 return;
             }
         }
-        else {
+        else if (highlightNodeTypes.includes(node.data.nodeType)) {
             // disable buttons
             setCanExpandAll(false);
             setCanCollapseAll(false);
@@ -264,6 +299,14 @@ const FlowComponent = (props: FlowComponentProps) => {
             else {
                 console.log('FlowWidget: No notebookTracker');
             }
+        }
+        else if (node.data.nodeType === 'recommended') {
+            const variableCombination = getPathVariableCombination(node, allNodes);
+            console.log(`[handleNodeClick] Select variableCombination=${variableCombination}, start to fetch code snippets.`);
+            fetchCodeSnippetForSelectedRecommendation(variableCombination);
+            setIsRecommendNodeSelected(true);
+            console.log(`[handleNodeClick] subset of selected recommend node=${variableCombination}`);
+            setSelectedRecommendedPath(variableCombination);
         }
 
     }
@@ -362,8 +405,15 @@ const FlowComponent = (props: FlowComponentProps) => {
         resetNodeStyles();
         setSelectedNode(null);
         setSelectedEdge(null);
+        setIsRecommendNodeSelected(false);
+        setSelectedRecommendedPath([]);
+        setSrcNbAndCodeListForRec([defaultSrcNbAndCode,]);
         edgeOperations.current = [];
     }
+
+    // const backendUrl = "http://127.0.0.1:4000";
+    // send request through jupyter_server_proxy to prevent Same-Origin-P error
+    const backendUrl = "http://128.100.10.43:8080/proxy/4000";
 
     const refreshSMITree = () => {
         console.log('[refreshSMITree] refreshSMITree.');
@@ -377,7 +427,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             notebook: JSON.stringify(props.notebookPanel!.model!.toJSON()),
         }
         trackPromise(
-        axios.post('http://127.0.0.1:4000/tracking-tree', request, {withCredentials: true, }).then((response) => {
+        axios.post(backendUrl + '/tracking-tree', request, {withCredentials: true, }).then((response) => {
             console.log(`[refreshSMITree] get response.`);
             const refreshedNodes = response.data.nodes;
             const refreshedEdges = response.data.edges;
@@ -399,7 +449,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             setEdges(layoutedEdges);
             // console.log(`[refreshSMITree] successfully refreshed nodes and edges.`);
         }).catch((error) => {
-            console.log(`[refreshSMITree] error: ${error} when sending post request to http://128.100.10.43:4000/tracking-tree`);
+            console.log(`[refreshSMITree] error: ${error} when sending post request to ${backendUrl}/tracking-tree`);
         }));
     }
 
@@ -415,8 +465,8 @@ const FlowComponent = (props: FlowComponentProps) => {
             edges: JSON.stringify(edges),
         }; // send current Nodes and Edges to backend so that recommendations will not be generated for hidden nodes
         trackPromise(
-        axios.post('http://127.0.0.1:4000/recommendations', request, {withCredentials: true}).then((response) => {
-            console.log(`[getRecommendations] get response: ${JSON.stringify(response.data)}`);
+        axios.post(backendUrl + '/recommendations', request, {withCredentials: true, }).then((response) => {
+            // console.log(`[getRecommendations] get response: ${JSON.stringify(response.data)}`);
             const recommendedNodes = response.data.recommendedNodes;
             const recommendedEdges = response.data.recommendedEdges;
             const newAllNodes = allNodes.concat(recommendedNodes);
@@ -511,7 +561,6 @@ const FlowComponent = (props: FlowComponentProps) => {
 
     const dropdownButtonStyle = {
         height: "35px", 
-        marginLeft: "10px",
     };
 
     const pageTopContainerStyle = { 
@@ -533,6 +582,14 @@ const FlowComponent = (props: FlowComponentProps) => {
     const buttonGroupWithBorderSytle = { 
         border: "2px dashed black",
         padding: "5px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    };
+
+    const recommendationButtonStyle = {
+        height: "35px",
+        minWidth: "220px",
     };
 
     const iconStyle = {
@@ -546,7 +603,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             nodes={nodes}
             edges={edges}
             nodeTypes={nodeTypes}
-            edgeTypes={edgeTypes}
+            // edgeTypes={edgeTypes}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
@@ -567,27 +624,34 @@ const FlowComponent = (props: FlowComponentProps) => {
             
         <Panel position="top-center" style={{width: "100%"}}>
             <div style={pageTopContainerStyle}>
-            <div style={{flex: "1"}}>
+            <div style={{flex: "1", maxWidth: "150px"}}>
                 <Legend />
             </div>
 
-            <div style={{flex: "1"}}>
+            <div style={{flex: "1", maxWidth: "50px"}}>
                 {/* <CButton style={dropdownButtonStyle} onClick={refreshSMITree}>Refresh</CButton> */}
                 <CIcon icon={cilReload} style={iconStyle} size="xxl" onClick={refreshSMITree} title={"Generate/refresh the tree"}/>
-                <DownloadButton/>
+                {/* <DownloadButton/> */}
             </div>
 
-            <div style={buttonContainerStyle}>
-                <LoadIndicator/>
-            </div>
+            <div style={{flex: "1", maxWidth: "100px"}}><LoadIndicator/></div>
+            
             
             <div style={buttonContainerStyle}>
-                <div style={{...buttonGroupWithBorderSytle, minWidth:"250px"}}>
-                    {(!isRecommendationDisplayed) && <CButton color="warning" style={dropdownButtonStyle} onClick={getRecommendations}>Show recommendations</CButton> }
-                    {(isRecommendationDisplayed) && <CButton color="warning" style={dropdownButtonStyle} onClick={disableRecommendations} disabled={!isRecommendationDisplayed}>Hide recommendations</CButton>}
+                <div style={{...buttonGroupWithBorderSytle}}>
+                    {(!isRecommendationDisplayed) && <CButton color="warning" style={recommendationButtonStyle} onClick={getRecommendations}>Show recommendations</CButton> }
+                    {(isRecommendationDisplayed) && <CButton color="warning" style={recommendationButtonStyle} onClick={disableRecommendations} disabled={!isRecommendationDisplayed}>Hide recommendations</CButton>}
                 </div>
                 <span>Get help in data explartion</span>
             </div>
+            
+            {isRecommendNodeSelected &&
+                <div style={{flex: "1"}}>
+                    <RecommendationCodeSnippets 
+                        variableCombination={selectedRecommendedPath}
+                        srcNbAndCodeList={srcNbAndCodeListForRec}/>
+                    </div>}
+
 
             <div style={buttonContainerStyle}>
                 <div style={{...buttonGroupWithBorderSytle}}>
@@ -599,7 +663,7 @@ const FlowComponent = (props: FlowComponentProps) => {
                             <CDropdownItem onClick={collapseBackToInitial}>Collapse the whole tree back to initial</CDropdownItem>
                         </CDropdownMenu>
                     </CDropdown>
-                    <CDropdown style={dropdownButtonStyle}>
+                    <CDropdown style={{...dropdownButtonStyle, marginLeft: "10px"}}>
                         <CDropdownToggle color="warning">Expand</CDropdownToggle>
                         <CDropdownMenu>
                             <CDropdownItem onClick={handleExpandAllChildrenButtonClick}>Expand all children of the selected node</CDropdownItem>

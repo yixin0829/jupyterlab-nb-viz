@@ -59,3 +59,10 @@ def _load_jupyter_server_extension(server_app):
 
 # For backward compatibility with notebook server - useful for Binder/JupyterHub
 load_jupyter_server_extension = _load_jupyter_server_extension
+
+
+# def setup_backend_proxy():
+#     return {
+#         "timeout": 200,
+#         "port": 4000,
+#     }

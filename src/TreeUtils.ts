@@ -371,3 +371,41 @@ export function isEdgeUpdatable(selectedEdge: Edge, curNodes: Node[]|null) {
     return targetNode.data.nodeType === 'insight';
 }
 
+export function getPathVariableCombination(selectedNode: Node|null, allNodes: Node[]|null) {
+    // get the column combination of the path from root to leafNode
+    if (allNodes === null || selectedNode === null) {
+        return [];
+    }
+    if (selectedNode.data.nodeType !== 'recommended') {
+        console.log(`[getPathVariableCombination] selectedNode is not a recommended node`)
+        return [];
+    }
+    console.log(`[getPathVariableCombination] selectedNode=${selectedNode}`);
+    const pathVariables = [];
+    const validNodeTypes = ['raw', 'implicit', 'recommended'];
+    let currentNode = selectedNode;
+    // if the selectedNode is not a leaf node, find its child until it's a leaf node
+    while (currentNode.data.children !== undefined && currentNode.data.children.length > 0) {
+        const childNode = getNodeById(currentNode.data.children[0], allNodes);
+        console.log(`[getPathVariableCombination] childNode=${JSON.stringify(childNode)}`);
+        if (childNode.data.nodeType !== 'recommended') {
+           break;
+        }
+        currentNode = childNode;
+    }
+    while (currentNode.data.parent !== undefined) {
+        if (validNodeTypes.includes(currentNode.data.nodeType)) {
+            pathVariables.push(currentNode.data.rawData);
+        }
+        const parent = getNodeById(currentNode.data.parent, allNodes);
+        currentNode = parent;
+    }
+    // console.log(`[getPathVariableCombination] get pathVariables=${pathVariables}`);
+    pathVariables.reverse();
+    return pathVariables;
+}
+
+export interface SrcNbAndCode {
+    sourceNotebook: string;
+    sourceCode: string[];
+}

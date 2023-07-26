@@ -76,6 +76,14 @@ setup_args = dict(
         # "Framework :: Jupyter :: JupyterLab :: Extensions",
         # "Framework :: Jupyter :: JupyterLab :: Extensions :: Prebuilt",
     ],
+    
+    # for server proxy
+    # entry_points={
+    #     "jupyter_serverproxy_servers": [
+    #         "backend = jupyterlab_nb_viz:setup_backend_proxy"
+    #     ]
+    # },
+    # install_requires=["jupyter_server_proxy"],
 )
 
 try:

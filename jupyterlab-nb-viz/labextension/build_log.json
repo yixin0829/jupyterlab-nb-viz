@@ -653,6 +653,7 @@
             "add": {},
             "axios": {},
             "dagre": {},
+            "highlight.js": {},
             "html-to-image": {},
             "react-loader-spinner": {},
             "react-markdown": {},

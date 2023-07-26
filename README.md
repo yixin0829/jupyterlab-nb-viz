@@ -48,6 +48,17 @@ jupyter lab
         - `declare const ReactFlowProvider: FC<PropsWithChildren<{foo: string}>>;`
     - error3: `type` is undefined
         - Solution - Remove all `type` keywords
+    - error4: `[Symbol.iterator]` is declared here.
+      - Solution: remove the folder `/node_modules/@jupyterlab/application/node_modules`
+    - error 5: node_modules/highlight.js/types/index.d.ts:55:54 - error TS1256: A rest element must be last in a tuple type.
+      - Solution:
+      ```
+      <<<<<<
+            either: (...args: (RegExp | string)[] | [...(RegExp | string)[], RegexEitherOptions]) => string,
+======
+            either: (...args: (RegExp | string)[] | [RegexEitherOptions, ...(RegExp | string)[]]) => string,
+>>>>>>
+      ```
 - To start developing
   - Run `jlpm build` every time make changes to the sources code
   - Refresh the Jupyter Lab client
