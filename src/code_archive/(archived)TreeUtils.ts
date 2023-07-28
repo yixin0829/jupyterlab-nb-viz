@@ -16,13 +16,13 @@ export const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') 
     });
 
     // edge cleanup to avoid orphan edges
-    // const edgesAfterCleanUp = edges.filter((e) => nodes.some((n) => n.id === e.source) && nodes.some((n) => n.id === e.target));
+    const edgesAfterCleanUp = edges.filter((e) => nodes.some((n) => n.id === e.source) && nodes.some((n) => n.id === e.target));
 
     // Add nodes and edges into dagreGraph
     nodes.forEach((node:Node) => {
         dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
     });
-    edges.forEach((edge:Edge) => {
+    edgesAfterCleanUp.forEach((edge:Edge) => {
         dagreGraph.setEdge(edge.source, edge.target);
     });
 
@@ -46,7 +46,7 @@ export const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') 
 
         return node;
     });
-    return { nodes: nodes, edges: edges };
+    return { nodes: nodes, edges: edgesAfterCleanUp };
 };
 
 // function getEdgeLabel(sourceId: String, targetId: String, allEdges: Edge[]) {
@@ -59,7 +59,6 @@ export const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') 
 // }
 
 function getNodeById(nodeId: string, allNodes: Node[]) {
-    nodeId = nodeId.toString();
     const node = allNodes.find((n) => n.id === nodeId);
     if (node === undefined) {
         throw new Error(`[getNodeById] Node with id=${nodeId} is not found`);
@@ -67,178 +66,163 @@ function getNodeById(nodeId: string, allNodes: Node[]) {
     return node;
 }
 
-
-// function getSubtreeNodes(rootNode: Node, allNodesBackend: Node[]) {
-//     // get all Nodes that belongs to the subtree whose root is node
-//     const subtreeNodes:Node[] = [];
-//     const queue:Node[] = [rootNode];
-//     while (queue.length > 0) {
-//         const currentNode: Node = queue.shift()!;
-//         subtreeNodes.push(currentNode);
-//         const children = currentNode.data.children.map((id: string) => getNodeById(id, allNodesBackend));
-//         children.forEach((child: Node) => {
-//             queue.push(child);
-//         });
-//     }
-//     return subtreeNodes;
-// }
-
-const etcNodeStyle = {
-    color: "black",
-    fontSize: "12px",
-    width: "50px",
-    height: "15px",
-    padding: "5px 5px 20px",
-    backgroundColor:"#ffffff",
-    zIndex: -1,
+function getSubtreeElements(node: Node, 
+    curNodes: Node[], 
+    allEdges: Edge[], 
+    skipSubtreeOfEtc: boolean = true, 
+    includeRootEdges: boolean = true) {
+    // Find all the nodes that belongs to the subtree whose root is node
+    // subtree does NOT include the node itself
+    const subtreeNodes:Node[] = [];
+    // const subtreeEdges:Edge[] = [];
+    const queue:Node[] = [node];
+    while (queue.length > 0) {
+        const currentNode: Node = queue.shift()!;
+        if (currentNode !== node) {
+            subtreeNodes.push(currentNode);
+            if (skipSubtreeOfEtc && currentNode.data.nodeType === 'etc') {
+                continue;
+            }
+        }
+        const children = curNodes.filter((n) => n.data.parent === currentNode.id);
+        children.forEach((child) => {
+            queue.push(child);
+        });
+    }
+    const subtreeEdgesExceptRoot = allEdges.filter((e) => subtreeNodes.some((sn) => sn.id === e.target) && subtreeNodes.some((sn) => sn.id === e.source)); 
+    if (includeRootEdges) {
+        const rootEdges = allEdges.filter((e) => (e.source === node.id) && subtreeNodes.some((sn) => sn.id === e.target));
+        const subtreeEdges = subtreeEdgesExceptRoot.concat(rootEdges);
+        return { subtreeNodes, subtreeEdges };
+    }
+    const subtreeEdges = subtreeEdgesExceptRoot;
+    return { subtreeNodes, subtreeEdges };
 }
 
-function createEtcNode(parentNode: Node, etcThreshold: number = 3) {
-    const etcNode: Node = {
-        id: `etc${parentNode.id}`,
-        type: `default`,
-        data: {
-            nodeType: "etc",
-            label: `${parentNode.data.children.length - etcThreshold}`,
-            parent: parentNode.id,
-            rawData: `${parentNode.data.children.length - etcThreshold}`,
-        },
-        position: { x: 0, y: 0 },
-        style: etcNodeStyle,
-        };
-    return etcNode;
-}
-
-export function getInitialNodes(allNodesBackend: Node[], etcThreshold: number = 3) {
-    // Get initial elements, add etc nodes to allNodesBackend
+export function getInitialElements(allNodes: Node[], allEdges: Edge[]) {
     // Find the root node
-    const rootNode = allNodesBackend.find((n) => n.data.label === 'root');
+    const rootNode = allNodes.find((n) => n.data.label === 'root');
     if (rootNode === undefined) {
         throw new Error('No root node found');
     }
-    // traverse the tree and only keep top 3 children of each node
-    const initialNodes: Node[] = [];
-    const queue: Node[] = [rootNode];
-    while (queue.length > 0) {
-        const currentNode = queue.shift()!;
-        initialNodes.push(currentNode);
-        const topChildrenId = currentNode.data.children.slice(0, etcThreshold);
-        const topChildren = topChildrenId.map((id: string) => getNodeById(id, allNodesBackend));
-        topChildren.forEach((child: Node) => {queue.push(child);});
-        if (currentNode.data.children.length > etcThreshold) {
-            // create Etc node if there are more than 3 children
-            const etcNode = createEtcNode(currentNode, etcThreshold);
-            initialNodes.push(etcNode);
+    // Find all the nodes that belongs to the subtree whose root is rootNode
+    const {subtreeNodes: initialNodes, subtreeEdges: initialEdges} = getSubtreeElements(rootNode, allNodes, allEdges);
+    initialNodes.push(rootNode);
+    return { nodes: initialNodes, edges: initialEdges };
+}
+
+function expandAllNodes(allNodes: Node[], allEdges: Edge[]) {
+    const newNodes = allNodes.filter((n) => n.data.nodeType !== 'etc');
+        let edgesToRemove = allEdges.filter((e) => (e.target.startsWith('etc')));
+        // change the edge whose source is etc to its parent
+        const etcNodes = allNodes.filter((n) => n.data.nodeType === 'etc');
+        const newEdges = allEdges.map((e) => {
+            if (etcNodes.some((n) => n.id === e.source)) {
+                e.source = etcNodes.find((n) => n.id === e.source)!.data.parent!;
             }
-    }
-    return initialNodes;
+            return e;
+        })
+    const newEdgesAfterCleanUp = newEdges.filter((e) => !edgesToRemove.some((et) => et.id === e.id));
+    const { nodes: layoutedNewNodes, edges: layoutedNewEdges } = getLayoutedElements(newNodes, newEdgesAfterCleanUp);
+    return { nodes: layoutedNewNodes, edges: layoutedNewEdges };
 }
 
-
-function expandEtcNode(selectedNode: Node|null, curNodes: Node[]|null, allNodesBackend: Node[]) {
-    if (selectedNode === null || curNodes === null || selectedNode.data.nodeType !== 'etc') {
+function expandEtcNode(selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[], allEdges: Edge[]) {
+    if (selectedNode === null || curNodes === null || curEdges === null || selectedNode.data.nodeType !== 'etc') {
         console.log(`[TreeUtils] Invalid input: selectedNode=${selectedNode}, nodeType=${selectedNode?.data.nodeType}}`);
-        return curNodes;
+        return { nodes: curNodes, edges: curEdges };
     }
-    // replace the etcNode with the original children of the parent
-    const etcNode = selectedNode;
-    const parentNode = getNodeById(etcNode.data.parent, allNodesBackend);
-    const parentChildrenId = parentNode!.data.children;
-    const parentChildren = parentChildrenId.map((id: string) => getNodeById(id, allNodesBackend));
-    const childrenNotInCurNodes = parentChildren.filter((c: Node) => !curNodes.some((n) => n.id === c.id));
-    const newNodesAfterRemoveEtc = curNodes.filter((n) => n.id !== etcNode.id)
-    const newNodes = newNodesAfterRemoveEtc.concat(childrenNotInCurNodes);
-    return newNodes;
+    
+    const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(selectedNode, allNodes, allEdges, true, false);
+    const newNodes = curNodes.concat(subtreeNodes).filter((n) => n.id !== selectedNode.id);
+    // const newEdges = curEdges.concat(subtreeEdges).map((e) => {
+    //     if (e.source === selectedNode.id) {
+    //         e.source = selectedNode.data.parent;
+    //     }
+    //     return e;
+    // }).filter((e) => e.target !== selectedNode.id);
+    const directChildrenOfEtc = allNodes.filter((n) => n.data.parent === selectedNode.id);
+    const parentNodeId = selectedNode.data.parent;
+    const parentDirectChildrenEdges: Edge[] = directChildrenOfEtc.map((child) => {
+        return {
+            id: `${parentNodeId}-${child.id}`,
+            source: parentNodeId,
+            target: child.id,
+        };
+    })
+    const parentEtcEdge = curEdges.find((e) => e.source === parentNodeId && e.target === selectedNode.id);
+    // newEdges = curEdges - parentEtcEdge + subtreeEdges + parentDirectChildrenEdges
+    const newEdges = curEdges.filter((e) => e.id !== parentEtcEdge!.id).concat(subtreeEdges).concat(parentDirectChildrenEdges);
+    console.log(`[expandEtcNode] After expandEtcNode:\nedges=${JSON.stringify(newEdges)}\nallEdges=${JSON.stringify(allEdges)}`);
+
+    return { nodes: newNodes, edges: newEdges};
 }
 
-
-function expandAllNodes(allNodesBackend: Node[]) {
-    // change the label back
-    const newNodes = allNodesBackend.map((n) => {
-        if (n.data.label.endsWith(' (+)')) {
-            n.data = {...n.data, label: n.data.rawData}
-        }
-        return n;
-    });
-    return newNodes;
-}
-
-
-function expandSubtree(selectedNode: Node|null, curNodes: Node[]|null, allNodes: Node[], etcThreshold: number = 3) {
-    if (selectedNode === null || curNodes === null) {
-        console.log(`[TreeUtils] Invalid input: selectedNode=${selectedNode}, curNodes=${curNodes}`);
-        return curNodes;
+function expandSubtree(selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[], allEdges: Edge[]) {
+    if (selectedNode === null || curNodes === null || curEdges === null) {
+        console.log(`[TreeUtils] Invalid input: selectedNode=${selectedNode}`);
+        return { nodes: curNodes, edges: curEdges };
     }
+    
     if (selectedNode.data.nodeType === 'etc') {
-        return expandEtcNode(selectedNode, curNodes, allNodes);    
+        return expandEtcNode(selectedNode, curNodes, curEdges, allNodes, allEdges);    
     }
-    // expand all children of selected node, but only keep top a few children and add etcNode
-    const subtreeNodes:Node[] = [];
-    const queue:Node[] = [selectedNode];
-    while (queue.length > 0) {
-        const currentNode: Node = queue.shift()!;
-        subtreeNodes.push(currentNode);
-        const topChildrenId = currentNode.data.children.slice(0, etcThreshold);
-        const topChildren = topChildrenId.map((id: string) => getNodeById(id, allNodes));
-        topChildren.forEach((child: Node) => {queue.push(child);});
-        // create Etc node if there are more than 3 children
-        if (currentNode.data.children.length > etcThreshold) {
-            const etcNode = createEtcNode(currentNode, etcThreshold);
-            subtreeNodes.push(etcNode);
-        }
-    }
+    const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(selectedNode, allNodes, allEdges);
     const newNodes = curNodes.concat(subtreeNodes);
+    const newEdges = curEdges.concat(subtreeEdges);
+    const newNodesAfterLabelChange = newNodes.map((n) => {
+        if (n.id === selectedNode.id && n.data.label.endsWith(" (+)")) {
+            const curLabel = n.data.label;
+            n.data = {...n.data, label: curLabel.substring(0, curLabel.length - 4)} 
+        };
+        return n;
+        }
+    );
+    return { nodes: newNodesAfterLabelChange, edges: newEdges };
+}
+
+
+function collapseBackEtcNode(parentNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[], allEdges: Edge[]) {
+    if (parentNode === null || curNodes === null || curEdges === null) {
+        console.log(`[TreeUtils] Invalid input: selectedNode=${parentNode}`);
+        return { nodes: curNodes, edges: curEdges };
+    }
+    const etcNode = allNodes.find((n) => n.data.parent === parentNode.id && n.data.nodeType === 'etc');
+    if (! etcNode) {
+        console.log('No etc node found in children so cannot do collapseNonTop');
+        return {nodes: curNodes, edges: curEdges};
+    }
+    const {subtreeNodes: etcSubtreeNodes, subtreeEdges: etcSubtreeEdges} = getSubtreeElements(etcNode!, allNodes, allEdges, false, false);
+    const newNodes = curNodes.filter((n) => !etcSubtreeNodes.some((sn) => sn.id === n.id)).concat(etcNode); // remove all the nodes in subtree
+    const parentChildrenEdges = curEdges.filter((e) => e.source === parentNode.id && getNodeById(e.target, allNodes).data.parent === etcNode.id);
+    const etcEdge = allEdges.filter((e) => e.target === etcNode.id && e.source === parentNode.id);
+    // newEdges = curEdges - etcSubtreeEdges (without root edges) - parentChildrenEdges + etcNodeEdge
+    const newEdges = curEdges.filter((e) => !etcSubtreeEdges.some((se) => se.id === e.id)).filter((e) => !parentChildrenEdges.some((pce) => pce.id === e.id)).concat(etcEdge);
+    // add the etcNode to newNodes
+    console.log(`[expandEtcNode] After expandEtcNode:\nedges=${JSON.stringify(newEdges)}\nallEdges=${JSON.stringify(allEdges)}`);
+    return { nodes: newNodes, edges: newEdges };
+}
+
+function collapseSubtree(selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[], allEdges: Edge[]) {
+    if (selectedNode === null || curNodes === null || curEdges === null) {
+        console.log(`[TreeUtils] Invalid input: selectedNode=${selectedNode}`);
+        return { nodes: curNodes, edges: curEdges };
+    }
+    const { nodes: nodesAfterCollapseEtcBack, edges: edgesAfterCollapseEtcBack } = collapseBackEtcNode(selectedNode, curNodes, curEdges, allNodes, allEdges);
+    const {subtreeNodes: subtreeNodes, subtreeEdges: subtreeEdges} = getSubtreeElements(selectedNode, allNodes, allEdges, false);
+    const newNodes = nodesAfterCollapseEtcBack!.filter((n) => !subtreeNodes.some((sn) => sn.id === n.id)); // remove all the nodes in subtree
+    console.log(`[collapseSubtree] prevNodes length=${curNodes.length}, newNodes length=${newNodes.length}`);
+    const labelWhenCollapse = selectedNode.data.rawData + ' (+)';
     const newNodesAfterLabelChange = newNodes.map((n) => {
         if (n.id === selectedNode.id) {
-            n.data = {...n.data, label: selectedNode.data.rawData}
-        } 
+            n.data = {...n.data, label: labelWhenCollapse} 
+        };
         return n;
-        });
-    return newNodesAfterLabelChange;
-}
-
-
-function collapseBackEtcNode(selectedNode: Node|null, curNodes: Node[]|null, allNodes: Node[], etcThreshold: number = 3) {
-    if (selectedNode === null || curNodes === null) {
-        console.log(`[TreeUtils] Invalid input: selectedNode=${selectedNode}, curNodes=${curNodes}`);
-        return curNodes;
-    }
-    // remove all non-top nodes in children of selectedNode and add etcNode back
-    if (selectedNode.data.children.length <= etcThreshold) {
-        return curNodes;
-    }
-    const nonTopChildrenId = selectedNode.data.children.slice(etcThreshold);
-    const nonTopChildren = nonTopChildrenId.map((id: string) => getNodeById(id, allNodes));
-    const newNodesAfterRemoveNonTop = curNodes.filter((n) => !nonTopChildren.some((c: Node) => c.id === n.id));
-    const etcNode = createEtcNode(selectedNode, etcThreshold);
-    const newNodes = newNodesAfterRemoveNonTop.concat(etcNode);
-    return newNodes;
-}
-
-function collapseSubtree(selectedNode: Node|null, curNodes: Node[]|null, allNodes: Node[]) {
-    if (selectedNode === null || curNodes === null ) {
-        console.log(`[TreeUtils] Invalid input: selectedNode=${selectedNode}`);
-        return curNodes;
-    }
-    if (selectedNode.data.children.length <= 0) {
-        return curNodes;
-    }
-    // create newNodes with all nodes belonging to subtree of selectedNode removed
-    const subtreeNodes: Node[] = [];
-    const queue:Node[] = [selectedNode];
-    while (queue.length > 0) {
-        const currentNode: Node = queue.shift()!;
-        subtreeNodes.push(currentNode);
-        // get all nodes in curNodes whose parent is currentNode
-        const childrenInCurNodes = curNodes.filter((n) => n.data.parent === currentNode.id);
-        childrenInCurNodes.forEach((child: Node) => {queue.push(child);});
-    }
-    console.log(`[collapseSubtree] subtreeNodes=${JSON.stringify(subtreeNodes)}`);
-    const newNodesWithoutSelectedNode = curNodes.filter((n) => !subtreeNodes.some((sn) => sn.id === n.id));
-    // change the label selectedNode by adding (+)
-    selectedNode.data.label = `${selectedNode.data.rawData} (+)`;
-    const newNodes = newNodesWithoutSelectedNode.concat(selectedNode);
-    return newNodes;
+        }
+    );
+    const newEdges = edgesAfterCollapseEtcBack!.filter((e) => !subtreeEdges.some((se) => se.id === e.id)); // remove all the edges in subtree
+    const newEdgesAfterCleanUp = newEdges.filter((e) => !subtreeNodes.some((sn) => sn.id === e.source)); // remove all edges that has source in subtree
+    return { nodes: newNodesAfterLabelChange, edges: newEdgesAfterCleanUp };
 }
 
 
@@ -249,32 +233,25 @@ function getNewNodesAndEdges(command:string, selectedNode: Node|null, curNodes: 
     }
     switch (command) {
         case 'GetInitial': {
-            const initialNodes = getInitialNodes(allNodes);
-            return {nodes: initialNodes, edges: createEdgesBasedOnNodes(initialNodes)};
+            return getInitialElements(allNodes, allEdges);
         }
         case 'ExpandAllNodes': {
-            const newNodes = expandAllNodes(allNodes)
-            return { nodes: newNodes, edges: createEdgesBasedOnNodes(newNodes)};
+            return expandAllNodes(allNodes, allEdges);
         }
         case 'CollapseBackToInitial': {
-            const initialNodes = getInitialNodes(allNodes);
-            return { nodes: initialNodes, edges: createEdgesBasedOnNodes(initialNodes)};
+            return getInitialElements(allNodes, allEdges);
         }
         case 'ExpandEtcNode': {
-            const newNodes = expandEtcNode(selectedNode, curNodes, allNodes);
-            return { nodes: newNodes, edges: createEdgesBasedOnNodes(newNodes)};
+            return expandEtcNode(selectedNode, curNodes, curEdges, allNodes, allEdges);
         }
         case 'ExpandSubtree': {
-            const newNodes = expandSubtree(selectedNode, curNodes, allNodes);
-            return { nodes: newNodes, edges: createEdgesBasedOnNodes(newNodes)};
+            return expandSubtree(selectedNode, curNodes, curEdges, allNodes, allEdges);
         }
         case 'CollapseSubtree': {
-            const newNodes = collapseSubtree(selectedNode, curNodes,allNodes);
-            return { nodes: newNodes, edges: createEdgesBasedOnNodes(newNodes)};
+            return collapseSubtree(selectedNode, curNodes, curEdges, allNodes, allEdges);
         }
         case 'CollapseNonTop': {
-            const newNodes = collapseBackEtcNode(selectedNode, curNodes, allNodes);
-            return { nodes: newNodes, edges: createEdgesBasedOnNodes(newNodes)};
+            return collapseBackEtcNode(selectedNode, curNodes, curEdges, allNodes, allEdges);
         }
         default: {
             console.log(`[getNewNodesAndEdges] invalid command: ${command}`);
@@ -320,7 +297,6 @@ export function translateTreeUtilCommand(command:string,
     allNodes: Node[]|null,
     allEdges: Edge[]|null,
     edgeOperations: EdgeOperation[]) {
-    // console.log(`[translateTreeUtilCommand] command=${command}`);
     const { nodes: newNodes, edges: newEdges } = getNewNodesAndEdges(command, selectedNode, curNodes, curEdges, allNodes, allEdges);
     const updatedEdges = applyEdgeOperations(edgeOperations, newNodes, newEdges);
     const { nodes:layoutedNodes, edges: layoutedEdges} = getLayoutedElements(newNodes!, updatedEdges!);
@@ -434,20 +410,11 @@ export interface SrcNbAndCode {
     sourceCode: string[];
 }
 
-export function createEdgesBasedOnNodes(curNodes: Node[] | null) {
+export function createEdgesBasedOnNodes(curNodes: Node[]) {
     // create edges to connect nodes based on the parent-child relationships
-    if (curNodes === null) {
-        console.log(`[createEdgesBasedOnNodes] curNodes is null`);
-        return [];
-    }
     const edges: Edge[] = [];
     for (let node of curNodes) {
         if (node.data.parent !== undefined) {
-            // if edges already exists, skip
-            if (edges.some((e) => e.source === node.data.parent && e.target === node.id)
-                || edges.some((e) => e.source === node.id && e.target === node.data.parent)) {
-                continue;
-            }
             const animated = node.data.nodeType === 'recommended';
             edges.push({
                 id: `${node.data.parent}-${node.id}`,

@@ -127,7 +127,7 @@ __webpack_require__.d(exports, {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "" + chunkId + "." + {"vendors-node_modules_process_browser_js-node_modules_react-is_index_js":"22174ad6d5707a76b3af","vendors-node_modules_css-loader_dist_runtime_api_js-node_modules_css-loader_dist_runtime_cssW-72eba1":"c5fc26829281f01aaebb","vendors-node_modules_react-markdown_lib_react-markdown_js-node_modules_coreui_coreui_dist_css-2c21e5":"1ddb391c647b1fa4e616","webpack_sharing_consume_default_react":"1365e6bc22c03a5b6766","lib_index_js":"f082bfdef955443c304b","style_index_js":"28c1fca48a956a6c0958","vendors-node_modules_coreui_icons-react_dist_index_es_js":"9a25a5d7d84c56d54a97","node_modules_process_browser_js":"43106270a467ec6742c6","vendors-node_modules_coreui_icons_dist_esm_index_js":"62a45c1151353c4b95d3","vendors-node_modules_coreui_react_dist_index_es_js":"6fd57a25bea0337240fb","webpack_sharing_consume_default_react-dom":"941087e0a15e20c74148","vendors-node_modules_axios_index_js":"8f9f3743c09d2297d879","vendors-node_modules_dagre_index_js":"1c2b46a46c1d892d6950","vendors-node_modules_highlight_js_es_index_js":"ef94f743d2e6d9d77f8e","vendors-node_modules_html-to-image_es_index_js":"0f239d424d41a65722d4","vendors-node_modules_react-loader-spinner_dist_esm_index_js":"1b03ce8af9361d2c64aa","vendors-node_modules_react-promise-tracker_lib_index_js":"c6aabe251615f8580bd3","vendors-node_modules_reactflow_dist_esm_index_js":"a5e5c97372e23f42c8b8","node_modules_object-assign_index_js":"86618651638b26be4242"}[chunkId] + ".js";
+/******/ 			return "" + chunkId + "." + {"vendors-node_modules_process_browser_js-node_modules_react-is_index_js":"22174ad6d5707a76b3af","vendors-node_modules_css-loader_dist_runtime_api_js-node_modules_css-loader_dist_runtime_cssW-72eba1":"c5fc26829281f01aaebb","vendors-node_modules_react-markdown_lib_react-markdown_js-node_modules_coreui_coreui_dist_css-2c21e5":"1ddb391c647b1fa4e616","webpack_sharing_consume_default_react":"1365e6bc22c03a5b6766","lib_index_js":"fc2430cd73ffc0cc5e44","style_index_js":"28c1fca48a956a6c0958","vendors-node_modules_coreui_icons-react_dist_index_es_js":"9a25a5d7d84c56d54a97","node_modules_process_browser_js":"43106270a467ec6742c6","vendors-node_modules_coreui_icons_dist_esm_index_js":"62a45c1151353c4b95d3","vendors-node_modules_coreui_react_dist_index_es_js":"6fd57a25bea0337240fb","webpack_sharing_consume_default_react-dom":"941087e0a15e20c74148","vendors-node_modules_axios_index_js":"8f9f3743c09d2297d879","vendors-node_modules_dagre_index_js":"1c2b46a46c1d892d6950","vendors-node_modules_highlight_js_es_index_js":"ef94f743d2e6d9d77f8e","vendors-node_modules_react-loader-spinner_dist_esm_index_js":"1b03ce8af9361d2c64aa","vendors-node_modules_react-promise-tracker_lib_index_js":"c6aabe251615f8580bd3","vendors-node_modules_reactflow_dist_esm_index_js":"a5e5c97372e23f42c8b8","node_modules_object-assign_index_js":"86618651638b26be4242"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -258,7 +258,6 @@ __webpack_require__.d(exports, {
 /******/ 					register("axios", "1.4.0", () => (__webpack_require__.e("vendors-node_modules_axios_index_js").then(() => (() => (__webpack_require__(/*! ./node_modules/axios/index.js */ "./node_modules/axios/index.js"))))));
 /******/ 					register("dagre", "0.8.5", () => (__webpack_require__.e("vendors-node_modules_dagre_index_js").then(() => (() => (__webpack_require__(/*! ./node_modules/dagre/index.js */ "./node_modules/dagre/index.js"))))));
 /******/ 					register("highlight.js", "0", () => (__webpack_require__.e("vendors-node_modules_highlight_js_es_index_js").then(() => (() => (__webpack_require__(/*! ./node_modules/highlight.js/es/index.js */ "./node_modules/highlight.js/es/index.js"))))));
-/******/ 					register("html-to-image", "1.11.11", () => (__webpack_require__.e("vendors-node_modules_html-to-image_es_index_js").then(() => (() => (__webpack_require__(/*! ./node_modules/html-to-image/es/index.js */ "./node_modules/html-to-image/es/index.js"))))));
 /******/ 					register("jupyterlab-nb-viz", "0.1.0", () => (Promise.all([__webpack_require__.e("vendors-node_modules_process_browser_js-node_modules_react-is_index_js"), __webpack_require__.e("vendors-node_modules_css-loader_dist_runtime_api_js-node_modules_css-loader_dist_runtime_cssW-72eba1"), __webpack_require__.e("vendors-node_modules_react-markdown_lib_react-markdown_js-node_modules_coreui_coreui_dist_css-2c21e5"), __webpack_require__.e("webpack_sharing_consume_default_react"), __webpack_require__.e("lib_index_js")]).then(() => (() => (__webpack_require__(/*! ./lib/index.js */ "./lib/index.js"))))));
 /******/ 					register("react-loader-spinner", "5.3.4", () => (Promise.all([__webpack_require__.e("vendors-node_modules_react-loader-spinner_dist_esm_index_js"), __webpack_require__.e("vendors-node_modules_process_browser_js-node_modules_react-is_index_js"), __webpack_require__.e("webpack_sharing_consume_default_react")]).then(() => (() => (__webpack_require__(/*! ./node_modules/react-loader-spinner/dist/esm/index.js */ "./node_modules/react-loader-spinner/dist/esm/index.js"))))));
 /******/ 					register("react-promise-tracker", "2.1.1", () => (Promise.all([__webpack_require__.e("vendors-node_modules_react-promise-tracker_lib_index_js"), __webpack_require__.e("webpack_sharing_consume_default_react")]).then(() => (() => (__webpack_require__(/*! ./node_modules/react-promise-tracker/lib/index.js */ "./node_modules/react-promise-tracker/lib/index.js"))))));
@@ -444,7 +443,6 @@ __webpack_require__.d(exports, {
 /******/ 			"webpack/sharing/consume/default/@coreui/icons/@coreui/icons": () => (loadStrictVersionCheckFallback("default", "@coreui/icons", [1,3,0,1], () => (__webpack_require__.e("vendors-node_modules_coreui_icons_dist_esm_index_js").then(() => (() => (__webpack_require__(/*! @coreui/icons */ "./node_modules/@coreui/icons/dist/esm/index.js"))))))),
 /******/ 			"webpack/sharing/consume/default/dagre/dagre": () => (loadStrictVersionCheckFallback("default", "dagre", [2,0,8,5], () => (__webpack_require__.e("vendors-node_modules_dagre_index_js").then(() => (() => (__webpack_require__(/*! dagre */ "./node_modules/dagre/index.js"))))))),
 /******/ 			"webpack/sharing/consume/default/highlight.js/highlight.js": () => (loadStrictVersionCheckFallback("default", "highlight.js", [1,11,8,0], () => (__webpack_require__.e("vendors-node_modules_highlight_js_es_index_js").then(() => (() => (__webpack_require__(/*! highlight.js */ "./node_modules/highlight.js/es/index.js"))))))),
-/******/ 			"webpack/sharing/consume/default/html-to-image/html-to-image": () => (loadStrictVersionCheckFallback("default", "html-to-image", [1,1,11,11], () => (__webpack_require__.e("vendors-node_modules_html-to-image_es_index_js").then(() => (() => (__webpack_require__(/*! html-to-image */ "./node_modules/html-to-image/es/index.js"))))))),
 /******/ 			"webpack/sharing/consume/default/react-dom": () => (loadSingletonVersionCheck("default", "react-dom", [1,17,0,1]))
 /******/ 		};
 /******/ 		// no consumes in initial chunks
@@ -469,8 +467,7 @@ __webpack_require__.d(exports, {
 /******/ 				"webpack/sharing/consume/default/@coreui/icons-react/@coreui/icons-react",
 /******/ 				"webpack/sharing/consume/default/@coreui/icons/@coreui/icons",
 /******/ 				"webpack/sharing/consume/default/dagre/dagre",
-/******/ 				"webpack/sharing/consume/default/highlight.js/highlight.js",
-/******/ 				"webpack/sharing/consume/default/html-to-image/html-to-image"
+/******/ 				"webpack/sharing/consume/default/highlight.js/highlight.js"
 /******/ 			],
 /******/ 			"webpack_sharing_consume_default_react-dom": [
 /******/ 				"webpack/sharing/consume/default/react-dom"
@@ -610,4 +607,4 @@ __webpack_require__.d(exports, {
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=remoteEntry.ff8073e868788220de09.js.map
+//# sourceMappingURL=remoteEntry.d9e2348b5cd110b650bd.js.map

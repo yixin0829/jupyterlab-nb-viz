@@ -35,7 +35,8 @@ import {
     removeEdge,
     isEdgeConnectable,
     EdgeOperation,
-    getPathVariableCombination} from "./TreeUtils";
+    getPathVariableCombination,
+    createEdgesBasedOnNodes} from "./TreeUtils";
 import InsightNode from "./InsightNode";
 import PlotNode from "./PlotNode";
 import { Legend } from "./Legend";
@@ -93,9 +94,9 @@ const FlowComponent = (props: FlowComponentProps) => {
     const [selectedNode, setSelectedNode] = useState<Node | null>(null);
     const [selectedEdge, setSelectedEdge] = useState<Edge | null>(null);
     const [isSelectedEdgeRemovable, setIsSelectedEdgeRemovable] = useState(false);
-    const [canExpandAll, setCanExpandAll] = useState(false);
-    const [canCollapseAll, setCanCollapseAll] = useState(false);
-    const [canCollapseNonTop, setCanCollapseNonTop] = useState(false);
+    // const [canExpandAll, setCanExpandAll] = useState(false);
+    // const [canCollapseAll, setCanCollapseAll] = useState(false);
+    // const [canCollapseNonTop, setCanCollapseNonTop] = useState(false);
     const [isRecommendationDisplayed, setIsRecommendationDisplayed] = useState(false);
     
     const defaultSrcNbAndCode = {
@@ -119,7 +120,7 @@ const FlowComponent = (props: FlowComponentProps) => {
 
     const collapseBackToInitial = () => {
         // collapse the tree to initial state
-        const { nodes: newNodes, edges: newEdges } = translateTreeUtilCommand(
+        const { nodes: newNodes, /*edges: newEdges*/ } = translateTreeUtilCommand(
             'CollapseBackToInitial',
             null,
             nodes,
@@ -129,7 +130,8 @@ const FlowComponent = (props: FlowComponentProps) => {
             edgeOperations.current
         )
         setNodes(newNodes);
-        setEdges(newEdges);
+        setEdges(createEdgesBasedOnNodes(newNodes));
+        // setEdges(newEdges);
     }
 
     const highlightCellLine = (cellIndex: number, lineNumber: number) => {
@@ -236,7 +238,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             console.log('[handleNodeClick] allNodes or allEdges is null')
             return;
         }
-        console.log(`[handleNodeClick] node clicked, id=${node.id}`);
+        console.log(`[handleNodeClick] node clicked, id=${node.id}, label=${node.data.label}`);
         setSelectedNode(node);
         // change node border width
         const newNodes = nodes.map((prevNode)=> {
@@ -251,17 +253,18 @@ const FlowComponent = (props: FlowComponentProps) => {
         setNodes(newNodes);
 
         const highlightNodeTypes = ["insight", "plot"];
-        if (node.data.nodeType === 'raw') {
+        const collapsibleNodeTypes = ["raw", "etc"];
+        if (collapsibleNodeTypes.includes(node.data.nodeType)) {
             // update collapse/expand state
-            const selectedNodeHasChildren = nodes.some((n) => n.data.parent === node.id);
-            setCanExpandAll(!selectedNodeHasChildren);
-            setCanCollapseAll(selectedNodeHasChildren);
-            const etcNodeInChildren = allNodes.find((n) => n.data.parent === node.id && n.data.nodeType === 'etc');
-            const etcNodeAlreadyExists = nodes.find((n) => n.data.parent === node.id && n.data.nodeType === 'etc');
-            const selectedNodeCanCollapseNonTop = (etcNodeAlreadyExists === undefined) && (etcNodeInChildren !== undefined) && !(nodes.some((n) => {n.data.parent === etcNodeInChildren.id}));
-            setCanCollapseNonTop(selectedNodeCanCollapseNonTop);
+            // const selectedNodeHasChildren = nodes.some((n) => n.data.parent === node.id);
+            // setCanExpandAll(!selectedNodeHasChildren);
+            // setCanCollapseAll(selectedNodeHasChildren);
+            // const etcNodeInChildren = allNodes.find((n) => n.data.parent === node.id && n.data.nodeType === 'etc');
+            // const etcNodeAlreadyExists = nodes.find((n) => n.data.parent === node.id && n.data.nodeType === 'etc');
+            // const selectedNodeCanCollapseNonTop = (etcNodeAlreadyExists === undefined) && (etcNodeInChildren !== undefined) && !(nodes.some((n) => {n.data.parent === etcNodeInChildren.id}));
+            // setCanCollapseNonTop(selectedNodeCanCollapseNonTop);
             if (node.data.nodeType === 'etc') {
-                const { nodes: newNodes, edges: newEdges } = translateTreeUtilCommand(
+                const { nodes: newNodes, /*edges: newEdges*/ } = translateTreeUtilCommand(
                     'ExpandEtcNode',
                     node,
                     nodes,
@@ -271,14 +274,15 @@ const FlowComponent = (props: FlowComponentProps) => {
                     edgeOperations.current
                 )
                 setNodes(newNodes);
-                setEdges(newEdges);
+                setEdges(createEdgesBasedOnNodes(newNodes));
+                // setEdges(newEdges);
                 return;
             }
         }
         else if (highlightNodeTypes.includes(node.data.nodeType)) {
             // disable buttons
-            setCanExpandAll(false);
-            setCanCollapseAll(false);
+            // setCanExpandAll(false);
+            // setCanCollapseAll(false);
             clearHighlightedCellLines();
             clearHighlightedCells();
             if(props.notebookTracker && props.notebookTracker.currentWidget) {
@@ -313,14 +317,15 @@ const FlowComponent = (props: FlowComponentProps) => {
 
 
     const handleEdgeClick = (event: MouseEvent, edge: Edge) => {
+        console.log(`[handleEdgeClick] selectedEdge: ${JSON.stringify(edge)}`);
         setSelectedEdge(edge);
         setIsSelectedEdgeRemovable(isEdgeRemoveable(edge, nodes, edges));
         console.log(`[handleEdgeClick] selectedEdge: ${JSON.stringify(edge)}`);
     }
 
     const handleExpandAllChildrenButtonClick = () => {
-        if(selectedNode && canExpandAll) {
-            const { nodes: newNodes, edges: newEdges} = translateTreeUtilCommand(
+        if(selectedNode /*(&& canExpandAll*/) {
+            const { nodes: newNodes, /*edges: newEdges*/} = translateTreeUtilCommand(
                 'ExpandSubtree',
                 selectedNode,
                 nodes,
@@ -330,8 +335,9 @@ const FlowComponent = (props: FlowComponentProps) => {
                 edgeOperations.current
             );
             setNodes(newNodes);
-            setEdges(newEdges);
-            setCanExpandAll(false);
+            setEdges(createEdgesBasedOnNodes(newNodes));
+            // setEdges(newEdges);
+            // setCanExpandAll(false);
         }
         else {
             console.log(`Cannot do expandAll to this node.`);
@@ -340,8 +346,8 @@ const FlowComponent = (props: FlowComponentProps) => {
     }
 
     const handleCollapseAllButtonClick = () => {
-        if(selectedNode && canCollapseAll) {
-            const { nodes: newNodes, edges: newEdges} = translateTreeUtilCommand(
+        if(selectedNode /*&& canCollapseAll*/) {
+            const { nodes: newNodes, /*edges: newEdges */} = translateTreeUtilCommand(
                 'CollapseSubtree',
                 selectedNode,
                 nodes,
@@ -351,8 +357,9 @@ const FlowComponent = (props: FlowComponentProps) => {
                 edgeOperations.current
             );
             setNodes(newNodes);
-            setEdges(newEdges);
-            setCanCollapseAll(false);
+            setEdges(createEdgesBasedOnNodes(newNodes));
+            // setEdges(newEdges);
+            // setCanCollapseAll(false);
         }
         else {
             console.log('Cannot do collapseAll to this node!');
@@ -360,8 +367,8 @@ const FlowComponent = (props: FlowComponentProps) => {
     }
 
     const handleCollapseNonTopButtonClick = () => {
-        if (selectedNode && canCollapseNonTop) {
-            const { nodes: newNodes, edges: newEdges} = translateTreeUtilCommand(
+        if (selectedNode) {
+            const { nodes: newNodes, /*edges: newEdges*/} = translateTreeUtilCommand(
                 'CollapseNonTop',
                 selectedNode,
                 nodes,
@@ -371,8 +378,9 @@ const FlowComponent = (props: FlowComponentProps) => {
                 edgeOperations.current
             );
             setNodes(newNodes);
-            setEdges(newEdges);
-            setCanCollapseNonTop(false);
+            setEdges(createEdgesBasedOnNodes(newNodes));
+            // setEdges(newEdges);
+            // setCanCollapseNonTop(false);
         }
         else {
             console.log('Cannot do collapseNonTop to this node!');
@@ -380,7 +388,7 @@ const FlowComponent = (props: FlowComponentProps) => {
     }
 
     const handleExpandAllNodesButtonClick = () => {
-        const { nodes: newNodes, edges: newEdges } = translateTreeUtilCommand(
+        const { nodes: newNodes, /*edges: newEdges*/ } = translateTreeUtilCommand(
             'ExpandAllNodes',
             null,
             nodes,
@@ -390,7 +398,8 @@ const FlowComponent = (props: FlowComponentProps) => {
             edgeOperations.current
         )
         setNodes(newNodes);
-        setEdges(newEdges);
+        setEdges(createEdgesBasedOnNodes(newNodes));
+        // setEdges(newEdges);
     }
 
     const resetNodeStyles = () => {
@@ -427,29 +436,30 @@ const FlowComponent = (props: FlowComponentProps) => {
             notebook: JSON.stringify(props.notebookPanel!.model!.toJSON()),
         }
         trackPromise(
-        axios.post(backendUrl + '/tracking-tree', request, {withCredentials: true, }).then((response) => {
+        axios.post(backendUrl + '/tracking-tree-nodes', request, {withCredentials: true, }).then((response) => {
             console.log(`[refreshSMITree] get response.`);
-            const refreshedNodes = response.data.nodes;
-            const refreshedEdges = response.data.edges;
+            const allNodesBackend = response.data.nodes;
+            // const refreshedEdges = response.data.edges;
             // console.log(`[refreshSMITree] refreshedNodes: ${JSON.stringify(refreshedNodes)}`);
-            setAllNodes(refreshedNodes);
-            setAllEdges(refreshedEdges);
+            setAllNodes(allNodesBackend);
+            // setAllEdges(refreshedEdges);
             // const {initialNodes: initialRefreshedNodes, initialEdges: initialRefreshedEdges} = getInitialElements(refreshedNodes, refreshedEdges);
             // const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialRefreshedNodes, initialRefreshedEdges);
-            const { nodes: layoutedNodes, edges: layoutedEdges } = translateTreeUtilCommand(
+            const { nodes: layoutedNodes, /*edges: layoutedEdges*/ } = translateTreeUtilCommand(
                 'GetInitial',
                 null,
                 null,
                 null,
-                refreshedNodes,
-                refreshedEdges,
+                allNodesBackend,
+                [],
                 edgeOperations.current
             );
             setNodes(layoutedNodes);
-            setEdges(layoutedEdges);
+            setEdges(createEdgesBasedOnNodes(layoutedNodes));
+            // setEdges(layoutedEdges);
             // console.log(`[refreshSMITree] successfully refreshed nodes and edges.`);
         }).catch((error) => {
-            console.log(`[refreshSMITree] error: ${error} when sending post request to ${backendUrl}/tracking-tree`);
+            console.log(`[refreshSMITree] error: ${error} when sending post request to ${backendUrl}/tracking-tree-nodes`);
         }));
     }
 
@@ -475,9 +485,10 @@ const FlowComponent = (props: FlowComponentProps) => {
             setAllEdges(newAllEdges);
             const newNodes = nodes.concat(recommendedNodes);
             const newEdges = edges.concat(recommendedEdges);
-            const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(newNodes, newEdges);
+            const { nodes: layoutedNodes, /*edges: layoutedEdges*/ } = getLayoutedElements(newNodes, newEdges);
             setNodes(layoutedNodes);
-            setEdges(layoutedEdges);
+            setEdges(createEdgesBasedOnNodes(layoutedNodes));
+            // setEdges(layoutedEdges);
             setIsRecommendationDisplayed(true);
         }).catch((error) => {
             console.log(`[getRecommendations] error: ${error}`);
@@ -512,13 +523,14 @@ const FlowComponent = (props: FlowComponentProps) => {
             return;
         }
         if (selectedEdge && isSelectedEdgeRemovable) {
-            const { nodes: layoutedNodes, edges: layoutedEdges } = removeEdge(selectedEdge, nodes, edges);
-            if (layoutedNodes === null || layoutedEdges === null) {
+            const { nodes: layoutedNodes, /*edges: layoutedEdges*/ } = removeEdge(selectedEdge, nodes, edges);
+            if (layoutedNodes === null /*|| layoutedEdges === null*/) {
                 console.log('[removeSelectedEdge] layoutedNodes or layoutedEdges is null')
                 return;
             }
             setNodes(layoutedNodes);
-            setEdges(layoutedEdges);
+            setEdges(createEdgesBasedOnNodes(layoutedNodes));
+            // setEdges(layoutedEdges);
             console.log(`[removeSelectedEdge] successfully removed edge: ${JSON.stringify(selectedEdge)}`);
             edgeOperations.current.push({operation: 'remove', edge: selectedEdge});
         }
@@ -666,7 +678,7 @@ const FlowComponent = (props: FlowComponentProps) => {
                     <CDropdown style={{...dropdownButtonStyle, marginLeft: "10px"}}>
                         <CDropdownToggle color="warning">Expand</CDropdownToggle>
                         <CDropdownMenu>
-                            <CDropdownItem onClick={handleExpandAllChildrenButtonClick}>Expand all children of the selected node</CDropdownItem>
+                            <CDropdownItem onClick={handleExpandAllChildrenButtonClick}>Expand back the collpased children of the selected node</CDropdownItem>
                             <CDropdownItem onClick={handleExpandAllNodesButtonClick}>Expand all nodes in the tree</CDropdownItem>
                         </CDropdownMenu>
                     </CDropdown>

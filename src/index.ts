@@ -5,7 +5,7 @@ import {
 } from '@jupyterlab/application';
 
 import {
-  ICommandPalette, MainAreaWidget,
+  ICommandPalette, 
 //   MainAreaWidget,
 //   WidgetTracker
 } from '@jupyterlab/apputils';
@@ -17,7 +17,7 @@ import { TangerinePanel } from './panel';
 import { TangerineRegistry } from './registry';
 import { Menu } from '@lumino/widgets';
 import { IMainMenu } from '@jupyterlab/mainmenu';
-import { KnowledgeGraphWidget } from './KnowledgeGraph';
+// import { KnowledgeGraphWidget } from './KnowledgeGraph';
 
 /**
  * The command IDs used by the react-widget plugin.
@@ -25,7 +25,7 @@ import { KnowledgeGraphWidget } from './KnowledgeGraph';
 namespace CommandIDs {
 //   export const react_counter = 'create-react-counter-widget';
   export const tangerine = 'create-tangerine-widget'
-  export const knowledgeGraph = 'create-knowledge-graph-widget'
+//   export const knowledgeGraph = 'create-knowledge-graph-widget'
 }
 
 
@@ -60,14 +60,14 @@ function activate(
         return panel;
     }
 
-    async function createKnowledgeGraph() {
-        const content = new KnowledgeGraphWidget();
-        const widget = new MainAreaWidget({ content });
-        widget.title.label = "Knowledge Graph";
-        if (!widget.isAttached) {
-           app.shell.add(widget, 'main'); 
-        }
-    }
+    // async function createKnowledgeGraph() {
+    //     const content = new KnowledgeGraphWidget();
+    //     const widget = new MainAreaWidget({ content });
+    //     widget.title.label = "Knowledge Graph";
+    //     if (!widget.isAttached) {
+    //        app.shell.add(widget, 'main'); 
+    //     }
+    // }
 
     const trans = translator.load('jupyterlab');
     app.commands.addCommand(CommandIDs.tangerine, {
@@ -78,20 +78,20 @@ function activate(
     );
     palette.addItem({ command: CommandIDs.tangerine, category: 'Tutorial' });
 
-    app.commands.addCommand(CommandIDs.knowledgeGraph, {
-        label: trans.__(`Knowledge Graph`),
-        caption: trans.__(`Knowledge Graph`),
-        execute: createKnowledgeGraph
-    }
-    );
-    palette.addItem({ command: CommandIDs.knowledgeGraph, category: 'Tutorial' });
+    // app.commands.addCommand(CommandIDs.knowledgeGraph, {
+    //     label: trans.__(`Knowledge Graph`),
+    //     caption: trans.__(`Knowledge Graph`),
+    //     execute: createKnowledgeGraph
+    // }
+    // );
+    // palette.addItem({ command: CommandIDs.knowledgeGraph, category: 'Tutorial' });
 
     // add menu tab
     const tangerineMenu = new Menu({ commands: app.commands });
     tangerineMenu.title.label = trans.__("Tangerine");
     mainMenu.addMenu(tangerineMenu, {rank: 280});
     tangerineMenu.addItem({ command: CommandIDs.tangerine });
-    tangerineMenu.addItem({ command: CommandIDs.knowledgeGraph });
+    // tangerineMenu.addItem({ command: CommandIDs.knowledgeGraph });
 
     notebookTracker.currentChanged.connect((tracker, panel) => {
         console.log('NotebookTracker Widget changed');
