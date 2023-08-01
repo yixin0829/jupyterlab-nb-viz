@@ -242,9 +242,15 @@ function collapseSubtree(selectedNode: Node|null, curNodes: Node[]|null, allNode
 }
 
 
-function getNewNodesAndEdges(command:string, selectedNode: Node|null, curNodes: Node[]|null, curEdges: Edge[]|null, allNodes: Node[]|null, allEdges: Edge[]|null) {
+function getNewNodesAndEdges(command:string, 
+            selectedNode: Node|null, 
+            curNodes: Node[]|null, 
+            curEdges: Edge[]|null, 
+            allNodes: Node[]|null, 
+            // allEdges: Edge[]|null
+            ) {
     console.log(`[getNewNodesAndEdges] command=${command}, selectedNode=${selectedNode?.data.label}`);
-    if (allNodes === null || allEdges === null) {
+    if (allNodes === null) {
         return { nodes: curNodes, edges: curEdges};
     }
     switch (command) {
@@ -318,10 +324,10 @@ export function translateTreeUtilCommand(command:string,
     curNodes: Node[]|null,
     curEdges: Edge[]|null,
     allNodes: Node[]|null,
-    allEdges: Edge[]|null,
+    //allEdges: Edge[]|null,
     edgeOperations: EdgeOperation[]) {
     // console.log(`[translateTreeUtilCommand] command=${command}`);
-    const { nodes: newNodes, edges: newEdges } = getNewNodesAndEdges(command, selectedNode, curNodes, curEdges, allNodes, allEdges);
+    const { nodes: newNodes, edges: newEdges } = getNewNodesAndEdges(command, selectedNode, curNodes, curEdges, allNodes);
     const updatedEdges = applyEdgeOperations(edgeOperations, newNodes, newEdges);
     const { nodes:layoutedNodes, edges: layoutedEdges} = getLayoutedElements(newNodes!, updatedEdges!);
     return { nodes: layoutedNodes, edges: layoutedEdges };

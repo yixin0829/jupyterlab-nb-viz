@@ -84,11 +84,35 @@ const nodeTypes = {
 //     recommended: RecommendEdge,
 // }
 
-
 interface FlowComponentProps {
     notebookPanel: NotebookPanel | null;
     notebookTracker: INotebookTracker | null;
 }
+
+const defaultRootNode: Node =  {
+    id: "root",
+    type: "default",
+    data: {
+        "nodeType": "root",
+        "label": "root",
+        "rawData": "root",
+        "children": [
+            7,
+            4,
+            1
+        ]
+    },
+    position: {x: 0, y: 0},
+    style: {
+        backgroundColor: "#E8A9A9",
+        color: "white",
+        fontSize: "12px",
+        width: "130px",
+        height: "15px",
+        padding: "5px 5px 20px",
+        zIndex: -1
+    }
+};
 
 const FlowComponent = (props: FlowComponentProps) => {
     const [selectedNode, setSelectedNode] = useState<Node | null>(null);
@@ -107,10 +131,10 @@ const FlowComponent = (props: FlowComponentProps) => {
     const [selectedRecommendedPath, setSelectedRecommendedPath] = useState<string[]>([]);
     const [srcNbAndCodeListForRec, setSrcNbAndCodeListForRec] = useState([defaultSrcNbAndCode,]);
 
-    const [allNodes, setAllNodes] = useState<Node[] | null>([]);
-    const [allEdges, setAllEdges] = useState<Edge[] | null>([]);
+    const [allNodes, setAllNodes] = useState<Node[] | null>([defaultRootNode, ]);
+    // const [allEdges, setAllEdges] = useState<Edge[] | null>([]);
 
-    const [nodes, setNodes, onNodesChange] = useNodesState([]);
+    const [nodes, setNodes, onNodesChange] = useNodesState([defaultRootNode, ]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
     // const edgeUpdateSuccessful = useRef(true)
@@ -126,7 +150,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             nodes,
             edges,
             allNodes,
-            allEdges,
+            // allEdges,
             edgeOperations.current
         )
         setNodes(newNodes);
@@ -234,7 +258,7 @@ const FlowComponent = (props: FlowComponentProps) => {
 
 
     const handleNodeClick = (event: MouseEvent, node: Node) => {
-        if (allNodes === null || allEdges === null) {
+        if (allNodes === null) {
             console.log('[handleNodeClick] allNodes or allEdges is null')
             return;
         }
@@ -270,7 +294,7 @@ const FlowComponent = (props: FlowComponentProps) => {
                     nodes,
                     edges,
                     allNodes,
-                    allEdges,
+                    // allEdges,
                     edgeOperations.current
                 )
                 setNodes(newNodes);
@@ -331,7 +355,7 @@ const FlowComponent = (props: FlowComponentProps) => {
                 nodes,
                 edges,
                 allNodes,
-                allEdges,
+                // allEdges,
                 edgeOperations.current
             );
             setNodes(newNodes);
@@ -353,7 +377,7 @@ const FlowComponent = (props: FlowComponentProps) => {
                 nodes,
                 edges,
                 allNodes,
-                allEdges,
+                // allEdges,
                 edgeOperations.current
             );
             setNodes(newNodes);
@@ -374,7 +398,7 @@ const FlowComponent = (props: FlowComponentProps) => {
                 nodes,
                 edges,
                 allNodes,
-                allEdges,
+                // allEdges,
                 edgeOperations.current
             );
             setNodes(newNodes);
@@ -394,7 +418,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             nodes,
             edges,
             allNodes,
-            allEdges,
+            // allEdges,
             edgeOperations.current
         )
         setNodes(newNodes);
@@ -451,7 +475,7 @@ const FlowComponent = (props: FlowComponentProps) => {
                 null,
                 null,
                 allNodesBackend,
-                [],
+                // [],
                 edgeOperations.current
             );
             setNodes(layoutedNodes);
@@ -464,7 +488,7 @@ const FlowComponent = (props: FlowComponentProps) => {
     }
 
     const getRecommendations = () => {
-        if (allNodes === null || allEdges === null) {
+        if (allNodes === null) {
             console.log('[getRecommendations] allNodes or allEdges is null')
             return;
         }
@@ -480,9 +504,9 @@ const FlowComponent = (props: FlowComponentProps) => {
             const recommendedNodes = response.data.recommendedNodes;
             const recommendedEdges = response.data.recommendedEdges;
             const newAllNodes = allNodes.concat(recommendedNodes);
-            const newAllEdges = [...allEdges, ...recommendedEdges];
+            // const newAllEdges = [...allEdges, ...recommendedEdges];
             setAllNodes(newAllNodes);
-            setAllEdges(newAllEdges);
+            // setAllEdges(newAllEdges);
             const newNodes = nodes.concat(recommendedNodes);
             const newEdges = edges.concat(recommendedEdges);
             const { nodes: layoutedNodes, /*edges: layoutedEdges*/ } = getLayoutedElements(newNodes, newEdges);
@@ -496,7 +520,7 @@ const FlowComponent = (props: FlowComponentProps) => {
     }
 
     const disableRecommendations = () => {
-        if (allNodes === null || allEdges === null) {
+        if (allNodes === null) {
             console.log('[disableRecommendations] allNodes or allEdges is null')
             return;
         }
@@ -506,9 +530,9 @@ const FlowComponent = (props: FlowComponentProps) => {
         }
         // remove the recommended nodes and edges
         const newAllNodes = allNodes.filter((n) => n.data.nodeType !== 'recommended');
-        const newAllEdges = allEdges.filter((e) => (!e.source.startsWith('rec') && ! e.target.startsWith('rec')));
+        // const newAllEdges = allEdges.filter((e) => (!e.source.startsWith('rec') && ! e.target.startsWith('rec')));
         setAllNodes(newAllNodes);
-        setAllEdges(newAllEdges);
+        // setAllEdges(newAllEdges);
         const newNodes = nodes.filter((n) => n.data.nodeType !== 'recommended');
         const newEdges = edges.filter((e) => (!e.source.startsWith('rec') && ! e.target.startsWith('rec')));
         const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(newNodes, newEdges);
@@ -578,7 +602,7 @@ const FlowComponent = (props: FlowComponentProps) => {
     const pageTopContainerStyle = { 
         display: "flex",
         width: "100%",
-        zIndex: "100",
+        height: "40px",
         justifyContent: "space-between",
     };
     

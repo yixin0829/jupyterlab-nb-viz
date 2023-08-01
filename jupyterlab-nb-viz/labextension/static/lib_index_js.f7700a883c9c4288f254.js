@@ -413,6 +413,30 @@ const nodeTypes = {
     plot: _PlotNode__WEBPACK_IMPORTED_MODULE_14__["default"],
     raw: _RawNode__WEBPACK_IMPORTED_MODULE_15__["default"]
 };
+const defaultRootNode = {
+    id: "root",
+    type: "default",
+    data: {
+        "nodeType": "root",
+        "label": "root",
+        "rawData": "root",
+        "children": [
+            7,
+            4,
+            1
+        ]
+    },
+    position: { x: 0, y: 0 },
+    style: {
+        backgroundColor: "#E8A9A9",
+        color: "white",
+        fontSize: "12px",
+        width: "130px",
+        height: "15px",
+        padding: "5px 5px 20px",
+        zIndex: -1
+    }
+};
 const FlowComponent = (props) => {
     const [selectedNode, setSelectedNode] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
     const [selectedEdge, setSelectedEdge] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
@@ -428,9 +452,9 @@ const FlowComponent = (props) => {
     const [isRecommendNodeSelected, setIsRecommendNodeSelected] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
     const [selectedRecommendedPath, setSelectedRecommendedPath] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
     const [srcNbAndCodeListForRec, setSrcNbAndCodeListForRec] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([defaultSrcNbAndCode,]);
-    const [allNodes, setAllNodes] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-    const [allEdges, setAllEdges] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-    const [nodes, setNodes, onNodesChange] = (0,reactflow__WEBPACK_IMPORTED_MODULE_5__.useNodesState)([]);
+    const [allNodes, setAllNodes] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([defaultRootNode,]);
+    // const [allEdges, setAllEdges] = useState<Edge[] | null>([]);
+    const [nodes, setNodes, onNodesChange] = (0,reactflow__WEBPACK_IMPORTED_MODULE_5__.useNodesState)([defaultRootNode,]);
     const [edges, setEdges, onEdgesChange] = (0,reactflow__WEBPACK_IMPORTED_MODULE_5__.useEdgesState)([]);
     // const edgeUpdateSuccessful = useRef(true)
     const highlightedCellLines = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)([]); // [[cellIndex, lineNumber], ...
@@ -438,7 +462,9 @@ const FlowComponent = (props) => {
     const edgeOperations = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)([]);
     const collapseBackToInitial = () => {
         // collapse the tree to initial state
-        const { nodes: newNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('CollapseBackToInitial', null, nodes, edges, allNodes, allEdges, edgeOperations.current);
+        const { nodes: newNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('CollapseBackToInitial', null, nodes, edges, allNodes, 
+        // allEdges,
+        edgeOperations.current);
         setNodes(newNodes);
         setEdges((0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.createEdgesBasedOnNodes)(newNodes));
         // setEdges(newEdges);
@@ -535,7 +561,7 @@ const FlowComponent = (props) => {
         }));
     }
     const handleNodeClick = (event, node) => {
-        if (allNodes === null || allEdges === null) {
+        if (allNodes === null) {
             console.log('[handleNodeClick] allNodes or allEdges is null');
             return;
         }
@@ -564,7 +590,9 @@ const FlowComponent = (props) => {
             // const selectedNodeCanCollapseNonTop = (etcNodeAlreadyExists === undefined) && (etcNodeInChildren !== undefined) && !(nodes.some((n) => {n.data.parent === etcNodeInChildren.id}));
             // setCanCollapseNonTop(selectedNodeCanCollapseNonTop);
             if (node.data.nodeType === 'etc') {
-                const { nodes: newNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('ExpandEtcNode', node, nodes, edges, allNodes, allEdges, edgeOperations.current);
+                const { nodes: newNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('ExpandEtcNode', node, nodes, edges, allNodes, 
+                // allEdges,
+                edgeOperations.current);
                 setNodes(newNodes);
                 setEdges((0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.createEdgesBasedOnNodes)(newNodes));
                 // setEdges(newEdges);
@@ -612,7 +640,9 @@ const FlowComponent = (props) => {
     };
     const handleExpandAllChildrenButtonClick = () => {
         if (selectedNode /*(&& canExpandAll*/) {
-            const { nodes: newNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('ExpandSubtree', selectedNode, nodes, edges, allNodes, allEdges, edgeOperations.current);
+            const { nodes: newNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('ExpandSubtree', selectedNode, nodes, edges, allNodes, 
+            // allEdges,
+            edgeOperations.current);
             setNodes(newNodes);
             setEdges((0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.createEdgesBasedOnNodes)(newNodes));
             // setEdges(newEdges);
@@ -624,7 +654,9 @@ const FlowComponent = (props) => {
     };
     const handleCollapseAllButtonClick = () => {
         if (selectedNode /*&& canCollapseAll*/) {
-            const { nodes: newNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('CollapseSubtree', selectedNode, nodes, edges, allNodes, allEdges, edgeOperations.current);
+            const { nodes: newNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('CollapseSubtree', selectedNode, nodes, edges, allNodes, 
+            // allEdges,
+            edgeOperations.current);
             setNodes(newNodes);
             setEdges((0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.createEdgesBasedOnNodes)(newNodes));
             // setEdges(newEdges);
@@ -636,7 +668,9 @@ const FlowComponent = (props) => {
     };
     const handleCollapseNonTopButtonClick = () => {
         if (selectedNode) {
-            const { nodes: newNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('CollapseNonTop', selectedNode, nodes, edges, allNodes, allEdges, edgeOperations.current);
+            const { nodes: newNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('CollapseNonTop', selectedNode, nodes, edges, allNodes, 
+            // allEdges,
+            edgeOperations.current);
             setNodes(newNodes);
             setEdges((0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.createEdgesBasedOnNodes)(newNodes));
             // setEdges(newEdges);
@@ -647,7 +681,9 @@ const FlowComponent = (props) => {
         }
     };
     const handleExpandAllNodesButtonClick = () => {
-        const { nodes: newNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('ExpandAllNodes', null, nodes, edges, allNodes, allEdges, edgeOperations.current);
+        const { nodes: newNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('ExpandAllNodes', null, nodes, edges, allNodes, 
+        // allEdges,
+        edgeOperations.current);
         setNodes(newNodes);
         setEdges((0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.createEdgesBasedOnNodes)(newNodes));
         // setEdges(newEdges);
@@ -691,7 +727,9 @@ const FlowComponent = (props) => {
             // setAllEdges(refreshedEdges);
             // const {initialNodes: initialRefreshedNodes, initialEdges: initialRefreshedEdges} = getInitialElements(refreshedNodes, refreshedEdges);
             // const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialRefreshedNodes, initialRefreshedEdges);
-            const { nodes: layoutedNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('GetInitial', null, null, null, allNodesBackend, [], edgeOperations.current);
+            const { nodes: layoutedNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.translateTreeUtilCommand)('GetInitial', null, null, null, allNodesBackend, 
+            // [],
+            edgeOperations.current);
             setNodes(layoutedNodes);
             setEdges((0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.createEdgesBasedOnNodes)(layoutedNodes));
             // setEdges(layoutedEdges);
@@ -701,7 +739,7 @@ const FlowComponent = (props) => {
         }));
     };
     const getRecommendations = () => {
-        if (allNodes === null || allEdges === null) {
+        if (allNodes === null) {
             console.log('[getRecommendations] allNodes or allEdges is null');
             return;
         }
@@ -716,9 +754,9 @@ const FlowComponent = (props) => {
             const recommendedNodes = response.data.recommendedNodes;
             const recommendedEdges = response.data.recommendedEdges;
             const newAllNodes = allNodes.concat(recommendedNodes);
-            const newAllEdges = [...allEdges, ...recommendedEdges];
+            // const newAllEdges = [...allEdges, ...recommendedEdges];
             setAllNodes(newAllNodes);
-            setAllEdges(newAllEdges);
+            // setAllEdges(newAllEdges);
             const newNodes = nodes.concat(recommendedNodes);
             const newEdges = edges.concat(recommendedEdges);
             const { nodes: layoutedNodes, } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.getLayoutedElements)(newNodes, newEdges);
@@ -731,7 +769,7 @@ const FlowComponent = (props) => {
         }));
     };
     const disableRecommendations = () => {
-        if (allNodes === null || allEdges === null) {
+        if (allNodes === null) {
             console.log('[disableRecommendations] allNodes or allEdges is null');
             return;
         }
@@ -741,9 +779,9 @@ const FlowComponent = (props) => {
         }
         // remove the recommended nodes and edges
         const newAllNodes = allNodes.filter((n) => n.data.nodeType !== 'recommended');
-        const newAllEdges = allEdges.filter((e) => (!e.source.startsWith('rec') && !e.target.startsWith('rec')));
+        // const newAllEdges = allEdges.filter((e) => (!e.source.startsWith('rec') && ! e.target.startsWith('rec')));
         setAllNodes(newAllNodes);
-        setAllEdges(newAllEdges);
+        // setAllEdges(newAllEdges);
         const newNodes = nodes.filter((n) => n.data.nodeType !== 'recommended');
         const newEdges = edges.filter((e) => (!e.source.startsWith('rec') && !e.target.startsWith('rec')));
         const { nodes: layoutedNodes, edges: layoutedEdges } = (0,_TreeUtils__WEBPACK_IMPORTED_MODULE_16__.getLayoutedElements)(newNodes, newEdges);
@@ -1275,9 +1313,9 @@ function collapseSubtree(selectedNode, curNodes, allNodes) {
     const newNodes = newNodesWithoutSelectedNode.concat(selectedNode);
     return newNodes;
 }
-function getNewNodesAndEdges(command, selectedNode, curNodes, curEdges, allNodes, allEdges) {
+function getNewNodesAndEdges(command, selectedNode, curNodes, curEdges, allNodes) {
     console.log(`[getNewNodesAndEdges] command=${command}, selectedNode=${selectedNode === null || selectedNode === void 0 ? void 0 : selectedNode.data.label}`);
-    if (allNodes === null || allEdges === null) {
+    if (allNodes === null) {
         return { nodes: curNodes, edges: curEdges };
     }
     switch (command) {
@@ -1338,9 +1376,11 @@ function applyEdgeOperations(edgeOperations, curNodes, curEdges) {
     }
     return curEdges;
 }
-function translateTreeUtilCommand(command, selectedNode, curNodes, curEdges, allNodes, allEdges, edgeOperations) {
+function translateTreeUtilCommand(command, selectedNode, curNodes, curEdges, allNodes, 
+//allEdges: Edge[]|null,
+edgeOperations) {
     // console.log(`[translateTreeUtilCommand] command=${command}`);
-    const { nodes: newNodes, edges: newEdges } = getNewNodesAndEdges(command, selectedNode, curNodes, curEdges, allNodes, allEdges);
+    const { nodes: newNodes, edges: newEdges } = getNewNodesAndEdges(command, selectedNode, curNodes, curEdges, allNodes);
     const updatedEdges = applyEdgeOperations(edgeOperations, newNodes, newEdges);
     const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(newNodes, updatedEdges);
     return { nodes: layoutedNodes, edges: layoutedEdges };
@@ -1704,4 +1744,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /***/ })
 
 }]);
-//# sourceMappingURL=lib_index_js.fc2430cd73ffc0cc5e44.js.map
+//# sourceMappingURL=lib_index_js.f7700a883c9c4288f254.js.map

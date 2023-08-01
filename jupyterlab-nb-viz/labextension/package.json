@@ -125,7 +125,7 @@
     "extension": true,
     "outputDir": "jupyterlab-nb-viz/labextension",
     "_build": {
-      "load": "static/remoteEntry.d9e2348b5cd110b650bd.js",
+      "load": "static/remoteEntry.b56c9132efb3aebed961.js",
       "extension": "./extension",
       "style": "./style"
     }
