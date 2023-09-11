@@ -63,6 +63,8 @@
     "@jupyterlab/apputils": "^3.6.3",
     "@jupyterlab/docmanager": "^3.6.3",
     "@jupyterlab/mainmenu": "^3.6.3",
+    "@jupyterlab/rendermime": "3.6.3",
+    "@jupyterlab/rendermime-interfaces": "3.6.3",
     "@jupyterlab/ui-components": "^3.6.3",
     "@lumino/widgets": "^1.37.2",
     "@popperjs/core": "^2.11.8",
@@ -70,6 +72,7 @@
     "@types/dagre": "^0.7.48",
     "add": "^2.0.6",
     "axios": "^1.4.0",
+    "clipboard-copy": "^4.0.1",
     "dagre": "^0.8.5",
     "highlight.js": "^11.8.0",
     "html-to-image": "^1.11.11",
@@ -125,7 +128,7 @@
     "extension": true,
     "outputDir": "jupyterlab-nb-viz/labextension",
     "_build": {
-      "load": "static/remoteEntry.b56c9132efb3aebed961.js",
+      "load": "static/remoteEntry.55c0bcf1b7f87c83613b.js",
       "extension": "./extension",
       "style": "./style"
     }

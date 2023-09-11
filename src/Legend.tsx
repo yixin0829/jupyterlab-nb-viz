@@ -79,7 +79,7 @@ export function Legend() {
             <CButton className="mb-3" color="warning" onClick={() => setVisible(!visible)} aria-expanded={visible} aria-controls="collapseLegend">
                 Show legend
             </CButton>
-            <div style={{ minHeight: '120px'}}>
+            <div /*style={{ minHeight: '120px'}}*/>
             <CCollapse id="collapseLegend" horizontal visible={visible}>
                 <CCard style={legendCardStyle}>
                 <CCardBody style={{backgroundColor: '#E1E1E1', opacity: '0.8', padding: '10px', width: "400px"}}>
@@ -87,13 +87,13 @@ export function Legend() {
                     <li>
                         <div style={ legendItemStyle }>
                             <div style={{...legendNodeStyle, backgroundColor: '#e8ac6e'}}></div>
-                            Column name
+                            Data Field name (Subset)
                         </div>
                     </li>
                     <li>
                         <div style={legendItemStyle}>
                             <div style={{...legendNodeStyle, backgroundColor: '#9ab75e'}}></div>
-                            Method
+                            Plot (Method)
                         </div>
                     </li>
                     <li>
@@ -111,7 +111,7 @@ export function Legend() {
                     <li>
                         <div style={legendItemStyle}>
                             <div style={legendNodeStyle}>
-                                <span style={redStyle}>----</span>x/y<span style={redStyle}>----</span>
+                                <span style={redStyle}>----------</span>
                             </div>
                             <span style={legendLongText}>
                                 Recommendation edge

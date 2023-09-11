@@ -15,9 +15,6 @@ export const getLayoutedElements = (nodes:Node[], edges:Edge[], direction='TB') 
         return {...node, position: { x: 0, y: 0 } }
     });
 
-    // edge cleanup to avoid orphan edges
-    // const edgesAfterCleanUp = edges.filter((e) => nodes.some((n) => n.id === e.source) && nodes.some((n) => n.id === e.target));
-
     // Add nodes and edges into dagreGraph
     nodes.forEach((node:Node) => {
         dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
@@ -146,8 +143,18 @@ function expandEtcNode(selectedNode: Node|null, curNodes: Node[]|null, allNodesB
     const parentChildrenId = parentNode!.data.children;
     const parentChildren = parentChildrenId.map((id: string) => getNodeById(id, allNodesBackend));
     const childrenNotInCurNodes = parentChildren.filter((c: Node) => !curNodes.some((n) => n.id === c.id));
+    const queue: Node[] = childrenNotInCurNodes;
+    const subtreeNodes: Node[] = [];
+    // find all the subtree nodes of the nodes collapsed in etcNode
+    while (queue.length > 0) {
+        const currentNode = queue.shift()!;
+        subtreeNodes.push(currentNode);
+        const curNodeChildrenId = currentNode.data.children;
+        const curNodeChildren = curNodeChildrenId.map((id: string) => getNodeById(id, allNodesBackend));
+        curNodeChildren.forEach((child: Node) => {queue.push(child);});
+    }
     const newNodesAfterRemoveEtc = curNodes.filter((n) => n.id !== etcNode.id)
-    const newNodes = newNodesAfterRemoveEtc.concat(childrenNotInCurNodes);
+    const newNodes = newNodesAfterRemoveEtc.concat(subtreeNodes);
     return newNodes;
 }
 
@@ -198,22 +205,63 @@ function expandSubtree(selectedNode: Node|null, curNodes: Node[]|null, allNodes:
 }
 
 
+// function expandNonTop(selectedNode: Node|null, curNodes: Node[]|null, allNodes: Node[], etcThreshold: number = 3) {
+//     if (selectedNode === null || curNodes === null) {
+//         console.log(`[TreeUtils] Invalid input: selectedNode=${selectedNode}, curNodes=${curNodes}`);
+//         return curNodes;
+//     }
+//     if (selectedNode.data.children.length <= etcThreshold) {
+//         return expandSubtree(selectedNode, curNodes, allNodes, etcThreshold);
+//     }
+//     // add top children and its subtree nodes + etcNodes to curNodes
+//     const topChildrenId = selectedNode.data.children.slice(0, etcThreshold);
+//     const topChildren = topChildrenId.map((id: string) => getNodeById(id, allNodes));
+//     const etcNode = createEtcNode(selectedNode, etcThreshold);
+//     const topChildrenSubtreeNodes: Node[] = [etcNode, ];
+//     const queue:Node[] = topChildren;
+//     while (queue.length > 0) {
+//         const currentNode: Node = queue.shift()!;
+//         topChildrenSubtreeNodes.push(currentNode);
+//         const topChildrenOfCurNodeId = currentNode.data.children.slice(0, etcThreshold);
+//         const topChildrenOfCurNode = topChildrenOfCurNodeId.map((id: string) => getNodeById(id, allNodes));
+//         const etcNodeOfCurNode = createEtcNode(currentNode, etcThreshold);
+//         topChildrenOfCurNode.forEach((child: Node) => {queue.push(child);});
+//         topChildrenSubtreeNodes.push(etcNodeOfCurNode);
+//     }
+//     const newNodesAfterAddTop = curNodes.concat(topChildrenSubtreeNodes);
+//     return newNodesAfterAddTop;
+// }
+
+
 function collapseBackEtcNode(selectedNode: Node|null, curNodes: Node[]|null, allNodes: Node[], etcThreshold: number = 3) {
     if (selectedNode === null || curNodes === null) {
         console.log(`[TreeUtils] Invalid input: selectedNode=${selectedNode}, curNodes=${curNodes}`);
         return curNodes;
     }
-    // remove all non-top nodes in children of selectedNode and add etcNode back
+    if (selectedNode.data.label.endsWith('(+)')) {
+        // do nothing if the node is already "collapsed-all"
+        return curNodes;
+    }
     if (selectedNode.data.children.length <= etcThreshold) {
         return curNodes;
     }
+    // remove all non-top nodes and their subtree nodes from curNodes and add etcNode back
     const nonTopChildrenId = selectedNode.data.children.slice(etcThreshold);
     const nonTopChildren = nonTopChildrenId.map((id: string) => getNodeById(id, allNodes));
-    const newNodesAfterRemoveNonTop = curNodes.filter((n) => !nonTopChildren.some((c: Node) => c.id === n.id));
+    const nonTopChildrenSubtreeNodes:Node[] = [];
+    const queue:Node[] = nonTopChildren;
+    while (queue.length > 0) {
+        const currentNode: Node = queue.shift()!;
+        nonTopChildrenSubtreeNodes.push(currentNode);
+        const children = currentNode.data.children.map((id: string) => getNodeById(id, allNodes));
+        children.forEach((child: Node) => {queue.push(child);});
+    }
+    const newNodesAfterRemoveNonTop = curNodes.filter((n) => !nonTopChildrenSubtreeNodes.some((c: Node) => c.id === n.id));
     const etcNode = createEtcNode(selectedNode, etcThreshold);
     const newNodes = newNodesAfterRemoveNonTop.concat(etcNode);
     return newNodes;
 }
+
 
 function collapseSubtree(selectedNode: Node|null, curNodes: Node[]|null, allNodes: Node[]) {
     if (selectedNode === null || curNodes === null ) {
@@ -233,12 +281,23 @@ function collapseSubtree(selectedNode: Node|null, curNodes: Node[]|null, allNode
         const childrenInCurNodes = curNodes.filter((n) => n.data.parent === currentNode.id);
         childrenInCurNodes.forEach((child: Node) => {queue.push(child);});
     }
-    console.log(`[collapseSubtree] subtreeNodes=${JSON.stringify(subtreeNodes)}`);
+    // console.log(`[collapseSubtree] subtreeNodes=${JSON.stringify(subtreeNodes)}`);
     const newNodesWithoutSelectedNode = curNodes.filter((n) => !subtreeNodes.some((sn) => sn.id === n.id));
     // change the label selectedNode by adding (+)
     selectedNode.data.label = `${selectedNode.data.rawData} (+)`;
     const newNodes = newNodesWithoutSelectedNode.concat(selectedNode);
     return newNodes;
+}
+
+function collapseTreeBackToInitial(allNodesBackend: Node[], etcThreshold: number = 3) {
+    const newNodes = getInitialNodes(allNodesBackend, etcThreshold);
+    const newNodesAfterLabelChange = newNodes.map((n) => {
+        if (n.data.label.endsWith('(+)')) {
+            n.data = {...n.data, label: n.data.rawData}
+        }
+        return n;
+    });
+    return newNodesAfterLabelChange;
 }
 
 
@@ -263,7 +322,7 @@ function getNewNodesAndEdges(command:string,
             return { nodes: newNodes, edges: createEdgesBasedOnNodes(newNodes)};
         }
         case 'CollapseBackToInitial': {
-            const initialNodes = getInitialNodes(allNodes);
+            const initialNodes = collapseTreeBackToInitial(allNodes);
             return { nodes: initialNodes, edges: createEdgesBasedOnNodes(initialNodes)};
         }
         case 'ExpandEtcNode': {
@@ -274,6 +333,10 @@ function getNewNodesAndEdges(command:string,
             const newNodes = expandSubtree(selectedNode, curNodes, allNodes);
             return { nodes: newNodes, edges: createEdgesBasedOnNodes(newNodes)};
         }
+        // case "ExpandNonTop": {
+        //     const newNodes = expandNonTop(selectedNode, curNodes, allNodes);
+        //     return { nodes: newNodes, edges: createEdgesBasedOnNodes(newNodes)};
+        // }
         case 'CollapseSubtree': {
             const newNodes = collapseSubtree(selectedNode, curNodes,allNodes);
             return { nodes: newNodes, edges: createEdgesBasedOnNodes(newNodes)};
@@ -435,10 +498,10 @@ export function getPathVariableCombination(selectedNode: Node|null, allNodes: No
     return pathVariables;
 }
 
-export interface SrcNbAndCode {
-    sourceNotebook: string;
-    sourceCode: string[];
-}
+// export interface SrcNbAndCode {
+//     sourceNotebook: string;
+//     sourceCode: string[];
+// }
 
 export function createEdgesBasedOnNodes(curNodes: Node[] | null) {
     // create edges to connect nodes based on the parent-child relationships

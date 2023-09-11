@@ -122,14 +122,9 @@ const FlowComponent = (props: FlowComponentProps) => {
     // const [canCollapseAll, setCanCollapseAll] = useState(false);
     // const [canCollapseNonTop, setCanCollapseNonTop] = useState(false);
     const [isRecommendationDisplayed, setIsRecommendationDisplayed] = useState(false);
-    
-    const defaultSrcNbAndCode = {
-        sourceNotebook: "",
-        sourceCode: ["# Loading, please wait for a while..."],
-    };
     const [isRecommendNodeSelected, setIsRecommendNodeSelected] = useState(false);
     const [selectedRecommendedPath, setSelectedRecommendedPath] = useState<string[]>([]);
-    const [srcNbAndCodeListForRec, setSrcNbAndCodeListForRec] = useState([defaultSrcNbAndCode,]);
+    // const [srcNbAndCodeListForRec, setSrcNbAndCodeListForRec] = useState([defaultSrcNbAndCode,]);
 
     const [allNodes, setAllNodes] = useState<Node[] | null>([defaultRootNode, ]);
     // const [allEdges, setAllEdges] = useState<Edge[] | null>([]);
@@ -141,6 +136,7 @@ const FlowComponent = (props: FlowComponentProps) => {
     const highlightedCellLines = useRef<number[][]>([]); // [[cellIndex, lineNumber], ...
     const highlightedCells = useRef<number[]>([]); // [[cellIndex, lineNumber], ...
     const edgeOperations = useRef<EdgeOperation[]>([]);
+    const datasetId = useRef<string>("");
 
     const collapseBackToInitial = () => {
         // collapse the tree to initial state
@@ -233,29 +229,6 @@ const FlowComponent = (props: FlowComponentProps) => {
         console.log(`activeCellIndex after setFocusCell: ${props.notebookTracker.currentWidget.content.activeCellIndex}`);
     }
 
-    function fetchCodeSnippetForSelectedRecommendation(variableCombination: string[]) {
-        if (variableCombination.length === 0) {
-            console.log(`[FetchRecommendationCodeSnippets] empty variableCombination`);
-            return [defaultSrcNbAndCode,];
-        }
-        console.log(`[FetchRecommendationCodeSnippets] start to fetch code snippets of variableCombination=${variableCombination}:`);
-        const recommendationCodeSnippetUrl = backendUrl + "/recommendation-code-snippets";
-        const request = {
-            variableCombination: JSON.stringify(variableCombination),
-        }
-        trackPromise(
-        axios.post(recommendationCodeSnippetUrl, request, {withCredentials: true, }).then((response) => {
-            console.log(`[FetchRecommendationCodeSnippets] Fetched code snippets of variableCombination=${variableCombination}:`);
-            const newSrcNbAndCodeList = response.data.srcNotebooksAndCode;
-            if (newSrcNbAndCodeList.length === 0) {
-                newSrcNbAndCodeList.push(defaultSrcNbAndCode);
-            }
-            setSrcNbAndCodeListForRec(newSrcNbAndCodeList);
-        }).catch((error) => {
-            console.error(`Error when fecthing code snippets of variableCombination=${variableCombination}:`, error);
-        }));
-    }
-
 
     const handleNodeClick = (event: MouseEvent, node: Node) => {
         if (allNodes === null) {
@@ -277,16 +250,8 @@ const FlowComponent = (props: FlowComponentProps) => {
         setNodes(newNodes);
 
         const highlightNodeTypes = ["insight", "plot"];
-        const collapsibleNodeTypes = ["raw", "etc"];
+        const collapsibleNodeTypes = ["raw", "etc", "root"];
         if (collapsibleNodeTypes.includes(node.data.nodeType)) {
-            // update collapse/expand state
-            // const selectedNodeHasChildren = nodes.some((n) => n.data.parent === node.id);
-            // setCanExpandAll(!selectedNodeHasChildren);
-            // setCanCollapseAll(selectedNodeHasChildren);
-            // const etcNodeInChildren = allNodes.find((n) => n.data.parent === node.id && n.data.nodeType === 'etc');
-            // const etcNodeAlreadyExists = nodes.find((n) => n.data.parent === node.id && n.data.nodeType === 'etc');
-            // const selectedNodeCanCollapseNonTop = (etcNodeAlreadyExists === undefined) && (etcNodeInChildren !== undefined) && !(nodes.some((n) => {n.data.parent === etcNodeInChildren.id}));
-            // setCanCollapseNonTop(selectedNodeCanCollapseNonTop);
             if (node.data.nodeType === 'etc') {
                 const { nodes: newNodes, /*edges: newEdges*/ } = translateTreeUtilCommand(
                     'ExpandEtcNode',
@@ -300,6 +265,19 @@ const FlowComponent = (props: FlowComponentProps) => {
                 setNodes(newNodes);
                 setEdges(createEdgesBasedOnNodes(newNodes));
                 // setEdges(newEdges);
+                return;
+            }
+            if (node.data.label.endsWith('(+)')) {
+                const { nodes: newNodes, /*edges: newEdges*/} = translateTreeUtilCommand(
+                    'ExpandSubtree',
+                    selectedNode,
+                    nodes,
+                    edges,
+                    allNodes,
+                    edgeOperations.current
+                );
+                setNodes(newNodes);
+                setEdges(createEdgesBasedOnNodes(newNodes));
                 return;
             }
         }
@@ -331,7 +309,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         else if (node.data.nodeType === 'recommended') {
             const variableCombination = getPathVariableCombination(node, allNodes);
             console.log(`[handleNodeClick] Select variableCombination=${variableCombination}, start to fetch code snippets.`);
-            fetchCodeSnippetForSelectedRecommendation(variableCombination);
+            // fetchCodeSnippetForSelectedRecommendation(variableCombination);
             setIsRecommendNodeSelected(true);
             console.log(`[handleNodeClick] subset of selected recommend node=${variableCombination}`);
             setSelectedRecommendedPath(variableCombination);
@@ -420,7 +398,7 @@ const FlowComponent = (props: FlowComponentProps) => {
             allNodes,
             // allEdges,
             edgeOperations.current
-        )
+        );
         setNodes(newNodes);
         setEdges(createEdgesBasedOnNodes(newNodes));
         // setEdges(newEdges);
@@ -440,7 +418,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         setSelectedEdge(null);
         setIsRecommendNodeSelected(false);
         setSelectedRecommendedPath([]);
-        setSrcNbAndCodeListForRec([defaultSrcNbAndCode,]);
+        // setSrcNbAndCodeListForRec([defaultSrcNbAndCode,]);
         edgeOperations.current = [];
     }
 
@@ -463,6 +441,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         axios.post(backendUrl + '/tracking-tree-nodes', request, {withCredentials: true, }).then((response) => {
             console.log(`[refreshSMITree] get response.`);
             const allNodesBackend = response.data.nodes;
+            datasetId.current = response.data.datasetId;
             // const refreshedEdges = response.data.edges;
             // console.log(`[refreshSMITree] refreshedNodes: ${JSON.stringify(refreshedNodes)}`);
             setAllNodes(allNodesBackend);
@@ -495,6 +474,8 @@ const FlowComponent = (props: FlowComponentProps) => {
         disableRecommendations();
         resetAllStatus();
         const request = {
+            // notebook: JSON.stringify(props.notebookPanel!.model!.toJSON()),
+            datasetId: JSON.stringify(datasetId.current),
             nodes: JSON.stringify(nodes),
             edges: JSON.stringify(edges),
         }; // send current Nodes and Edges to backend so that recommendations will not be generated for hidden nodes
@@ -539,6 +520,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         setNodes(layoutedNodes);
         setEdges(layoutedEdges);
         setIsRecommendationDisplayed(false);
+        setSelectedRecommendedPath([]);
     }
 
     const removeSelectedEdge = () => {
@@ -557,6 +539,8 @@ const FlowComponent = (props: FlowComponentProps) => {
             // setEdges(layoutedEdges);
             console.log(`[removeSelectedEdge] successfully removed edge: ${JSON.stringify(selectedEdge)}`);
             edgeOperations.current.push({operation: 'remove', edge: selectedEdge});
+            setSelectedEdge(null);
+            setIsSelectedEdgeRemovable(false);
         }
     }
 
@@ -576,24 +560,6 @@ const FlowComponent = (props: FlowComponentProps) => {
         edgeOperations.current.push({operation: 'add', edge: newEdge});
     }
 
-    // const getEnabledOptions= () => {
-    //     const enabledOptions = [];
-    //     enabledOptions.push(<CDropdownItem onClick={collapseBackToInitial}>Collapse back to initial</CDropdownItem>);
-    //     enabledOptions.push(<CDropdownItem onClick={handleExpandAllNodesButtonClick}>Expand all nodes</CDropdownItem>);
-    //     if (selectedNode && canCollapseAll) {
-    //         enabledOptions.push(<CDropdownItem onClick={handleCollapseAllButtonClick}>Collapse all children</CDropdownItem>);
-    //     }
-    //     if (selectedNode && canCollapseNonTop) {
-    //         enabledOptions.push(<CDropdownItem onClick={handleCollapseNonTopButtonClick}>Collapse non-top-3 children</CDropdownItem>);
-    //     }
-    //     if (selectedNode && canExpandAll) {
-    //         enabledOptions.push(<CDropdownItem onClick={handleExpandAllChildrenButtonClick}>Expand all children</CDropdownItem>);
-    //     }
-    // if (selectedEdge && isSelectedEdgeRemovable) {
-    //         enabledOptions.push(<CDropdownItem onClick={removeSelectedEdge} style={{marginRight: 5}}>Remove edge</CDropdownItem>)
-    //     }
-    //     return enabledOptions;
-    // }
 
     const dropdownButtonStyle = {
         height: "35px", 
@@ -604,6 +570,7 @@ const FlowComponent = (props: FlowComponentProps) => {
         width: "100%",
         height: "40px",
         justifyContent: "space-between",
+        flexWrap: "wrap" as "wrap",
     };
     
     const buttonContainerStyle = {
@@ -672,22 +639,20 @@ const FlowComponent = (props: FlowComponentProps) => {
 
             <div style={{flex: "1", maxWidth: "100px"}}><LoadIndicator/></div>
             
-            
-            <div style={buttonContainerStyle}>
-                <div style={{...buttonGroupWithBorderSytle}}>
-                    {(!isRecommendationDisplayed) && <CButton color="warning" style={recommendationButtonStyle} onClick={getRecommendations}>Show recommendations</CButton> }
-                    {(isRecommendationDisplayed) && <CButton color="warning" style={recommendationButtonStyle} onClick={disableRecommendations} disabled={!isRecommendationDisplayed}>Hide recommendations</CButton>}
-                </div>
-                <span>Get help in data explartion</span>
-            </div>
-            
             {isRecommendNodeSelected &&
                 <div style={{flex: "1"}}>
                     <RecommendationCodeSnippets 
                         variableCombination={selectedRecommendedPath}
-                        srcNbAndCodeList={srcNbAndCodeListForRec}/>
+                        datasetId={datasetId.current}/>
                     </div>}
 
+            <div style={buttonContainerStyle}>
+                <div style={{...buttonGroupWithBorderSytle}}>
+                    {(!isRecommendationDisplayed) && <CButton color="danger" style={{...recommendationButtonStyle, color: "white"}} onClick={getRecommendations}>Show recommendations</CButton> }
+                    {(isRecommendationDisplayed) && <CButton color="warning" style={recommendationButtonStyle} onClick={disableRecommendations} disabled={!isRecommendationDisplayed}>Hide recommendations</CButton>}
+                </div>
+                <span>Get help in data explartion</span>
+            </div>
 
             <div style={buttonContainerStyle}>
                 <div style={{...buttonGroupWithBorderSytle}}>
