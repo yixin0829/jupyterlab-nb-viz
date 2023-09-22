@@ -1,6 +1,5 @@
 # jupyterlab-nb-viz
 
-[![Github Actions Status](https://github.com/yixin0829/jupyterlab-nb-viz/workflows/Build/badge.svg)](https://github.com/yixin0829/jupyterlab-nb-viz/actions/workflows/build.yml)[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yixin0829/jupyterlab-nb-viz/main?urlpath=lab)
 A JupyterLab extension.
 
 ## Requirements
@@ -152,6 +151,35 @@ More information are provided within the [ui-tests](./ui-tests/README.md) README
 
 See [RELEASE](RELEASE.md)
 
-## Temp
 
-Url to access files: 
+## File structure
+
+```
+.
+│
+├── src/: frontend code
+│   ├── NodesAndEdges/: test files for nodes and edges used as input when the backend-frontend connection wasn't set up (I guess they will not be touched any more)
+│   ├── code_archive/: archived past code files
+│   ├── index.ts: index file of the Jupyterlab Extension, for more details plz refer to the Jupyterlab extension tutorial
+│   ├── InsightNode.tsx: component for Insight Nodes
+│   ├── Legend.tsx: component for Legend
+│   ├── panel.ts: Tracking Tree panel
+│   ├── PlotNode.tsx: component for Method Nodes (Plot Nodes)
+│   ├── RawNode.tsx: component for Data Field Nodes (Raw Node is the legacy name)
+│   ├── ReactFLow.tsx: main component for the Tracking Tree panel
+│   ├── RecommendationCodeSnippets.tsx: component to display the code snippets of selected recommendations
+│   ├── registry.ts: Tangerine registry. I don't have a good explanation for this; just followed other jupyterlab extension repos to create this file
+│   ├── TreeUtils.ts: functions related to manipulations on the Tracking Tree, such as expanding or collapsing the tree nodes;
+│
+├── jupyterlab-nb-viz/: lab extension (I don't have a good explanation for this; just followed other jupyterlab extension repos to create this folder)
+│   ├── notebooks/: notebooks that can be accessed in JuputerLab
+|   │   ├── datasets/: datasets that used by the notebooks
+|   │   ├── sample_notebooks/: notebooks used as examples
+|   │   ├──  test_notebooks:/: notebooks used for testing purposes
+|   │   ├──  user_study/: notebooks used for user studies
+|   │   |   ├── tutorial/: notebooks used for the tutorial video for user studies
+|
+├── style/: css files for webpage styles
+|
+├── files & folders not listed here: configuration files that will be rarely touched
+```
